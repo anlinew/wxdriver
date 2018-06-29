@@ -1,0 +1,41 @@
+page{
+    background-color: #fff;
+}
+.jiao{
+  width:100%;
+  display:block;
+}
+.input {
+  padding:0 40rpx;
+  height: 160rpx;
+}
+.weui-cell__bd {
+  display: flex;
+  height: 160rpx;
+  min-height:160rpx;
+  line-height:160rpx;
+  border-bottom:1rpx solid #D5D5D6;
+}
+.weui-input{
+  height: 160rpx;
+  min-height:160rpx;
+  line-height:160rpx;
+  width:100%;
+}
+.loginfont {
+  display: block;
+  height: 160rpx;
+  min-height:160rpx;
+  line-height:160rpx;
+  margin-right: 20rpx;
+  color: #999;
+}
+.createdDispatch {
+  margin-top:100px;
+  background:#3E85FF !important;
+  border-radius:25px;
+  width:90%;
+}
+.icon-yanjing {
+  color: #999;
+}

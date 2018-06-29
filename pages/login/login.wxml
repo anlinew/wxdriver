@@ -1,0 +1,20 @@
+<view class='page'>
+  <image src="../image/login@2x.png" class="jiao"></image>
+  <form bindsubmit="tologin" bindreset="formReset">
+    <view class="input">
+      <view class="weui-cell__bd">
+        <view class='loginfont icon-mobile'></view>
+        <input class="weui-input" value='{{account}}' name="account" placeholder="请输入手机号码" />
+      </view>
+      </view>
+    <view class="input" style='borer-bottm:1rpx solid #ededed'>
+      <view class="weui-cell__bd">
+        <view class='loginfont icon-Password'></view>
+        <input password='{{isshow}}' placeholder="新密码，至少6位英文数字结合" class="weui-input" value='{{password}}' name="password" placeholder="请输入密码" />
+        <view bindtap='isshowPwd'  class='iconfont icon-yanjing'></view>
+      </view>
+    </view>
+    <button class="weui-btn createdDispatch" type="primary" formType="submit">登录</button>
+  </form>
+</view>
+
