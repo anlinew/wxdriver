@@ -1,3 +1,6 @@
+.container {
+  position: relative;
+}
 .header {
   width: 100%;
   background: #2D99EE;
@@ -7,68 +10,66 @@
   background-image: -o-linear-gradient(top, #2D99EE, #338AF1);
   background-image: linear-gradient(to bottom, #2D99EE, #338AF1);
   padding: 30px 0;
-}
-.avatar {
-  text-align: center;
-  padding-bottom: 15px;
-}
-.avatarImage {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-.nickName {
-  font-size: 14px;
-  color: #fff;
-}
-.mission {
   display: flex;
-}
-.mission>view{
-  flex: 1;
-  text-align: center;
+  justify-content: center;
   color: #fff;
-  font-size: 12px;
+  text-align:center;
 }
-.missionNum {
-  font-size: 22px;
+.mileage {
+  padding:0 30rpx;
 }
-.weui-grids {
-  background: #fff;
-  border-top: 1rpx solid #D2D2D2;
-  border-left: 1rpx solid #D2D2D2;
-  overflow: hidden;
+.title {
+  display:flex;
+  color: #333;
 }
-.weui-grid {
-  position: relative;
-  float: left;
-  padding: 30px 10px 23px;
-  width: 50%;
-  box-sizing: border-box;
-  border-right: 1rpx solid #D2D2D2;
-  border-bottom: 1rpx solid #D2D2D2;
+.finish {
+  text-align:right;
+  color: #f00;
 }
-.weui-grid_active {
-  background-color: #ECECEC;
+.createdDispatch {
+  margin-top:100px;
+  background:#3E85FF !important;
+  border-radius:25px;
+  width:90%;
 }
-.weui-grid__icon {
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin: 0 auto;
+.time {
+  font-size:12px;
 }
-.weui-grid__label {
-  margin-top: 5px;
-  display: block;
+.mission_num {
+  background: rgb(249, 247, 247);
+  position:absolute;
+  top:10px;
+  width:90%;
+  margin:0 5%;
+  z-index:99;
+  border-top-left-radius:12rpx;
+  border-top-right-radius:12rpx;
+  display: flex;
   text-align: center;
-  color: #000000;
   font-size: 14px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
-
-image{
- width: 100%;
-
+.mission_num>view {
+  flex: 1;
+  margin: 30rpx;
+}
+.num_type {
+  color: rgb(57, 129, 255);
+  margin-top:10rpx;
+}
+.mission_detail{
+  background: #fff;
+  margin-top:30px;
+  padding:0 40rpx 0 70rpx;
+}
+.webyill {
+  padding: 40rpx 0;
+  font-size: 12px;
+  color: rgb(74, 75, 79);
+  border-bottom: 1rpx solid rgb(214, 214, 214);
+}
+.webyill>view {
+  padding: 10rpx;
+}
+.webyill_num {
+  float: right;
 }

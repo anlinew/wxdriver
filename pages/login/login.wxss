@@ -39,3 +39,6 @@ page{
 .icon-yanjing {
   color: #999;
 }
+.pwd {
+  width:100%;
+}

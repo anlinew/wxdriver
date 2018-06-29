@@ -1,29 +1,20 @@
-<!--index.wxml-->
 <view class="container">
   <view class='header'>
-    <view class="avatar">
-      <view>
-        <image class='avatarImage' src="../image/avatar@2x.png"></image>
-      </view>
-      <text class="nickName">{{username}}</text>
-    </view>
-    <view class="mission">
-      <view>
-        <view class='missionNum'>{{todaynum}}</view>
-        <view>当日调度任务</view>
-      </view>
-      <view>
-        <view class='missionNum'>{{monthnum}}</view>
-        <view>本月调度任务</view>
-      </view>
-    </view>
+    <block wx:for="{{detail.taskDetails}}" wx:key="{{index}}">
+    <view class='mileage time'wx:if="{{item.mileage>0}}">{{item.mileage}}KM<view>----------</view></view>
+    <view>{{item.siteName}}<view class='time'>{{item.scheduleTime}}</view></view>
+    </block>
   </view>
-  <view class="weui-grids">
-      <block wx:for-items="{{grids}}" wx:key="{{index}}">
-          <navigator url="{{item.pageUrl}}" class="weui-grid" hover-class="weui-grid_active">
-              <image class="weui-grid__icon" src="{{item.imageUrl}}" />
-              <view class="weui-grid__label">{{item.title}}</view>
-          </navigator>
-      </block>
+  <view class='mission_num'>
+    <view>运输数量<view class='num_type'>12</view></view>
+    <view>调度类型<view class='num_type'>重载</view></view>
+    <view>当前状态<view class='num_type'>在途中</view></view>
+  </view>
+  <view class="mission_detail">
+   <view class='webyill'>
+      <view>订单编号<text class='webyill_num'>92759327593475</text></view>
+      <view>车型代码<text class='webyill_num'>>92759327593475</text></view>
+   </view>
+   <view class='route'></view>
   </view>
 </view>

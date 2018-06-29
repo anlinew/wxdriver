@@ -17,7 +17,7 @@ Page({
     const rules = {
       account: {
         required: true,
-        tel: true
+        rangelength: [1,16]
       },
       password: {
         required: true,
@@ -27,8 +27,8 @@ Page({
     // 验证字段的提示信息，若不传则调用默认的信息
     const messages = {
       account: {
-        required: '手机号码不能为空',
-        tel: '请输入正确的手机号',
+        required: '用户名不能为空',
+        rangelength: '用户名为1-16位',
       },
       password: {
         required: '密码不能为空',
@@ -60,6 +60,7 @@ Page({
       },
     })
     .then(res => {
+      console.log(res)
       if(res.result){
         wx.showModal({
           confirmColor: '#666',
