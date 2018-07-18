@@ -1,20 +1,115 @@
-<view class="container">
-  <view class='header'>
-    <block wx:for="{{detail.taskDetails}}" wx:key="{{index}}">
+<view class="container" hidden='{{!detaiShow}}'>
+    <view class='header'>
+        <!-- <block wx:for="{{detail.taskDetails}}" wx:key="{{index}}">
     <view class='mileage time'wx:if="{{item.mileage>0}}">{{item.mileage}}KM<view>----------</view></view>
     <view>{{item.siteName}}<view class='time'>{{item.scheduleTime}}</view></view>
-    </block>
-  </view>
-  <view class='mission_num'>
-    <view>运输数量<view class='num_type'>12</view></view>
-    <view>调度类型<view class='num_type'>重载</view></view>
-    <view>当前状态<view class='num_type'>在途中</view></view>
-  </view>
-  <view class="mission_detail">
-   <view class='webyill'>
-      <view>订单编号<text class='webyill_num'>92759327593475</text></view>
-      <view>车型代码<text class='webyill_num'>>92759327593475</text></view>
-   </view>
-   <view class='route'></view>
-  </view>
+    </block> -->
+        <view class='site'>
+            <view class='name'>{{fromCity}}</view>
+            <view class='time'>{{departureTime}}</view>
+        </view>
+        <view class='mileage'>
+            <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
+            <image src="../image/right_arrow.png" class="line"></image>
+        </view>
+        <view class='site'>
+            <view class='name'>{{toCity}}</view>
+            <view class='time'>{{arriverTime}}</view>
+        </view>
+        <view class='mission_num'>
+            <view>运输数量
+                <view class='num_type'>{{detail.cargoAmount}}</view>
+            </view>
+            <view>调度类型
+                <view class='num_type'>{{detail.dispatchType === 0 ? '重载' : '空载'}}</view>
+            </view>
+            <view>当前状态
+                <view class='num_type'>{{statusName}}</view>
+            </view>
+        </view>
+    </view>
+
+    <view class="mission_detail">
+        <view class='webyill'>
+            <view>调度单号
+                <text class='webyill_num'>{{detail.waybillNum}}</text>
+            </view>
+            <view>车型代码
+                <text class='webyill_num'>{{cargoCode}}</text>
+            </view>
+        </view>
+        <view class='route'>
+            <view class='site' wx:for="{{sites}}" wx:for-index="i" wx:key="i">
+                <view class='img-wrap'>
+                    <image src="{{i === 0 ? '../image/start_city_info.png' : i === sites.length - 1 ? '../image/end_city_info.png' : '../image/road_info.png'}}" class="logo logo-start"></image>
+                </view>
+                <text class='name'>{{item.cityName}}</text>
+                <text class='time'>{{item.shortTime}}</text>
+                <view wx:if='{{reportShow}}' class="btn {{i === 0 ? 'red' : ''}} {{item.arriveTime ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</view>
+            </view>
+            <!-- <view class='site'>
+                <view class='img-wrap'>
+                    <image src="../image/road_info.png" class="logo"></image>
+                </view>
+                <text class='name'>重庆市</text>
+                <text class='time'>04-18 14:23</text>
+                <view class='btn'>交车</view>
+            </view>
+            <view class='site'>
+                <view class='img-wrap'>
+                    <image src="../image/end_city_info.png" class="logo logo-end"></image>
+                </view>
+                <text class='name'>重庆市</text>
+                <text class='time'>04-18 14:23</text>
+                <view class='btn'>交车</view>
+            </view> -->
+        </view>
+    </view>
+    <button class="weui-btn get-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">接受任务</button> 
+    <view class='report-box' hidden='{{!reportShow}}'>
+        <view class='item'>
+            <view class='logo'>
+                <image src="../image/bill_report.png" class="img"></image>
+            </view>
+            <view class='txt'>单据上报</view>
+        </view>
+        <view class='item'>
+            <view class='logo'>
+                <image src="../image/event_report.png" class="img"></image>
+            </view>
+            <view class='txt'>事件上报</view>
+        </view>
+    </view>
+</view>
+<!-- 任务为空时 -->
+<view class='container-none' hidden='{{detaiShow}}'>
+    <view class='img-wrap'>
+        <image src="../image/no_task.png" class="logo"></image>
+    </view>
+    <view class='tip'>还没有调度任务</view>
+    <button class="weui-btn history-task-btn" type="primary">查看历史任务</button>
+</view>
+<!-- 弹窗  -->
+<view class='pop-mask' hidden='{{!popShow}}'>
+    <view class='pop-box'>
+        <view class='pop-h'>
+            <text>交车地址</text>
+            <view class='close'><image src="../image/close.png" class="img"></image></view>
+        </view>
+        <view class='pop-b'>
+            <view class='list'>
+                <view class='item'>
+                    <view class='check-logo'><image src="../image/checked.png" class="img"></image></view>
+                    <text class='name'>武汉创源沙湖4S店</text>
+                </view>
+                <view class='item'>
+                    <view class='check-logo'><image src="../image/un_check.png" class="img"></image></view>
+                    <text class='name'>武汉创源沙湖4S店</text>
+                </view>
+            </view>
+        </view>
+        <view class='pop-f'>
+            <view class='btn'>提交</view>
+        </view>
+    </view>
 </view>

@@ -2,21 +2,35 @@
   position: relative;
 }
 .header {
+  display: flex;
+  position: relative;
   width: 100%;
+  padding: 10px 0;
+  padding-bottom: 130rpx;
+  justify-content: center;
   background: #2D99EE;
   background-image: -webkit-linear-gradient(top, #2D99EE, #338AF1);
   background-image: -moz-linear-gradient(top, #2D99EE, #338AF1);
   background-image: -ms-linear-gradient(top, #2D99EE, #338AF1);
   background-image: -o-linear-gradient(top, #2D99EE, #338AF1);
   background-image: linear-gradient(to bottom, #2D99EE, #338AF1);
-  padding: 30px 0;
-  display: flex;
-  justify-content: center;
   color: #fff;
   text-align:center;
 }
 .mileage {
-  padding:0 30rpx;
+  position: relative;
+  min-width: 134rpx;
+  margin: 0 30rpx;
+}
+.mileage .name{
+  font-size: 26rpx;  
+}
+.mileage .line{
+  position: absolute;
+  left: 0;
+  bottom: 40rpx;
+  width: 134rpx;
+  height: 11rpx;
 }
 .title {
   display:flex;
@@ -36,17 +50,19 @@
   font-size:12px;
 }
 .mission_num {
-  background: rgb(249, 247, 247);
-  position:absolute;
-  top:10px;
-  width:90%;
-  margin:0 5%;
+  display: flex;
+  position: absolute;
+  width:720rpx;
+  margin:0 15rpx;
+  left: 0;
+  bottom: -60rpx;
   z-index:99;
   border-top-left-radius:12rpx;
   border-top-right-radius:12rpx;
-  display: flex;
+  background: rgb(249, 247, 247);
   text-align: center;
   font-size: 14px;
+  color: #333;
 }
 .mission_num>view {
   flex: 1;
@@ -58,11 +74,11 @@
 }
 .mission_detail{
   background: #fff;
-  margin-top:30px;
-  padding:0 40rpx 0 70rpx;
+  margin-top: 60rpx;
+  padding:0 30rpx;
 }
 .webyill {
-  padding: 40rpx 0;
+  padding: 40rpx 20rpx;
   font-size: 12px;
   color: rgb(74, 75, 79);
   border-bottom: 1rpx solid rgb(214, 214, 214);
@@ -72,4 +88,217 @@
 }
 .webyill_num {
   float: right;
+}
+/* 线路样式 */
+.route {
+    font-size: 28rpx;
+    line-height: 60rpx;
+    vertical-align: middle;
+    padding-top: 40rpx;
+    padding-left: 40rpx;
+    padding-right: 10rpx;
+    overflow: hidden;
+}
+.route .site{
+    position: relative;
+    margin-bottom: 40rpx;
+    font-size: 0;
+    line-height: 60rpx;
+}
+.route .site::after{
+    display: block;
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 20rpx;
+    width: 0;
+    height: 40rpx;
+    border-right: 1px dashed rgb(214, 214, 214);
+}
+.route .site:last-child::after{
+    display: none;
+}
+.route .site .img-wrap{
+    display: inline-block;
+    width: 40rpx;
+    height: 60rpx;
+    margin-right: 30rpx;
+    text-align: center;
+    vertical-align: top;
+}
+.route .site .img-wrap .logo{
+    width: 40rpx;
+    height: 40rpx;
+    vertical-align: middle;
+}
+.route .site .img-wrap .logo-start, .route .site .img-wrap .logo-end{
+    height: 48rpx;
+}
+.route .site .name{
+    margin-right: 30rpx;
+    font-size: 28rpx;
+    line-height: 60rpx;
+}
+.route .site .time{
+    color: #6d6e72;
+}
+.route .site .btn{
+    float: right;
+    display: inline-block;
+    width: 110rpx;
+    height: 50rpx;
+    border: 1px solid #3e85ff;
+    font-size: 28rpx;
+    line-height: 50rpx;
+    color: #3e85ff;
+    text-align: center;
+    border-radius: 26rpx;
+}
+.route .site .btn.red{
+    color: #f55716;
+    border: 1px solid #f55716;
+}
+.route .site .btn.gray{
+    color: #b9b8b8;
+    border: 1px solid #e0e0e0;
+    background-color: #eee;
+}
+.get-btn{
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 36rpx;
+    color: #fff;
+    margin: 60rpx;
+    background: #3982ff !important;
+    border-radius: 45rpx;
+}
+/* 上报  */
+.report-box{
+    display: flex;
+    justify-content: center;
+    padding: 60rpx 0;
+}
+.report-box .item{
+    width: 110rpx;
+    margin: 0 70rpx;
+}
+.report-box .item .logo{
+    height: 110rpx;
+    margin-bottom: 20rpx;
+}
+.report-box .item .logo .img{
+    width: 100%;
+    height: 100%;
+}
+.report-box .item .txt{
+    text-align: center;
+    font-size: 28rpx;
+}
+/* 任务为空 */
+.container-none{
+    position: relative;
+}
+
+.container-none .img-wrap{
+    padding-top: 166rpx;
+    margin-bottom: 20rpx;
+    text-align: center;
+}
+.container-none .img-wrap .logo{
+    width: 316rpx;
+    height: 316rpx;
+}
+.container-none .tip{
+    text-align: center;
+    font-size: 28rpx;
+    line-height: 60rpx;
+    color: #4a4a4c;
+}
+.history-task-btn{
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 36rpx;
+    color: #fff;
+    margin: 60rpx;
+    background: #3982ff !important;
+    border-radius: 45rpx;
+}
+/* 弹窗 */
+.pop-mask{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.pop-box{
+    position: absolute;
+    width: 490rpx;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    -webkit-border-radius: 10rpx;
+    border-radius: 10rpx;
+}
+.pop-box .pop-h{
+    height: 90rpx;
+    padding: 0 30rpx;
+    border-bottom: 1px solid #dcdcdc;
+    line-height: 90rpx;
+    font-size: 30rpx;
+    color: #666;
+}
+.pop-box .pop-b{}
+
+.pop-box .list{}
+.pop-box .list .item{
+    height: 100rpx;
+    padding-left: 50rpx;
+    font-size: 0;
+}
+.pop-box .list .item .check-logo{
+    display: inline-block;
+    width: 36rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-right: 20rpx;
+    vertical-align: top;
+}
+.pop-box .list .item .check-logo .img{
+    width: 36rpx;
+    height: 36rpx;
+    vertical-align: middle;
+}
+.pop-box .list .item .name{
+    font-size: 28rpx;
+    color: #333;
+    line-height: 100rpx;
+}
+.pop-box .pop-f{
+    padding: 20rpx 0 40rpx 0;
+    text-align: center;
+}
+.pop-box .pop-f .btn{
+    display: inline-block;
+    height: 60rpx;
+    padding: 0 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background-color: #3e85ff;
+    border-radius: 30rpx;
+}
+.pop-box .close{
+    position: absolute;
+    width: 40rpx;
+    height: 40rpx;
+    top: 15rpx;
+    right: 30rpx;
+}
+.pop-box .close .img{
+    width: 100%;
+    height: 100%
 }
