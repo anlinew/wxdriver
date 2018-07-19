@@ -1,0 +1,54 @@
+<!--pages/detail/detail.wxml-->
+<view class='container'>
+    <!-- <view class='header'>
+        <view class='site'>
+            <view class='name'>{{fromCity}}</view>
+            <view class='time'>{{departureTime}}</view>
+        </view>
+        <view class='mileage'>
+            <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
+            <image src="../image/right_arrow.png" class="line"></image>
+        </view>
+        <view class='site'>
+            <view class='name'>{{toCity}}</view>
+            <view class='time'>{{arriverTime}}</view>
+        </view>
+    </view> -->
+    <view class='header'>
+        <view class='site'>
+            <view class='name'>重庆市</view>
+            <view class='time'>07-19 10:00</view>
+        </view>
+        <view class='mileage'>
+            <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
+            <image src="../image/right_arrow.png" class="line"></image>
+        </view>
+        <view class='site'>
+            <view class='name'>上海市</view>
+            <view class='time'>07-20 10:00</view>
+        </view>
+    </view>
+    <view class='info-box'>
+        <view class='item'>
+            <view class='item-name'>调度单号：</view>
+            <view class='item-con'>DZ2018031880175 <text class='finish fr'>已完成</text></view>
+        </view>
+        <view class='item'>
+            <view class='item-name'>任务时间：</view>
+            <view class='item-con'>2018-07-19 10:00</view>
+        </view>
+        <view class='item'>
+            <view class='item-name'>线路名称：</view>
+            <view class='item-con'>重庆市-杭州市-武汉市-上海市</view>
+        </view>
+        <view class='item'>
+            <view class='item-name'>运单号码：</view>
+            <view class='item-con'>JZZ2018071900111</view>
+            <view class='item-con'>JZZ2018071900111</view>
+            <view class='item-con'>JZZ2018071900111</view>
+            <view class='item-con'>JZZ2018071900111</view>
+            <view class='item-con'>JZZ2018071900111</view>
+        </view>
+    </view>
+    <button class="weui-btn check-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">查看事件</button>
+</view>

@@ -1,8 +1,15 @@
 {
     "pages": [
+        "pages/reimbursements/reimbursements",
+        "pages/messages/messages",
+        "pages/editInfo/editInfo",
+        "pages/userInfo/userInfo",
+        "pages/historySearch/historySearch",
+        "pages/detail/detail",
         "pages/login/login",
         "pages/index/index",
         "pages/history/history"
+        
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -1,0 +1,63 @@
+/* pages/reimbursements/reimbursements.wxss */
+.historys{}
+.history{
+    border-bottom: 1px solid #bfbfbf;
+    margin-bottom: 20rpx;
+    background-color: #fff;
+}
+.history .h-t{
+    height: 60rpx;
+    padding: 0 30rpx;
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 28rpx;
+    line-height: 60rpx;
+}
+.history .h-t .gray{
+    color: #7e8084;
+}
+.history .h-t .red{
+    color: #f84a65;
+}
+.history .h-c{
+    padding: 5rpx 30rpx;
+    border-bottom: 1px solid #dcdcdc;
+}
+.history .h-c .item{
+    font-size: 28rpx;
+    line-height: 60rpx;
+}
+.history .h-c .item .logo-wrap{
+    display: inline-block;
+    width: 36rpx;
+    height: 60rpx;
+    margin: 0 12rpx;
+    vertical-align: top;
+}
+.history .h-c .item .logo-wrap .img{
+    width: 36rpx;
+    height: 36rpx;
+    vertical-align: middle;
+}
+.history .h-b{
+    height: 80rpx;
+    padding: 0 30rpx;
+    text-align: right;
+    line-height: 80rpx;
+}
+.history .h-b .btn{
+    display: inline-block;
+    height: 60rpx;
+    margin-left: 20rpx;
+    padding: 0 30rpx;
+    border: 1px solid #3e85ff;
+    font-size: 28rpx;
+    line-height: 60rpx;
+    color: #3e85ff;
+    border-radius: 32rpx;
+    vertical-align: middle;
+}
+.history .h-b .btn.gray{
+    color: #b9b8b8;
+    border: 1px solid #e0e0e0;
+    background-color: #eee;
+}

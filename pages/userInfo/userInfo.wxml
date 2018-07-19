@@ -1,0 +1,17 @@
+<!--pages/userInfo/userInfo.wxml-->
+<view class="weui-cells weui-cells_after-title">
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">头像</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">
+            <view class='head-logo'><image src="../image/avatar@2x.png" class="img"></image></view>
+        </view>
+    </navigator>
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">用户名</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">长安博宇</view>
+    </navigator>
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">电话号码</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">13471092891</view>
+    </navigator>
+</view>

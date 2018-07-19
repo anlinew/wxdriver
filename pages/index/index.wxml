@@ -1,9 +1,5 @@
 <view class="container" hidden='{{!detaiShow}}'>
     <view class='header'>
-        <!-- <block wx:for="{{detail.taskDetails}}" wx:key="{{index}}">
-    <view class='mileage time'wx:if="{{item.mileage>0}}">{{item.mileage}}KM<view>----------</view></view>
-    <view>{{item.siteName}}<view class='time'>{{item.scheduleTime}}</view></view>
-    </block> -->
         <view class='site'>
             <view class='name'>{{fromCity}}</view>
             <view class='time'>{{departureTime}}</view>
@@ -87,7 +83,8 @@
         <image src="../image/no_task.png" class="logo"></image>
     </view>
     <view class='tip'>还没有调度任务</view>
-    <button class="weui-btn history-task-btn" type="primary">查看历史任务</button>
+    <!-- <button class="weui-btn history-task-btn" type="primary">查看历史任务</button> -->
+    <navigator  class="weui-btn history-task-btn" url="../history/history" hover-class="navigator-hover">查看历史任务</navigator>
 </view>
 <!-- 弹窗  -->
 <view class='pop-mask' hidden='{{!popShow}}'>

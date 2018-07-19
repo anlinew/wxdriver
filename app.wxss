@@ -58,7 +58,17 @@
 
 .icon-mobile-o:before { content: "\e653"; }
 
-
+/* common */
+.fl{float: left;}
+.fr{float: right;}
+.clearfix {zoom: 1;}
+.clearfix:after {
+  display: table;
+  content: "";
+  height: 0;
+  line-height: 0;
+  clear: both;
+}
 page{
     background-color: #EEF3FA;
     font-size: 16px;
@@ -69,4 +79,6 @@ page{
   display: block;
   height: 100%;
   width: 100%;
-} 
+}
+
+

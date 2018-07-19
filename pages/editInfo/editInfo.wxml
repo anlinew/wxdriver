@@ -1,0 +1,16 @@
+<!--pages/editInfo/editInfo.wxml-->
+<view class='container'>
+    <view class='block'>
+        <view class='item'>
+            <!-- <view class='item-name'>站点</view> -->
+            <view class='item-con'>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入手机号" />
+                    <view class='logo-clear'><image src="../image/clear.png" class="img"></image></view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <button class="weui-btn confirm-btn" type="primary" bindtap='acceptTask' >确定</button> 
+</view>
+    

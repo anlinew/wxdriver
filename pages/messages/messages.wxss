@@ -1,0 +1,18 @@
+/* pages/messages/messages.wxss */
+.container{
+
+}
+.top-title{
+    height: 70rpx;
+    font-size: 28rpx;
+    line-height: 70rpx;
+    text-align: center;
+}
+.weui-panel{
+    margin: 0 20rpx;
+    margin-bottom: 20rpx;
+    /* border: 1px solid #dcdcdc;  */
+    border-left: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    border-radius: 12rpx;
+}
