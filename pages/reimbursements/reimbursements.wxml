@@ -1,15 +1,54 @@
 <!--pages/reimbursements/reimbursements.wxml-->
 <view class='container'>
-    
-    <view class='historys'>
-        <view class='history'>
-            <view class='h-t'>
-                <text class='num'>订单号： JZZ201803240078109</text>
-                <text class='gray'>(1150KM)</text>
-                <text class='red fr'>已完成</text>
+    <view class='top-info flex'>
+        <view class='item'>
+            <view class='num'>￥4560</view>
+            <view>
+                <view class='badge'>待审批</view>
+            </view>
+        </view>
+        <view class='item'>
+            <view class='num orange'>￥4560</view>
+            <view>
+                <view class='badge orange'>审批中</view>
+            </view>
+        </view>
+        <view class='item'>
+            <view class='num green'>￥4560</view>
+            <view>
+                <view class='badge green'>已结算</view>
+            </view>
+        </view>
+    </view>
+    <view class='list'>
+        <view class='li'>
+            <view class='h-t relative'>
+                <view class='p'>
+                    <text class='num'>调度单号： JZZ201803240078109</text>
+                    <text class='gray'>(1150KM)</text>
+                    <view class='orange fr'>审批中</view>
+                </view>
             </view>
             <view class='h-c'>
-                <view class='item'>
+                <view class='p'>
+                    <text class='num'>申请金额：</text>
+                    <text>1360元</text>
+                </view>
+                <view class='line-box flex'>
+                    <view class='site'>
+                        <view class='name'>成都市</view>
+                        <view class='time'>07-20 13:30</view>
+                    </view>
+                    <view class='site'>
+                        <view class='site-logo'><image src="../image/road_count.png" class="img"></image></view>
+                        <view class='time blue'>途径2站</view>
+                    </view>
+                    <view class='site'>
+                        <view class='name'>宜昌市</view>
+                        <view class='time'>07-21 13:30</view>
+                    </view>
+                </view>
+                <!-- <view class='item'>
                     <text class='time'>03-25 22:09</text>
                     <view class='logo-wrap'><image src="../image/start_city_list.png" class="img"></image></view>
                     <text class='address'>重庆市</text>
@@ -18,41 +57,14 @@
                     <text class='time'>03-25 22:09</text>
                     <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
                     <text class='address'>浙江翔通汽车有限公司</text>
-                </view>
+                </view> -->
             </view>
             <view class='h-b'>
-                <view class='btn'>单据上报</view>
-                <view class='btn'>单据审批</view>
+                <text>申请金额：<text class='gray'>1360元</text></text>
+                <text class='fr'>借款金额：<text class='gray'>1360元</text></text>
             </view>
         </view>
-        <view class='history'>
-            <view class='h-t'>
-                <text class='num'>订单号： JZZ201803240078109</text>
-                <text class='gray'>(1150KM)</text>
-                <text class='red fr'>已完成</text>
-            </view>
-            <view class='h-c'>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/start_city_list.png" class="img"></image></view>
-                    <text class='address'>重庆市</text>
-                </view>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/road_list.png" class="img"></image></view>
-                    <text class='address'>成都市</text>
-                </view>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
-                    <text class='address'>浙江翔通汽车有限公司</text>
-                </view>
-            </view>
-            <view class='h-b'>
-                <view class='btn gray'>单据上报</view>
-                <view class='btn'>单据审批</view>
-            </view>
-        </view>
+        
     </view>
 
 </view>

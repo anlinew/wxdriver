@@ -19,7 +19,11 @@ Page({
         arriverTime: '', // 计划到达时间
         statusName: '', // 状态名称
         cargoCode: '', // 车型代码
-        sites: [],
+        sites: [], // 站点列表
+        dealers: [], // 经销商列表
+        selectedDealers: [], // 选中的经销商
+        reportId: null, // 报站站点id
+        reportIndex: null, // 报站站点索引
         detail: {}
     },
     onLoad(options) {
@@ -38,13 +42,16 @@ Page({
                     let departureTime = res.data.planDepartureTime.slice(5, 16);
                     let arriverTime = res.data.planArriveTime.slice(5, 16);
                     let statusName = page.getStatusName(res.data.status);
+                    let reportShow = res.data.status === 1 ? false : true;
                     let cargoCode = page.getCargos(res.data.cargoDetails);
                     let sites = res.data.taskDetails;
                     sites.forEach((site, i) => {
                         site.shortTime = site.scheduleTime.slice(5, 16);
                     });
                     page.setData({
-                        detaiShow: true,
+                        detaiShow: res.data.status === 5 ? false : true,
+                        // detaiShow: true,
+                        reportShow: reportShow,
                         detail: res.data,
                         fromCity: fromCity,
                         toCity: toCity,
@@ -129,38 +136,238 @@ Page({
             }
         })
     },
+    // 点击发车 交车按钮回调
     reportSite(e) {
         let page = this;
         let id = e.currentTarget.dataset.id;
-        const params = {
-            "dealers": [
-                "string"
-            ],
-            "latitude": 0,
-            "longitude": 0,
-            "siteOrder": 0
-        };
-        request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
-            data: params,
-            header: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        })
-        .then(res => {
-            if (res.result) {
-                // 上报站点成功
-                console.log(res.data);
-                // page.setData({
-                //     reportShow: true
-                // })
+        let index = e.currentTarget.dataset.index;
+        let item = e.currentTarget.dataset.item;
+        let dealers = [];
+        item.deliverDetails.forEach(dealer => {
+            dealer.isSelected = false;
+            dealers.push(dealer);
+        });
+        console.log('dealers', dealers);
+        // 判断是否为失效按钮
+        let isDisabled = page.isDisabledBtn(item);
+        console.log('isDisabled', isDisabled);
+        if (isDisabled) {
+            // 按钮失效 直接返回
+            return;
+        } else {
+            // 按钮有效
+            page.setData({
+                dealers: dealers,
+                reportId: id,
+                reportIndex: index
+            })
+            if (dealers.length === 0) {
+                // 没有经销商
+                page.toReport();
             } else {
-                // 上报站点失败
-                wx.showModal({
-                    confirmColor: '#666',
-                    content: res.message,
-                    showCancel: false,
-                });
+                page.setData({
+                    popShow: true
+                })
             }
-        })
+        }
+        
+        
+    },
+    // 调报站接口
+    toReport() {
+        let page = this;
+        let dealers = page.data.dealers;
+        let id = page.data.reportId;
+        let index = page.data.reportIndex;
+        if (index === 0) {
+            // 出发站点
+            wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                    // 获取经纬度
+                    let latitude = res.latitude
+                    let longitude = res.longitude
+                    let params;
+                    if (dealers.length === 0) {
+                        // 无经销商
+                        params = {
+                            "dealers": [],
+                            "latitude": latitude,
+                            "longitude": longitude,
+                            "siteOrder": index
+                        };
+                    } else {
+                        // 有经销商
+                        let selectedDealers = [];
+                        dealers.forEach(deliver => {
+                            if (deliver.isSelected) {
+                                selectedDealers.push(deliver.dealer);
+                            }
+                        })
+                        params = {
+                            "dealers": selectedDealers,
+                            "latitude": latitude,
+                            "longitude": longitude,
+                            "siteOrder": index
+                        };
+                    }
+                    request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
+                        data: params
+                    })
+                        .then(res => {
+                            if (res.result) {
+                                // 上报站点成功
+                                console.log('reportSite', res.data);
+                                page.setData({
+                                    popShow: false
+                                });
+                                page.getWaybil();
+                                // page.setData({
+                                //     reportShow: true
+                                // })
+                            } else {
+                                // 上报站点失败
+                                wx.showModal({
+                                    confirmColor: '#666',
+                                    content: res.message,
+                                    showCancel: false,
+                                });
+                            }
+                        })
+                },
+                fail: function (res) {
+                    wx.showModal({
+                        confirmColor: '#666',
+                        content: '获取定位失败',
+                        showCancel: false,
+                    });
+                }
+            })
+        } else {
+            let preSite = page.data.sites[index - 1];
+            let preSiteIsDisabled = page.isDisabledBtn(preSite);
+            if (preSiteIsDisabled) {
+                // 上个站点已报站完成
+                wx.getLocation({
+                    type: 'gcj02',
+                    success: function (res) {
+                        // 获取经纬度
+                        let latitude = res.latitude
+                        let longitude = res.longitude
+                        let params;
+                        if (dealers.length === 0) {
+                            // 无经销商
+                            params = {
+                                "dealers": [],
+                                "latitude": latitude,
+                                "longitude": longitude,
+                                "siteOrder": index
+                            };
+                        } else {
+                            // 有经销商
+                            let selectedDealers = [];
+                            dealers.forEach(deliver => {
+                                if (deliver.isSelected) {
+                                    selectedDealers.push(deliver.dealer);
+                                }
+                            })
+                            params = {
+                                "dealers": selectedDealers,
+                                "latitude": latitude,
+                                "longitude": longitude,
+                                "siteOrder": index
+                            };
+                        }
+                        request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
+                            data: params
+                        })
+                        .then(res => {
+                            if (res.result) {
+                                // 上报站点成功
+                                console.log('reportSite', res.data);
+                                page.setData({
+                                    popShow: false
+                                });
+                                page.getWaybil();
+                                // page.setData({
+                                //     reportShow: true
+                                // })
+                            } else {
+                                // 上报站点失败
+                                wx.showModal({
+                                    confirmColor: '#666',
+                                    content: res.message,
+                                    showCancel: false,
+                                });
+                            }
+                        })
+                    },
+                    fail: function (res) {
+                        wx.showModal({
+                            confirmColor: '#666',
+                            content: '获取定位失败',
+                            showCancel: false,
+                        });
+                    }
+                })
+            } else {
+                // 上个站点还未报站完成
+                let msg = '';
+                if (index === 1) {
+                    msg = '请先发车';
+                } else {
+                    msg = '上个站点还未上报完成，无法上报';
+                }
+                wx.showToast({
+                    title: msg,
+                    icon: 'none'
+                })
+            }
+        }
+            
+    },
+    changeDealers(e) {
+        let page = this;
+        let index = e.currentTarget.dataset.index;
+        let delivered = e.currentTarget.dataset.delivered;
+        if (delivered) {
+            // 已运输经销商
+            return;
+        } else {
+            let dealers = page.data.dealers;
+            dealers[index].isSelected = !dealers[index].isSelected;
+            page.setData({
+                dealers: dealers
+            });
+        }
+    },
+    closePop(e) {
+        let page = this;
+        page.setData({
+            popShow: false
+        });
+    },
+    // 按钮是否失效
+    isDisabledBtn(item) {
+        console.log('isDisabledBtn', item)
+        let arriveTime = item.arriveTime;
+        let dealers = item.deliverDetails;
+        if (arriveTime) {
+            if (dealers.length === 0) {
+                // 无经销商
+                return true;
+            } else {
+                // 有经销商
+                let result = true;
+                dealers.forEach(dealer => {
+                    if (dealer.delivered === false) {
+                        result = false;
+                    }
+                });
+                return result;
+            }
+        } else{
+            return false;
+        }
     }
 })

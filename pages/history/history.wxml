@@ -1,8 +1,38 @@
 <!--pages/history/history.wxml-->
+<wxs module="m_history">
+var getStatusName = function(status) {
+    var name = '';
+    switch (status) {
+        case 0:
+            name = '待下发';
+            break;
+        case 1:
+            name = '待接受';
+            break;
+        case 2:
+            name = '待发车';
+            break;
+        case 3:
+            name = '运输中';
+            break;
+        case 4:
+            name = '已送达';
+            break;
+        case 5:
+            name = '已确认送达';
+            break;
+    }
+    return name;
+};
+
+module.exports = {
+    getStatusName: getStatusName
+};
+</wxs>
 <view class='container'>
     <view class='top-time'>2018年3月</view>
     <view class='historys'>
-        <view class='history'>
+        <!-- <view class='history'>
             <view class='h-t'>
                 <text class='num'>订单号： JZZ201803240078109</text>
                 <text class='gray'>(1150KM)</text>
@@ -24,20 +54,20 @@
                 <view class='btn'>单据上报</view>
                 <view class='btn'>单据审批</view>
             </view>
-        </view>
-        <view class='history'>
+        </view> -->
+        <view class='history' wx:for="{{historys}}" wx:key="{{index}}">
             <view class='h-t'>
-                <text class='num'>订单号： JZZ201803240078109</text>
-                <text class='gray'>(1150KM)</text>
-                <text class='red fr'>已完成</text>
+                <text class='num'>订单号： {{item.waybillNum}}</text>
+                <text class='gray'>({{item.mileage}}M)</text>
+                <text class='red fr'>{{m_history.getStatusName(item.status)}}</text>
             </view>
             <view class='h-c'>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/start_city_list.png" class="img"></image></view>
-                    <text class='address'>重庆市</text>
+                <view class='item' wx:for="{{item.taskDetails}}" wx:for-index="j" wx:for-item="site" wx:key="{{j}}">
+                    <text class='time'>{{site.scheduleTime}}</text>
+                    <view class='logo-wrap'><image src="{{j === 0 ? '../image/start_city_list.png' : j === item.taskDetails.length - 1 ? '../image/end_city_list.png' : '../image/road_list.png'}}" class="img"></image></view>
+                    <text class='address'>{{site.siteName}}</text>
                 </view>
-                <view class='item'>
+                <!-- <view class='item'>
                     <text class='time'>03-25 22:09</text>
                     <view class='logo-wrap'><image src="../image/road_list.png" class="img"></image></view>
                     <text class='address'>成都市</text>
@@ -46,7 +76,7 @@
                     <text class='time'>03-25 22:09</text>
                     <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
                     <text class='address'>浙江翔通汽车有限公司</text>
-                </view>
+                </view> -->
             </view>
             <view class='h-b'>
                 <view class='btn gray'>单据上报</view>
