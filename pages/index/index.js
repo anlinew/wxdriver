@@ -212,7 +212,10 @@ Page({
                         };
                     }
                     request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
-                        data: params
+                        data: params,
+                        header: {
+                            'content-type': 'application/json'
+                        }
                     })
                         .then(res => {
                             if (res.result) {
@@ -279,7 +282,10 @@ Page({
                             };
                         }
                         request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
-                            data: params
+                            data: params,
+                            header: {
+                                'content-type': 'application/json'
+                            }
                         })
                         .then(res => {
                             if (res.result) {
