@@ -274,6 +274,14 @@ Page({
                                     selectedDealers.push(deliver.dealer);
                                 }
                             })
+                            if (selectedDealers.length === 0) {
+                                // 没有选择经销商
+                                wx.showToast({
+                                    title: '请至少选择一个经销商',
+                                    icon: 'none'
+                                })
+                                return;
+                            }
                             params = {
                                 "dealers": selectedDealers,
                                 "latitude": latitude,
