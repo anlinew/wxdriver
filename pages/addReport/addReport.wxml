@@ -1,0 +1,44 @@
+<!--pages/history/history.wxml-->
+<!-- <wxs module="m_history">
+</wxs> -->
+<view class='container'>
+     <view class='hasReport'>
+    <view class='reportList'>
+        <view class='history'>
+            <view class='h-t'>
+              <image src="../image/mileage.png" class="logo"></image>
+              <text class='num'>里程类</text>
+            </view>
+            <view class='h-c'>
+              <view class='num'>
+              <view class='reportType' wx:for="{{oneList}}">{{item.label}}</view>
+              </view>
+            </view>
+        </view>
+
+        <view class='history'>
+            <view class='h-t'>
+              <image src="../image/gas_station.png" class="logo"></image>
+              <text class='num'>燃油补贴类</text>
+            </view>
+            <view class='h-c'>
+              <view class='num'>
+              <view class='reportType' wx:for="{{twoList}}">{{item.label}}</view>
+              </view>
+            </view>
+        </view>
+
+        <view class='history'>
+            <view class='h-t'>
+              <image src="../image/rmb.png" class="logo"></image>
+              <text class='num'>费用类</text>
+            </view>
+            <view class='h-c'>
+              <view class='num'>
+              <view class='reportType' wx:for="{{threeList}}">{{item.label}}</view>
+              </view>
+            </view>
+        </view>
+    </view>
+    </view> 
+</view>

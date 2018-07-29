@@ -30,33 +30,12 @@ module.exports = {
 };
 </wxs>
 <view class='container'>
+    <view class='hasReport' wx:if="{{historys.length}}">
     <view class='top-time'>2018年3月</view>
     <view class='historys'>
-        <!-- <view class='history'>
-            <view class='h-t'>
-                <text class='num'>订单号： JZZ201803240078109</text>
-                <text class='gray'>(1150KM)</text>
-                <text class='red fr'>已完成</text>
-            </view>
-            <view class='h-c'>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/start_city_list.png" class="img"></image></view>
-                    <text class='address'>重庆市</text>
-                </view>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
-                    <text class='address'>浙江翔通汽车有限公司</text>
-                </view>
-            </view>
-            <view class='h-b'>
-                <view class='btn'>单据上报</view>
-                <view class='btn'>单据审批</view>
-            </view>
-        </view> -->
         <view class='history' wx:for="{{historys}}" wx:key="{{index}}">
-            <view class='h-t'>
+            <navigator  class="weui-btn history-task-btn" url="../detail/detail" hover-class="navigator-hover">
+    <view class='h-t'>
                 <text class='num'>订单号： {{item.waybillNum}}</text>
                 <text class='gray'>({{item.mileage}}M)</text>
                 <text class='red fr'>{{m_history.getStatusName(item.status)}}</text>
@@ -67,21 +46,21 @@ module.exports = {
                     <view class='logo-wrap'><image src="{{j === 0 ? '../image/start_city_list.png' : j === item.taskDetails.length - 1 ? '../image/end_city_list.png' : '../image/road_list.png'}}" class="img"></image></view>
                     <text class='address'>{{site.siteName}}</text>
                 </view>
-                <!-- <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/road_list.png" class="img"></image></view>
-                    <text class='address'>成都市</text>
-                </view>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
-                    <text class='address'>浙江翔通汽车有限公司</text>
-                </view> -->
             </view>
+    </navigator>
             <view class='h-b'>
-                <view class='btn gray'>单据上报</view>
-                <view class='btn'>单据审批</view>
+            <navigator class='navbtn' url="../reportDocument/reportDocument?wayNum={{item.waybillNum}}">
+                <view bindtap='reportD' class='btn gray'>单据上报</view>
+            </navigator>
+                <view bindtap='auditD' class='btn'>单据审批</view>
             </view>
         </view>
+    </view>
+    </view>
+    <view class='noReport' wx:if="{{!historys.length}}">
+    <view class='img-wrap'>
+        <image src="../image/no_task.png" class="logo"></image>
+    </view>
+    <view class='tip'>暂无数据</view>
     </view>
 </view>

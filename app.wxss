@@ -23,6 +23,8 @@
 
 .icon-oval48:before { content: "\e501"; }
 
+.icon-tianjia:before { content: "\e616"; }
+
 .icon-xiangji:before { content: "\e67e"; }
 
 .icon-camera-b:before { content: "\e619"; }

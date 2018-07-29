@@ -1,0 +1,43 @@
+<!-- <wxs module="m_index" src="../index.wxs"></wxs> -->
+<view class="container">
+    <view class='header'>
+        <view class='site'>
+            <view class='name'>{{fromCity}}</view>
+        </view>
+        <view class='mileage'>
+            <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
+            <image src="../image/right_arrow.png" class="line"></image>
+        </view>
+        <view class='site'>
+            <view class='name'>{{toCity}}</view>
+        </view>
+        <view class='mission_num'>
+            <view>
+              <text class='fLeft'>调度单号</text>
+              <text class='fRight'>调度单号</text>
+            </view>
+            <view>
+              <text class='fLeft'>单据类型</text>
+              <text class='fRight'>调度单号</text>
+            </view>
+        </view>
+        
+        <view class='inputCont'>
+          <view class='numCont'>
+            <view class='numText'>申请数量：</view>
+            <input class='input' maxlength='6' placeholder='请填写数量'/>
+            <view class='unit'>KM</view>
+          </view>
+
+          <view class='remarkCont'>
+            <view class='remarkText'>单据备注：</view>
+            <textarea auto-height maxlength='100' class='remarkInput' placeholder='请填写单据备注说明'></textarea>
+          </view>
+
+          <view class='upload'>
+            <view class='upText'>上传图片</view>
+          </view>
+        </view>
+
+    </view>
+</view>

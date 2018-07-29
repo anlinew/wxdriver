@@ -95,9 +95,11 @@ module.exports = {
     <button class="weui-btn get-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">接受任务</button> 
     <view class='report-box' hidden='{{!reportShow}}'>
         <view class='item'>
-            <view class='logo'>
+            <navigator style='borderRadius:50%' url="../reportDocument/reportDocument" hover-class="navigator-hover">
+              <view class='logo'>
                 <image src="../image/bill_report.png" class="img"></image>
-            </view>
+              </view>
+            </navigator>
             <view class='txt'>单据上报</view>
         </view>
         <view class='item'>

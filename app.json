@@ -1,15 +1,17 @@
 {
     "pages": [
-        
-        "pages/login/login",
-        "pages/reimbursements/reimbursements",
-        "pages/messages/messages",
-        "pages/editInfo/editInfo",
-        "pages/userInfo/userInfo",
-        "pages/historySearch/historySearch",
-        "pages/detail/detail",
-        "pages/index/index",
-        "pages/history/history"
+      "pages/login/login",
+      "pages/uploadReport/uploadReport",
+      "pages/index/index",
+      "pages/addReport/addReport",
+      "pages/history/history",
+      "pages/reportDocument/reportDocument",
+      "pages/detail/detail",
+      "pages/userInfo/userInfo",
+      "pages/historySearch/historySearch",
+      "pages/editInfo/editInfo",
+      "pages/messages/messages",
+      "pages/reimbursements/reimbursements"    
     ],
     "window": {
         "backgroundTextStyle": "light",

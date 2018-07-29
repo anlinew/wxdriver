@@ -1,10 +1,14 @@
 /* pages/history/history.wxss */
 .fr {float: right;}
 .container{}
+.addNav{
+  display: block;
+  margin: 360rpx auto;
+}
 .top-time{
     padding: 0 30rpx;
     font-size: 28rpx;
-    line-height: 76rpx;
+    line-height: 20rpx;
     color: #7e8084;
     background-color: #eef3fa;
 }
@@ -29,11 +33,15 @@
 }
 .history .h-c{
     padding: 5rpx 30rpx;
+    position: relative;
+    font-size: 28rpx;
     border-bottom: 1px solid #dcdcdc;
 }
-.history .h-c .item{
+.history .h-c .num{
     font-size: 28rpx;
     line-height: 60rpx;
+    display: block;
+    height: 60rpx;
 }
 .history .h-c .item .logo-wrap{
     display: inline-block;
@@ -56,7 +64,7 @@
 .history .h-b .btn{
     display: inline-block;
     height: 60rpx;
-    /* margin-left: 20rpx; */
+    margin-left: 20rpx;
     padding: 0 30rpx;
     border: 1px solid #3e85ff;
     font-size: 28rpx;
@@ -65,20 +73,13 @@
     border-radius: 32rpx;
     vertical-align: middle;
 }
-.h-b .navbtn{
-  display: inline-block;
-  border-radius: 32rpx;
-  margin-right: 20rpx;
-  height: 27px;
-  line-height: 27rpx;
-}
 .history .h-b .btn.gray{
     color: #b9b8b8;
     border: 1px solid #e0e0e0;
     background-color: #eee;
 }
 .noReport .img-wrap{
-  padding-top:166rpx;
+  padding-top:140rpx;
   text-align: center;
 }
 .noReport .img-wrap .logo{
@@ -87,7 +88,59 @@
 }
 .noReport .tip{
     text-align: center;
+    margin-top: 28rpx;
     font-size: 28rpx;
     line-height: 60rpx;
     color: #4a4a4c;
 }
+.check-btn{
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 36rpx;
+    color: #fff;
+    background: #3982ff !important;
+    border-radius: 45rpx;
+    width: 630rpx;
+}
+.auditImg{
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  right: 50rpx;
+  top: 37rpx;
+}
+.auditImg .logo{
+    width: 120rpx;
+    height: 120rpx;
+  }
+  .num .logo {
+    width: 30rpx;
+    height: 30rpx;
+    display: inline-block;
+    margin-top: 15rpx;
+    margin-left: 20rpx;
+  }
+  .num view{
+    height: 100%;
+    float: left;
+    line-height: 60rpx;
+  }
+  .addreport {
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 36rpx;
+    color: #fff;
+    background: #3982ff !important;
+    border-radius: 0rpx;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+  .icon-camera-b {
+    color: #7e8084;
+    font-size: 20px;
+    position: fixed;
+    left: 50%;
+    bottom: 5px;
+    margin-left: -12.5px;
+  }
