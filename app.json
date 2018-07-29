@@ -11,7 +11,7 @@
       "pages/historySearch/historySearch",
       "pages/editInfo/editInfo",
       "pages/messages/messages",
-      "pages/reimbursements/reimbursements"    
+      "pages/reimbursements/reimbursements"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -212,7 +212,10 @@ Page({
                         };
                     }
                     request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
-                        data: params
+                        data: params,
+                        header: {
+                            'content-type': 'application/json'
+                        }
                     })
                         .then(res => {
                             if (res.result) {
@@ -271,6 +274,14 @@ Page({
                                     selectedDealers.push(deliver.dealer);
                                 }
                             })
+                            if (selectedDealers.length === 0) {
+                                // 没有选择经销商
+                                wx.showToast({
+                                    title: '请至少选择一个经销商',
+                                    icon: 'none'
+                                })
+                                return;
+                            }
                             params = {
                                 "dealers": selectedDealers,
                                 "latitude": latitude,
@@ -279,7 +290,10 @@ Page({
                             };
                         }
                         request.postRequest(utils.apiFormat(api.reportSite, { id: id }), {
-                            data: params
+                            data: params,
+                            header: {
+                                'content-type': 'application/json'
+                            }
                         })
                         .then(res => {
                             if (res.result) {
