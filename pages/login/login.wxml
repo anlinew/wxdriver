@@ -1,6 +1,6 @@
 <view class='page'>
   <image src="../image/login@2x.png" class="jiao"></image>
-  <form bindsubmit="tologin" bindreset="formReset">
+  <form bindsubmit="toLogin" bindreset="formReset" report-submit="true">
     <view class="input">
       <view class="weui-cell__bd">
         <view class='loginfont icon-mobile'></view>

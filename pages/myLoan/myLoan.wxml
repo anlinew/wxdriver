@@ -1,0 +1,22 @@
+<!--pages/myLoan/myLoan.wxml-->
+<view class="containor">
+  <view class="head">
+    <view class="head_top">
+      <view class="dateTime">
+        <view class="dateTittle">统计截止日期</view>
+        <view class="time">10:00</view>
+        <view class="date">2018-08-08</view>
+      </view>
+      <view class="loanM">
+        <view>0</view>
+        <view>借款金额</view>
+      </view>
+    </view>
+    <view class="head_bottom">
+      <view></view>
+      <view></view>
+      <view></view>
+    </view>
+  </view>
+  <view class="content"></view>
+</view>

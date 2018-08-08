@@ -58,44 +58,28 @@ module.exports = {
 
     <view class="mission_detail">
         <view class='webyill'>
-            <view>调度单号
-                <text class='webyill_num'>{{detail.waybillNum}}</text>
-            </view>
-            <view>车型代码
-                <text class='webyill_num'>{{cargoCode}}</text>
-            </view>
+          <view>调度单号
+              <text class='webyill_num'>{{detail.waybillNum}}</text>
+          </view>
+          <view>车型代码
+              <text class='webyill_num'>{{cargoCode}}</text>
+          </view>
         </view>
         <view class='route'>
-            <view class='site' wx:for="{{sites}}" wx:for-index="i" wx:key="i">
-                <view class='img-wrap'>
-                    <image src="{{i === 0 ? '../image/start_city_info.png' : i === sites.length - 1 ? '../image/end_city_info.png' : '../image/road_info.png'}}" class="logo logo-start"></image>
-                </view>
-                <text class='name'>{{item.cityName}}</text>
-                <text class='time'>{{item.shortTime}}</text>
-                <view wx:if='{{reportShow}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</view>
+          <view class='site' wx:for="{{sites}}" wx:for-index="i" wx:key="i">
+            <view class='img-wrap'>
+                <image src="{{i === 0 ? '../image/start_city_info.png' : i === sites.length - 1 ? '../image/end_city_info.png' : '../image/road_info.png'}}" class="logo logo-start"></image>
             </view>
-            <!-- <view class='site'>
-                <view class='img-wrap'>
-                    <image src="../image/road_info.png" class="logo"></image>
-                </view>
-                <text class='name'>重庆市</text>
-                <text class='time'>04-18 14:23</text>
-                <view class='btn'>交车</view>
-            </view>
-            <view class='site'>
-                <view class='img-wrap'>
-                    <image src="../image/end_city_info.png" class="logo logo-end"></image>
-                </view>
-                <text class='name'>重庆市</text>
-                <text class='time'>04-18 14:23</text>
-                <view class='btn'>交车</view>
-            </view> -->
+            <text class='name'>{{item.cityName}}</text>
+            <text class='time'>{{item.shortTime}}</text>
+            <view wx:if='{{reportShow}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</view>
+          </view>
         </view>
     </view>
     <button class="weui-btn get-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">接受任务</button> 
     <view class='report-box' hidden='{{!reportShow}}'>
         <view class='item'>
-            <navigator style='borderRadius:50%' url="../reportDocument/reportDocument" hover-class="navigator-hover">
+            <navigator style='borderRadius:50%' url="../reportDocument/reportDocument?wayNum={{wayNum}}" hover-class="none">
               <view class='logo'>
                 <image src="../image/bill_report.png" class="img"></image>
               </view>
@@ -103,10 +87,12 @@ module.exports = {
             <view class='txt'>单据上报</view>
         </view>
         <view class='item'>
+            <navigator style='borderRadius:50%' url="../reportEvent/reportEvent?wayNum={{wayNum}}" hover-class="none">
             <view class='logo'>
                 <image src="../image/event_report.png" class="img"></image>
             </view>
             <view class='txt'>事件上报</view>
+            </navigator>
         </view>
     </view>
 </view>
@@ -143,3 +129,26 @@ module.exports = {
         </view>
     </view>
 </view>
+
+<image class="person" src="../image/person2.png" alt="" bindtap="toggleLeft1"></image>
+    <i-drawer style="height:100%" class="modalD" mode="left" visible="{{showLeft}}" bind:close="toggleLeft1">
+        <view class="demo-container" style='height:{{windowHeight}}'>
+            <view class='p_head'>
+              <view class='head_one'><image src='../image/avatar@2x.png'></image></view>
+              <view class='head_two'>李相赫 / 渝D94266</view>
+              <view class='head_three'>13026347857</view>
+            </view>
+
+            <view class='p_content'>
+              <view bindtap='oldHistory'><image src="../image/my_task.png"></image><text>历史任务</text></view>
+              <view bindtap='myTask'><image src="../image/my_message.png"></image><text>我的消息</text></view>
+              <view bindtap='myLoan'><image src="../image/my_expense.png"></image><text>我的报销</text></view>
+              <view bindtap='myLeave'><image src="../image/my_leave.png"></image><text>我的请假</text></view>
+              <view bindtap='aplplyLoan'><image src="../image/apply_loan.png"></image><text>申请借款</text></view>
+              <view bindtap='changePass'><image src="../image/password.png"></image><text>修改密码</text></view>
+            </view>
+
+            <text class='bbh'>版本号:v1.1.01</text>
+        </view>
+    </i-drawer>
+

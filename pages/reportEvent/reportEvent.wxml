@@ -1,0 +1,42 @@
+<!--pages/history/history.wxml-->
+<!-- <wxs module="m_history">
+</wxs> -->
+<view class='container'>
+     <view class='hasReport' wx:if="{{reportList.length}}">
+     
+    <view class='reportList'>
+      <view class='history' wx:for="{{reportList}}" wx:key="{{index}}">
+         <view class='top-time'></view>  
+            <navigator  class="history-task-btn" url="../detail/detail" hover-class="navigator-hover">
+          <view class='h-t'>
+            <text class='num'>编号：{{item.eventNum}}</text>
+            <text class='fr'>{{item.createTime}}</text>
+          </view>
+          <view class='h-c'>
+            <view class='num'>
+            <view>类型：{{item.statusName}}</view>
+            <image src="../image/have_picture.png" class="logo"></image>
+            </view>
+            <view class='num'>备注：{{item.description}}</view>
+          </view>
+    </navigator>
+            <view class='h-b'>
+                <view bindtap='auditD' class='btn phone'>联系催人</view>
+              <view bindtap='auditD' class='btn'>取消上报</view>
+            </view>
+        </view>
+    </view>
+    <navigator url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="navigator-hover">
+      <text class='iconfont icon-camera-b' bindtap='handleAdd'></text>
+    </navigator>
+    </view> 
+     <view class='noReport' wx:else>
+    <view class='img-wrap'>
+        <image src="../image/no_event_report.png" class="logo"></image>
+    </view>
+    <view class='tip'>该调度单还没有上报事件</view>
+    <navigator class="addNav" url='../addEvent/addEvent?wayNum={{wayNum}}'>
+      <button class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
+    </navigator>
+    </view> 
+</view>

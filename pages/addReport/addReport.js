@@ -11,7 +11,7 @@ Page({
       twoList: [],
       threeList: []
     },
-    onLoad: function () {
+    onLoad: function (options) {
       this.getDict();
     },
     // 获取单据类型字典
@@ -30,6 +30,5 @@ Page({
         twoList: twoList,
         threeList: threeList
       })
-      console.log(this.data.oneList)
     }
 })

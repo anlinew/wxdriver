@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  height: 100%;
 }
 .header {
   display: flex;
@@ -192,7 +193,7 @@
 }
 .report-box .item .txt{
     text-align: center;
-    font-size: 28rpx;
+    font-size: 26rpx;
 }
 /* 任务为空 */
 .container-none{
@@ -302,4 +303,86 @@
 .pop-box .close .img{
     width: 100%;
     height: 100%
+}
+.person {
+    display: inline-block;
+    width: 120rpx;
+    height: 120rpx;
+    position: fixed;
+    right: 0;
+    bottom: 120rpx;
+}
+.modalD {
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  z-index: 9999;
+}
+.i-drawer {
+  width: 100%;
+  height: 100%;
+}
+.demo-container{
+  width: 400rpx;
+  display: block;
+  background: #fff;
+}
+.p_head {
+  width: 100%;
+  background: linear-gradient(to bottom, #2D99EE, rgb(8, 142, 245));
+  height: 370rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+.head_one{
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin: 40rpx auto 20rpx;
+  text-align: center;
+  padding: 8rpx;
+}
+.head_one image{
+  width: 150rpx;
+  height: 150rpx;
+  display: inline-block;
+}
+.head_three {
+  margin-bottom: 40rpx;
+}
+.head_two {
+  margin-bottom: 15rpx;
+}
+.p_content {
+  padding: 40rpx 40rpx 40rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+  height: 500rpx;
+  font-size: 26rpx;
+}
+.p_content view {
+  flex: 1;
+  padding-top: 30rpx;
+  box-sizing: border-box;
+}
+.p_content view image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 30rpx;
+}
+.bbh {
+  position: fixed;
+  bottom: 20rpx;
+  left: 30rpx;
+  font-size: 24rpx;
+  color: #999;
 }

@@ -35,7 +35,6 @@
     padding: 5rpx 30rpx;
     position: relative;
     font-size: 28rpx;
-    border-bottom: 1px solid #dcdcdc;
 }
 .history .h-c .num{
     font-size: 28rpx;
@@ -60,6 +59,7 @@
     padding: 0 30rpx;
     text-align: right;
     line-height: 80rpx;
+    border-top: 1px solid #dcdcdc;
 }
 .history .h-b .btn{
     display: inline-block;
@@ -136,9 +136,9 @@
     bottom: 0;
     right: 0;
   }
-  .icon-camera-b {
+  .icon-tianjia {
     color: #7e8084;
-    font-size: 20px;
+    font-size: 30px;
     position: fixed;
     left: 50%;
     bottom: 5px;

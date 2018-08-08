@@ -1,16 +1,16 @@
 /* pages/reimbursements/reimbursements.wxss */
 .top-info{
-    height: 170rpx;
+    height: 85px;
     margin-bottom: 20rpx;
-    border-bottom: 1px solid #bfbfbf;
     background-color: #fff;
 }
 .top-info .item {
     position: relative;
-    height: 100rpxp;
-    padding: 20rpx 50rpx;
-    line-height: 60rpx;
+    height: 85px;
+    padding: 12px 28px;
+    line-height: 25px;
     text-align: center;
+    box-sizing: border-box;
 }
 .top-info .item::after{
     display: block;
@@ -27,7 +27,7 @@
     display: none;
 }
 .top-info .item .num {
-    font-size: 32rpx;
+    font-size: 28rpx;
 }
 .top-info .item .num.orange{
     color: #f39800;
@@ -38,7 +38,7 @@
 .top-info .item .badge {
     display: inline-block;
     padding: 0 20rpx;
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 40rpx;
     vertical-align: middle;
     color: #fff;
@@ -51,8 +51,6 @@
 .top-info .item .badge.green{
     background-color: #14b4b1;
 }
-
-.list{}
 .li{
     border-bottom: 1px solid #bfbfbf;
     margin-bottom: 20rpx;
@@ -167,4 +165,87 @@
     color: #b9b8b8;
     border: 1px solid #e0e0e0;
     background-color: #eee;
+}
+.head {
+    width: 100%;
+    height: 210px;
+    background: linear-gradient(to bottom, #2D99EE, rgb(90, 114, 247));
+    color: #fff;
+  }
+  .head_top {
+    height: 90px;
+    width: 100%;
+  }
+  .dateTime {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+    padding-right: 40rpx;
+    box-sizing: border-box;
+  }
+  .loanM {
+    width: 50%;
+    display: inline-block;
+    padding-left: 70rpx;
+    box-sizing: border-box;
+  }
+  .list{
+    margin-top: 15rpx;
+    width: 100%;
+}
+.moveContent {
+    position: absolute;
+    width: 100%;
+    /* top: 0; */
+    z-index: 999;
+}
+.dateTittle {
+  font-size: 11px;
+}
+.tjTime {
+  font-size: 25px;
+}
+.date {
+  font-size: 14px;
+}
+.moneyNum {
+  font-size: 25px;
+}
+.moneyText{
+  font-size: 11px;
+}
+.head_botttom {
+  height: 120px;
+  width: 100%;
+}
+.h_item {
+  width: 33.33%;
+  display: inline-block;
+  text-align: center;
+  font-size: 26rpx;
+}
+.borderN {
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 5px;
+  margin-bottom: 10px;
+}
+.borderN .borderBox {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  padding: 2px;
+  box-sizing: border-box;
+}
+.borderN .borderBox .borderChlid{
+  width: 100%;
+  height: 100%;
+  background: #5aa0f3;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 72px;
 }

@@ -41,7 +41,8 @@ Page({
   onLoad: function (options) {
     this.initValidate()
   },
-  tologin(e) {
+  toLogin: function(e) {
+    console.log(e)
     const that = this;
     if (!that.WxValidate.checkForm(e)) {
       const error = that.WxValidate.errorList[0]
@@ -53,30 +54,40 @@ Page({
       return false
     }
     const params = { account: e.detail.value.account, password: e.detail.value.password };
-    request.postRequest(api.login, {
-      data: params,
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
-    .then(res => {
-      console.log(res)
-      if(res.result){
-        wx.showModal({
-          confirmColor: '#666',
-          content: '登录成功',
-          showCancel: false,
-        })
-        app.globalData.userInfo = res.data;      
-        wx.navigateTo({url: '../index/index'})
-      }else{
-        wx.showModal({
-          confirmColor: '#666',
-          content: res.message,
-          showCancel: false,
-        })
+
+    wx.login({
+      success: function(res) {
+        console.log(res);
+        if (res.code) {
+          request.postRequest(api.login, {
+            data: params,
+            header: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+          })
+            .then(res => {
+              console.log(res)
+              if (res.result) {
+                wx.showModal({
+                  confirmColor: '#666',
+                  content: '登录成功',
+                  showCancel: false,
+                })
+                app.globalData.userInfo = res.data;
+                wx.navigateTo({ url: '../index/index' })
+              } else {
+                wx.showModal({
+                  confirmColor: '#666',
+                  content: res.message,
+                  showCancel: false,
+                })
+              }
+            })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
       }
-    })
+    }) 
   },
   isshowPwd(){
     var isshow = !this.data.isshow;

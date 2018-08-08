@@ -1,4 +1,8 @@
 {
   "navigationBarBackgroundColor": "#2D99EE",
-  "navigationBarTitleText": "我的任务"
+  "navigationBarTitleText": "我的任务",
+  "component": true,  
+  "usingComponents": {
+    "i-drawer": "../../utils/iviewapp/drawer/index"
+}
 }

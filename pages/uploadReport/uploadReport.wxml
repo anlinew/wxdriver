@@ -2,42 +2,57 @@
 <view class="container">
     <view class='header'>
         <view class='site'>
-            <view class='name'>{{fromCity}}</view>
+            <view class='name'>{{wayInfo.taskDetails[0].cityName}}</view>
         </view>
         <view class='mileage'>
-            <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
+            <view class='name'>{{wayInfo.mileage ? wayInfo.mileage + ' KM' : '0 KM'}}</view>
             <image src="../image/right_arrow.png" class="line"></image>
         </view>
         <view class='site'>
-            <view class='name'>{{toCity}}</view>
+            <view class='name'>{{wayInfo.taskDetails[1].cityName}}</view>
         </view>
         <view class='mission_num'>
             <view>
               <text class='fLeft'>调度单号</text>
-              <text class='fRight'>调度单号</text>
+              <text class='fRight'>{{wayInfo.waybillNum}}</text>
             </view>
             <view>
               <text class='fLeft'>单据类型</text>
-              <text class='fRight'>调度单号</text>
+              <text class='fRight'>{{wayInfo.statusType}}</text>
             </view>
         </view>
         
+      
         <view class='inputCont'>
+          <form bindsubmit="acceptTask">
           <view class='numCont'>
             <view class='numText'>申请数量：</view>
-            <input class='input' maxlength='6' placeholder='请填写数量'/>
-            <view class='unit'>KM</view>
+            <input class='input' maxlength='6' type="digit" name="money" bindinput="inputM" value="{{money}}" placeholder='请填写数量'/>
+            <view class='unit'>{{unit}}</view>
           </view>
 
           <view class='remarkCont'>
             <view class='remarkText'>单据备注：</view>
-            <textarea auto-height maxlength='100' class='remarkInput' placeholder='请填写单据备注说明'></textarea>
+            <textarea auto-height maxlength='100' bindinput="inputD" name="description" value="{{description}}" class='remarkInput' placeholder='请填写单据备注说明'></textarea>
           </view>
 
-          <view class='upload'>
-            <view class='upText'>上传图片</view>
+        <view class='upload'>
+          <view class='upText'>上传图片</view>
+          <view class="hasupload_pic" wx:for="{{imgList}}"  wx:key="index">
+            <image src="{{item}}" class="hasImg"></image>
+            <image src="../image/delete.png" bindtap='clearImg' data-index="{{index}}" class="deltel"></image>
+          </view>
+          <view class="upload_add" bindtap="uploadFy" data-index="{{0}}">
+            <image class="uplogo" src="../image/upload_pic.png"></image>
           </view>
         </view>
+
+        <view class="addNav" hover-class='none'>
+          <button class="weui-btn check-btn" type="primary" formType="submit">提交</button>
+        </view>
+        </form>
+        </view>
+      
 
     </view>
 </view>

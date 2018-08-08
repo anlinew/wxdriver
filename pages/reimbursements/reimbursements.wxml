@@ -1,5 +1,5 @@
 <!--pages/reimbursements/reimbursements.wxml-->
-<view class='container'>
+<view class='container' bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
     <view class='top-info flex'>
         <view class='item'>
             <view class='num'>￥4560</view>
@@ -20,51 +20,90 @@
             </view>
         </view>
     </view>
-    <view class='list'>
-        <view class='li'>
-            <view class='h-t relative'>
-                <view class='p'>
-                    <text class='num'>调度单号： JZZ201803240078109</text>
-                    <text class='gray'>(1150KM)</text>
-                    <view class='orange fr'>审批中</view>
-                </view>
-            </view>
-            <view class='h-c'>
-                <view class='p'>
-                    <text class='num'>申请金额：</text>
-                    <text>1360元</text>
-                </view>
-                <view class='line-box flex'>
-                    <view class='site'>
-                        <view class='name'>成都市</view>
-                        <view class='time'>07-20 13:30</view>
-                    </view>
-                    <view class='site'>
-                        <view class='site-logo'><image src="../image/road_count.png" class="img"></image></view>
-                        <view class='time blue'>途径2站</view>
-                    </view>
-                    <view class='site'>
-                        <view class='name'>宜昌市</view>
-                        <view class='time'>07-21 13:30</view>
-                    </view>
-                </view>
-                <!-- <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/start_city_list.png" class="img"></image></view>
-                    <text class='address'>重庆市</text>
-                </view>
-                <view class='item'>
-                    <text class='time'>03-25 22:09</text>
-                    <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
-                    <text class='address'>浙江翔通汽车有限公司</text>
-                </view> -->
-            </view>
-            <view class='h-b'>
-                <text>申请金额：<text class='gray'>1360元</text></text>
-                <text class='fr'>借款金额：<text class='gray'>1360元</text></text>
-            </view>
+
+    <view class="moveContent" animation="{{animation}}" style="top:{{moveTop}}">
+      <view class="head" animation="{{animation_head}}">
+        <view class="head_top">
+          <view class="dateTime">
+            <view class="dateTittle">统计截止日期</view>
+            <view class="tjTime">{{timeNow}}</view>
+            <view class="date">{{dateNow}}</view>
+          </view>
+          <view class="loanM">
+            <view class="moneyNum">{{tatolObj.loanCount}}</view>
+            <view class="moneyText">借款金额</view>
+          </view>
         </view>
-        
+        <view class="head_bottom">
+          <view class="h_item">
+            <view class="borderN">
+              <view class="borderBox">
+                <view class="borderChlid">{{tatolObj.totalCount}}</view>
+              </view>
+            </view>
+            <view class="borderT">已结算(元)</view>
+          </view>
+          <view class="h_item">
+            <view class="borderN">
+              <view class="borderBox">
+                <view class="borderChlid">{{tatolObj.applyMoney}}</view>
+              </view>
+            </view>
+            <view class="borderT">审批中(元)</view>
+          </view>
+          <view class="h_item">
+            <view class="borderN">
+              <view class="borderBox">
+                <view class="borderChlid">{{tatolObj.examineMoney}}</view>
+              </view>
+            </view>
+            <view class="borderT">待结算(元)</view>
+          </view>
+        </view>
+      </view>
+  
+      <view class='list'>
+          <view class='li' wx:for="{{loanList}}" wx:for-item="item" wx:key="{{index}}">
+              <view class='h-t relative'>
+                  <view class='p'>
+                      <text class='num'>调度单号： {{item.waybillNum}} </text>
+                      <text class='gray'>({{item.mileage}}KM)</text>
+                      <view class='orange fr'>审批中</view>
+                  </view>
+              </view>
+              <view class='h-c'>
+                  <view class='line-box flex'>
+                      <view class='site'>
+                          <view class='name'>{{item.taskDetails[0].siteName}}</view>
+                          <view class='time'>{{item.taskDetails[0].arriveTime?item.taskDetails[0].arriveTime:item.taskDetails[0].scheduleTime}}</view>
+                      </view>
+                      <view class='site'>
+                          <view class='site-logo'><image src="../image/road_count.png" class="img"></image></view>
+                          <view class='time blue'>途径2站</view>
+                      </view>
+                      <view class='site'>
+                          <view class='name'>{{item.taskDetails[1].siteName}}</view>
+                          <view class='time'>{{item.taskDetails[1].arriveTime?item.taskDetails[1].arriveTime:item.taskDetails[1].scheduleTime}}</view>
+                      </view>
+                  </view>
+                  <!-- <view class='item'>
+                      <text class='time'>03-25 22:09</text>
+                      <view class='logo-wrap'><image src="../image/start_city_list.png" class="img"></image></view>
+                      <text class='address'>重庆市</text>
+                  </view>
+                  <view class='item'>
+                      <text class='time'>03-25 22:09</text>
+                      <view class='logo-wrap'><image src="../image/end_city_list.png" class="img"></image></view>
+                      <text class='address'>浙江翔通汽车有限公司</text>
+                  </view> -->
+              </view>
+              <view class='h-b'>
+                  <text>申请金额：<text class='gray'>{{item.billApplyMoney}}元</text></text>
+                  <text class='fr'>借款金额：<text class='gray'>{{item.payLoanExamineMoney}}元</text></text>
+              </view>
+          </view>
+          
+      </view>
     </view>
 
 </view>

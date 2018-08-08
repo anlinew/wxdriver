@@ -4,19 +4,18 @@
 .top-time{
     padding: 0 30rpx;
     font-size: 28rpx;
-    line-height: 76rpx;
+    line-height: 60rpx;
     color: #7e8084;
     background-color: #eef3fa;
 }
 .historys{}
 .history{
     border-bottom: 1px solid #bfbfbf;
-    margin-bottom: 20rpx;
     background-color: #fff;
 }
 .history .h-t{
     height: 60rpx;
-    padding: 0 30rpx;
+    padding: 6rpx 30rpx;
     border-bottom: 1px solid #dcdcdc;
     font-size: 28rpx;
     line-height: 60rpx;

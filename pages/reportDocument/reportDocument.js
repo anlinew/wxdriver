@@ -47,10 +47,28 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      console.log(options)
       this.setData({
         wayNum: options.wayNum
       })
       this.getReportList();  
+    },
+    // 取消上报
+    async cancelReport(e) {
+      const id = e.currentTarget.dataset.id;
+      const res = await request.postRequest(api.cancelReport+'?id='+id)
+      if (res.result) {
+        wx.showToast({
+          icon: 'none',
+          title: '取消上报成功'
+        })
+        this.getReportList();
+      } else {
+        wx.showToast({
+          icon: 'none',
+          title: '取消上报失败'
+        })
+      }
     },
     // 时间格式转换
     etDateStr(day) {

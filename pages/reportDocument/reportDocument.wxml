@@ -20,17 +20,21 @@
                 <view class='num'>数量：{{item.money}} {{item.unit}}</view>
                 <view class='num'>备注：{{item.description}}</view>
                 <view class='auditImg'>
-                  <image src="../image/wait_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===0&&!item.cancel}}" src="../image/wait_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===1&&!item.cancel}}" src="../image/in_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===2&&!item.cancel}}" src="../image/yet_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===3&&!item.cancel}}" src="../image/yet_rebut.png" class="logo"></image>
+                    <image wx:if="{{item.cancel}}" src="../image/yet_canael.png" class="logo"></image>
                 </view>
             </view>
     </navigator>
-            <view class='h-b'>
-              <view bindtap='auditD' class='btn'>取消上报</view>
+            <view class='h-b' wx:if="{{!item.cancel}}">
+              <button data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</button>
             </view>
         </view>
     </view>
-    <navigator url='../addReport/addReport' hover-class="navigator-hover">
-      <text class='iconfont icon-camera-b' bindtap='handleAdd'></text>
+    <navigator url='../addReport/addReport?wayNum={{wayNum}}' hover-class="none">
+      <text class='iconfont icon-tianjia' bindtap='handleAdd'></text>
     </navigator>
     </view> 
      <view class='noReport' wx:else>
@@ -38,7 +42,7 @@
         <image src="../image/no_bill_report.png" class="logo"></image>
     </view>
     <view class='tip'>该调度单还没有上报单据</view>
-    <navigator class="addNav" url='../addReport/addReport'>
+    <navigator class="addNav" url='../addReport/addReport?wayNum={{wayNum}}' hover-class="none">
       <button class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
     </navigator>
     </view> 

@@ -31,31 +31,31 @@ module.exports = {
 </wxs>
 <view class='container'>
     <view class='hasReport' wx:if="{{historys.length}}">
-    <view class='top-time'>2018年3月</view>
     <view class='historys'>
-        <view class='history' wx:for="{{historys}}" wx:key="{{index}}">
-            <navigator  class="weui-btn history-task-btn" url="../detail/detail" hover-class="navigator-hover">
-    <view class='h-t'>
-                <text class='num'>订单号： {{item.waybillNum}}</text>
-                <text class='gray'>({{item.mileage}}M)</text>
-                <text class='red fr'>{{m_history.getStatusName(item.status)}}</text>
-            </view>
-            <view class='h-c'>
-                <view class='item' wx:for="{{item.taskDetails}}" wx:for-index="j" wx:for-item="site" wx:key="{{j}}">
-                    <text class='time'>{{site.scheduleTime}}</text>
-                    <view class='logo-wrap'><image src="{{j === 0 ? '../image/start_city_list.png' : j === item.taskDetails.length - 1 ? '../image/end_city_list.png' : '../image/road_list.png'}}" class="img"></image></view>
-                    <text class='address'>{{site.siteName}}</text>
-                </view>
-            </view>
-    </navigator>
-            <view class='h-b'>
-            <navigator class='navbtn' url="../reportDocument/reportDocument?wayNum={{item.waybillNum}}">
-                <view bindtap='reportD' class='btn gray'>单据上报</view>
-            </navigator>
-                <view bindtap='auditD' class='btn'>单据审批</view>
-            </view>
+      <view class='history' wx:for="{{historys}}" wx:key="{{index}}">
+        <view class='top-time'>{{item.taskDetails[item.taskDetails.length-1].topTime}}</view>
+        <navigator  class="history-task-btn" url="../detail/detail" hover-class="none">
+        <view class='h-t'>
+          <text class='num'>订单号： {{item.waybillNum}}</text>
+          <text class='gray'> ({{item.mileage}} KM)</text>
+          <text class='red fr'>{{m_history.getStatusName(item.status)}}</text>
         </view>
-    </view>
+        <view class='h-c'>
+          <view class='item' wx:for="{{item.taskDetails}}" wx:for-index="j" wx:for-item="site" wx:key="{{j}}">
+            <text class='time'>{{site.arriveTime?site.arriveTime:site.scheduleTime}}</text>
+            <view class='logo-wrap'><image src="{{j === 0 ? '../image/start_city_list.png' : j === item.taskDetails.length - 1 ? '../image/end_city_list.png' : '../image/road_list.png'}}" class="img"></image></view>
+            <text class='address'>{{site.siteName}}</text>
+          </view>
+        </view>
+        </navigator>
+          <view class='h-b'>
+          <navigator class='navbtn' url="../reportDocument/reportDocument?wayNum={{item.waybillNum}}" hover-class="none">
+            <button bindtap='reportD' disabled="{{item.applicationCompleted}}" class="btn {{item.applicationCompleted?'gray':''}}">单据上报</button>
+          </navigator>
+            <button data-id="{{item.waybillId}}" data-status="{{item.status}}" disabled="{{item.applicationCompleted}}" bindtap='auditD' class="btn {{item.applicationCompleted?'gray':''}}">提交审批</button>
+          </view>
+        </view>
+      </view>
     </view>
     <view class='noReport' wx:if="{{!historys.length}}">
     <view class='img-wrap'>

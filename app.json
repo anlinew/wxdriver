@@ -1,17 +1,32 @@
 {
     "pages": [
-      "pages/login/login",
-      "pages/uploadReport/uploadReport",
       "pages/index/index",
-      "pages/addReport/addReport",
-      "pages/history/history",
-      "pages/reportDocument/reportDocument",
+      "pages/reimbursements/reimbursements",
+      "pages/myLoan/myLoan",
+      "pages/login/login", 
+      
+      
       "pages/detail/detail",
+      "pages/history/history",
+      
+      "pages/addEvent/addEvent",
+      "pages/reportEvent/reportEvent",
+      "pages/addReport/addReport",
+      "pages/reportDocument/reportDocument",
+      "pages/uploadReport/uploadReport",
+      "pages/uploadEvent/uploadEvent",
+      "pages/editInfo/editInfo",
       "pages/userInfo/userInfo",
       "pages/historySearch/historySearch",
-      "pages/editInfo/editInfo",
       "pages/messages/messages",
-      "pages/reimbursements/reimbursements"
+      
+      
+      "pages/oldHistory/oldHistory",
+      "pages/myTask/myTask",
+      
+      "pages/myLeave/myLeave",
+      "pages/aplplyLoan/aplplyLoan",
+      "pages/changePass/changePass"
     ],
     "window": {
         "backgroundTextStyle": "light",

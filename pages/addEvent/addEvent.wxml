@@ -1,0 +1,20 @@
+<!--pages/history/history.wxml-->
+<!-- <wxs module="m_history">
+</wxs> -->
+<view class='container'>
+
+    <navigator class="repair" url="../uploadEvent/uploadEvent?id=0&statusName=维修" hover-class="none" longpress="repairColor">
+    <view class='h-t'>
+      <image src="{{repairSrc}}" class="logo"></image>
+      <text class='num'>维修</text>
+    </view>
+    </navigator>
+
+    <navigator class="other" url="../uploadEvent/uploadEvent?id=1&statusName=其他" hover-class="none" longpress="otherColor">
+      <view class='h-t'>
+        <image src="{{otherSrc}}" class="logo"></image>
+        <text class='num'>其他</text>
+      </view>
+      </navigator>
+
+</view>
