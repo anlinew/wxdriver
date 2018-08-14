@@ -30,11 +30,20 @@ module.exports = {
 };
 </wxs>
 <view class='container'>
+    <view class="search-box">
+        <view class="weui-search-bar__box" bindtap="toSearch">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索历史任务" />
+          <view class="weui-icon-clear" wx:if="{{licenise.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+      </view>
     <view class='hasReport' wx:if="{{historys.length}}">
     <view class='historys'>
       <view class='history' wx:for="{{historys}}" wx:key="{{index}}">
         <view class='top-time'>{{item.taskDetails[item.taskDetails.length-1].topTime}}</view>
-        <navigator  class="history-task-btn" url="../detail/detail" hover-class="none">
+        <navigator  class="history-task-btn" url="../detail/detail?wayNum={{item.waybillNum}}" hover-class="none">
         <view class='h-t'>
           <text class='num'>订单号： {{item.waybillNum}}</text>
           <text class='gray'> ({{item.mileage}} KM)</text>
@@ -52,7 +61,7 @@ module.exports = {
           <navigator class='navbtn' url="../reportDocument/reportDocument?wayNum={{item.waybillNum}}" hover-class="none">
             <button bindtap='reportD' disabled="{{item.applicationCompleted}}" class="btn {{item.applicationCompleted?'gray':''}}">单据上报</button>
           </navigator>
-            <button data-id="{{item.waybillId}}" data-status="{{item.status}}" disabled="{{item.applicationCompleted}}" bindtap='auditD' class="btn {{item.applicationCompleted?'gray':''}}">提交审批</button>
+            <button data-id="{{item.id}}" data-status="{{item.status}}" disabled="{{item.applicationCompleted}}" bindtap='auditD' class="btn {{item.applicationCompleted?'gray':''}}">提交审批</button>
           </view>
         </view>
       </view>

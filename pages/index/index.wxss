@@ -221,9 +221,15 @@
     font-size: 36rpx;
     text-align: center;
     color: #fff;
-    margin: 60rpx;
     background: #3982ff !important;
     border-radius: 45rpx;
+    position: fixed;
+    border: 20rpx;
+    width: 75%;
+    left: 0;
+    bottom: 80rpx;
+    right: 0;
+    margin: auto;
 }
 /* 弹窗 */
 .pop-mask{

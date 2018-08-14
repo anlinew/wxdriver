@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#2D99EE",
+  "navigationBarTitleText": "绑定微信",
+  "usingComponents": {
+    "i-button": "../../utils/iviewapp/button/index",
+    "i-radio-group": "../../utils/iviewapp/radio-group/index",
+    "i-radio": "../../utils/iviewapp/radio/index"
+}
+}

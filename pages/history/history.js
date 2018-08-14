@@ -9,12 +9,12 @@ Page({
         pageNo: 1,
         pageSize: 10,
         historys: [], // 历史列表
-        gray: false,
-        wayId: null
+        id: null,
+        payload: {}
     },
-    getHistorys() {
+    getHistorys(payload) {
       let page = this;
-      const params = {
+      const params = payload || {
         pageNo: page.data.pageNo,
         pageSize: page.data.pageSize
       }
@@ -53,7 +53,7 @@ Page({
         this.getHistorys();
     },
     auditD (e) {
-      const wayId= e.currentTarget.dataset.id;
+      const id= e.currentTarget.dataset.id;
       const status = e.currentTarget.dataset.status;
       if (status === 5) {
         wx.showModal({
@@ -63,16 +63,14 @@ Page({
           success: async (e) => {
             if (e.confirm) {
               const res = await request.postRequest(api.subAudit,{
-                data:{id: wayId}
+                data:{id: id}
               })
               if (res.result){
                 wx.showToast({
                   icon: 'none',
                   title: '提交审批成功'
                 })
-                this.setData({
-                  gray: true
-                })
+                this.getHistorys();
               } else {
                 wx.showToast({
                   icon: 'none',
@@ -90,6 +88,43 @@ Page({
           title: '未确认送达不能提交审批'
         })
       }
+    },
+    // 下拉刷新
+    async onPullDownRefresh(e) {
+      this.data.payload = {};
+      this.data.pageNo = 1;
+      this.data.pageSize = 10;
+      wx.showLoading({
+        title: '加载中...',
+      })
+      await this.getHistorys();
+      setTimeout(()=> {
+        wx.stopPullDownRefresh();
+        wx.hideLoading();
+      },500)
+    },
+    // 上拉加载更多
+    async onReachBottom() {
+      wx.showLoading({
+        title: '加载更多中...',
+      })
+      this.data.pageSize = this.data.pageSize + 10;
+      this.data.payload.pageNo = 1;
+      this.data.payload.pageSize = this.data.pageSize;
+      await this.getHistorys(this.data.payload);
+      setTimeout(()=> {
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载完毕',
+          icon: 'none'
+        })
+      },500)
+    },
+    // 跳转到搜索页面
+    toSearch() {
+      wx.navigateTo({
+        url: '../historySearch/historySearch'
+      })
     },
     // 时间格式转换
     etDateStr(day) {

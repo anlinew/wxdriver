@@ -1,1 +1,267 @@
-/* pages/myLeave/myLeave.wxss */
+.weui-navbar {
+  background: #fff;
+}
+
+.addNav {
+  display: block;
+  margin: 360rpx auto;
+}
+
+.top-time {
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  line-height: 20rpx;
+  color: #7e8084;
+  background-color: #eef3fa;
+}
+
+.historys {}
+
+.history {
+  border-bottom: 1px solid #bfbfbf;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+}
+
+.history .h-t {
+  height: 60rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px solid ##eef3fa;
+  font-size: 28rpx;
+  line-height: 60rpx;
+}
+
+.history .h-t .gray {
+  color: #7e8084;
+}
+
+.history .h-t .red {
+  color: #f84a65;
+}
+
+.history .h-c {
+  padding: 5rpx 30rpx;
+  position: relative;
+  font-size: 28rpx;
+}
+
+.history .h-c .num {
+  font-size: 28rpx;
+  line-height: 60rpx;
+  display: block;
+  height: 60rpx;
+}
+
+.history .h-c .item .logo-wrap {
+  display: inline-block;
+  width: 36rpx;
+  height: 60rpx;
+  margin: 0 12rpx;
+  vertical-align: top;
+}
+
+.history .h-c .item .logo-wrap .img {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: middle;
+}
+
+.history .h-b {
+  height: 80rpx;
+  padding: 0 30rpx;
+  text-align: right;
+  line-height: 80rpx;
+  border-top: 1px solid ##eef3fa;
+}
+
+.history .h-b .btn {
+  display: inline-block;
+  height: 60rpx;
+  margin-left: 20rpx;
+  padding: 0 30rpx;
+  border: 1px solid #3e85ff;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  color: #3e85ff;
+  border-radius: 32rpx;
+  vertical-align: middle;
+}
+
+.history .h-b .btn.gray {
+  color: #b9b8b8;
+  border: 1px solid #e0e0e0;
+  background-color: #eee;
+}
+
+.noReport .img-wrap {
+  padding-top: 140rpx;
+  text-align: center;
+}
+
+.noReport .img-wrap .logo {
+  width: 316rpx;
+  height: 316rpx;
+}
+
+.noReport .tip {
+  text-align: center;
+  margin-top: 28rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  color: #4a4a4c;
+}
+
+.check-btn {
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  color: #fff;
+  background: #3982ff !important;
+  border-radius: 45rpx;
+  width: 630rpx;
+}
+
+.auditImg {
+  position: absolute;
+  width: 120rpx;
+  height: 120rpx;
+  right: 50rpx;
+  top: 37rpx;
+}
+
+.auditImg .logo {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.num .logo {
+  width: 30rpx;
+  height: 30rpx;
+  display: inline-block;
+  margin-top: 15rpx;
+  margin-left: 20rpx;
+}
+
+.num view {
+  height: 100%;
+  float: left;
+  line-height: 60rpx;
+}
+
+.addreport {
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  color: #fff;
+  background: #3982ff !important;
+  border-radius: 0rpx;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.sum {
+  height: 210rpx;
+  width: 100%;
+  background: #eef3fa;
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.sum .s_left {
+  width: 60%;
+  display: inline-block;
+}
+.sum .s_right{
+  width: 40%;
+  display: inline-block;
+}
+.s_tip{
+  width: 100%;
+  font-size: 24rpx;
+  color: #fc2727;
+}
+.s_col{
+  margin: 10rpx 0;
+}
+.s_num {
+  color: #fc2727;
+}
+.oil_ht {
+  border-bottom: 1px solid #eef3fa;
+  padding: 15rpx 20rpx 15rpx 30rpx;
+  font-size: 26rpx;
+
+}
+.oiltab {
+  overflow: hidden;
+  padding: 15rpx 20rpx 15rpx 30rpx;
+}
+.oil_text {
+  font-size: 26rpx;
+  float: left;
+  font-weight: 700;
+}
+.oil_num {
+  font-size: 26rpx;
+  float: right;
+  margin-right: 20rpx;
+  color: #fc2727;
+  font-weight: 700;
+}
+.oil_left {
+  font-size: 26rpx;
+  float: left;
+}
+.oil_right {
+  font-size: 26rpx;
+  float: right;
+  margin-right: 20rpx;
+}
+.oil_cont {
+  overflow: hidden;
+  margin: 10rpx 0;
+}
+.stand_time {
+  font-size: 26rpx;
+  display: block;
+  text-align: right;
+  color: #666;
+}
+.oil_text_num {
+  font-size: 28rpx;
+  float: right;
+  margin-right: 20rpx;
+}
+.img_view {
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 63rpx;
+}
+.img_view image {
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+}
+.loan_count {
+  display: flex;
+}
+.cont_view {
+  flex: 1;
+  font-size: 26rpx;
+  line-height: 63rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.strongF{
+  font-weight: 700;
+}
+.icon-tianjia {
+  color: #7e8084;
+  font-size: 30px;
+  position: fixed;
+  left: 50%;
+  bottom: 5px;
+  margin-left: -12.5px;
+}

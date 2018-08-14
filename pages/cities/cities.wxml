@@ -1,0 +1,12 @@
+
+<view class="head">
+  <view class="title" style="color: {{color}}">请选择</view>
+  <view></view>
+</view>
+<view class="i-index-demo citySelect">
+  <i-index height="100%">
+    <i-index-item wx:for="{{ cities }}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item" data-city="{{item.name}}" data-id="{{item.id}}" bindtap="onChange">
+      {{item.name}}
+    </i-index-item>
+  </i-index>
+</view>

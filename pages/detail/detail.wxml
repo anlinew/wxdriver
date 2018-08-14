@@ -1,53 +1,73 @@
 <!--pages/detail/detail.wxml-->
+<wxs module="m_history">
+var getStatusName = function(status) {
+    var name = '';
+    switch (status) {
+        case 0:
+            name = '待下发';
+            break;
+        case 1:
+            name = '待接受';
+            break;
+        case 2:
+            name = '待发车';
+            break;
+        case 3:
+            name = '运输中';
+            break;
+        case 4:
+            name = '已送达';
+            break;
+        case 5:
+            name = '已确认送达';
+            break;
+    }
+    return name;
+};
+
+module.exports = {
+    getStatusName: getStatusName
+};
+</wxs>
+
 <view class='container'>
-    <!-- <view class='header'>
-        <view class='site'>
-            <view class='name'>{{fromCity}}</view>
-            <view class='time'>{{departureTime}}</view>
-        </view>
-        <view class='mileage'>
-            <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
-            <image src="../image/right_arrow.png" class="line"></image>
-        </view>
-        <view class='site'>
-            <view class='name'>{{toCity}}</view>
-            <view class='time'>{{arriverTime}}</view>
-        </view>
-    </view> -->
     <view class='header'>
         <view class='site'>
-            <view class='name'>重庆市</view>
-            <view class='time'>07-19 10:00</view>
+            <view class='name'>{{detail.taskDetails[0].siteName}}</view>
+            <view class='time'>{{detail.taskDetails[0].arriveTime?detail.taskDetails[0].arriveTime:detail.taskDetails[0].scheduleTime}}</view>
         </view>
         <view class='mileage'>
             <view class='name'>{{detail.mileage ? detail.mileage + 'KM' : '0KM'}}</view>
             <image src="../image/right_arrow.png" class="line"></image>
         </view>
         <view class='site'>
-            <view class='name'>上海市</view>
-            <view class='time'>07-20 10:00</view>
+            <view class='name'>{{detail.taskDetails[detail.taskDetails.length-1].siteName}}</view>
+            <view class='time'>{{detail.taskDetails[detail.taskDetails.length-1].arriveTime?detail.taskDetails[detail.taskDetails.length-1].arriveTime:detail.taskDetails[detail.taskDetails.length-1].scheduleTime}}</view>
         </view>
     </view>
     <view class='info-box'>
         <view class='item'>
             <view class='item-name'>调度单号：</view>
-            <view class='item-con'>DZ2018031880175 <text class='finish fr'>已完成</text></view>
+            <view class='item-con'>{{detail.waybillNum}}<text class='finish fr'>{{m_history.getStatusName(detail.status)}}</text></view>
         </view>
         <view class='item'>
             <view class='item-name'>任务时间：</view>
-            <view class='item-con'>2018-07-19 10:00</view>
+            <view class='item-con'>{{detail.planArriveTime}}</view>
         </view>
         <view class='item'>
             <view class='item-name'>线路名称：</view>
-            <view class='item-con'>重庆市-杭州市-武汉市-上海市</view>
+            <view class='item-con'><text wx:key="{{index}}" wx:for="{{detail.taskDetails}}">{{index===detail.taskDetails.length-1?item.siteName:item.siteName+ '-'}}</text></view>
         </view>
         <view class='item'>
             <view class='item-name'>运单号码：</view>
-            <view class='item-con'>JZZ2018071900111</view>
-            <view class='item-con'>JZZ2018071900111</view>
-            <view class='item-con'>JZZ2018071900111</view>
-            <view class='item-con'>JZZ2018071900111</view>
-            <view class='item-con'>JZZ2018071900111</view>
+            <view class='item-con' wx:for="{{detail.cargoDetails[0].orderNums}}">{{item}}</view>
+        </view>
+        <view class='item'>
+            <view class='item-name'>车架号码：</view>
+            <view wx:for="{{detail.cargoDetails[0].vins}}" class='item-con'>{{item}}</view>
         </view>
     </view>
+    <view class="addNav">
+        <button bindtap="toEvent" class="weui-btn check-btn" type="primary" formType="submit">查看事件</button>
+      </view>
 </view>

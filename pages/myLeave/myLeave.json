@@ -1,1 +1,5 @@
-{}
+{
+  "navigationBarBackgroundColor": "#2D99EE",
+  "navigationBarTitleText": "我的借款",
+  "enablePullDownRefresh": true
+}

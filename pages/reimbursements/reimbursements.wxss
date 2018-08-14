@@ -20,14 +20,14 @@
     right: 0;
     width: 0;
     height: 60rpx;
-    border-right: 1px solid #dcdcdc;
+    border-right: 1px solid #eef3fa;
 
 }
 .top-info .item:last-child:after{
     display: none;
 }
 .top-info .item .num {
-    font-size: 28rpx;
+    font-size: 26rpx;
 }
 .top-info .item .num.orange{
     color: #f39800;
@@ -59,12 +59,12 @@
 .li .h-t{
     height: 60rpx;
     padding: 0 30rpx;
-    border-bottom: 1px solid #dcdcdc;
-    font-size: 28rpx;
+    border-bottom: 1px solid #eef3fa;
+    font-size: 26rpx;
     line-height: 60rpx;
 }
 .li .p{
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 60rpx;
 }
 .li .gray{
@@ -79,13 +79,13 @@
 .li .h-c{
     padding: 10rpx 0;
     margin: 0 30rpx;
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #eef3fa;
 }
 .li .h-c .p{
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #eef3fa;
 }
 .li .h-c .item{
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 60rpx;
 }
 .li .h-c .item .logo-wrap{
@@ -104,22 +104,11 @@
     padding: 20rpx 0;
 }
 .li .h-c .site{
-    height: 120rpx;
-    position: relative;
-    padding-right: 120rpx;
-    font-size: 28rpx;
+    height: 100rpx;
+    font-size: 26rpx;
     line-height: 50rpx;
+    width: 180rpx;
     text-align: center;
-}
-.li .h-c .site::after{
-    display: block;
-    position: absolute;
-    content: "";
-    top: 49rpx;
-    right: 20rpx;
-    width: 80rpx;
-    height: 0;
-    border-top: 1px solid #bfbfbf;
 }
 .li .h-c .site:last-child::after {
     display: none;
@@ -139,15 +128,22 @@
 }
 .li .h-c .site .time{
     color: #999;
+    width: 180rpx;
+}
+.li .h-c .site .name{
+  width: 180rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .li .h-c .site .time.blue{
     color: #3e85ff;
 }
 .li .h-b{
-    height: 80rpx;
+    height: 60rpx;
     padding: 0 30rpx;
-    font-size: 28rpx;
-    line-height: 80rpx;
+    font-size: 26rpx;
+    line-height: 60rpx;
 }
 .li .h-b .btn{
     display: inline-block;
@@ -155,7 +151,7 @@
     margin-left: 20rpx;
     padding: 0 30rpx;
     border: 1px solid #3e85ff;
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 60rpx;
     color: #3e85ff;
     border-radius: 32rpx;
@@ -248,4 +244,96 @@
   border-radius: 50%;
   text-align: center;
   line-height: 72px;
+}
+.h-last {
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  display: inline-block;
+  width: 50%;
+}
+.site-line {
+  flex: 1;
+  position: relative;
+}
+.site-line .line {
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background: #aaaaaa;
+  width: 100%;
+}
+/* 线路样式 */
+.route {
+  font-size: 26rpx;
+  line-height: 60rpx;
+  vertical-align: middle;
+  padding-left: 40rpx;
+  padding-right: 10rpx;
+  overflow: hidden;
+}
+.route .site{
+  position: relative;
+  margin-bottom: 35rpx;
+  font-size: 0;
+  line-height: 60rpx;
+  text-align: left;
+}
+.route .site:last-child{
+  margin-bottom: 0rpx;
+}
+.route .site::after{
+  display: block;
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 20rpx;
+  width: 0;
+  height: 40rpx;
+  border-right: 1px dashed rgb(214, 214, 214);
+}
+.route .site:last-child::after{
+  display: none;
+}
+.route .site .img-wrap{
+  display: inline-block;
+  width: 40rpx;
+  height: 60rpx;
+  margin-right: 30rpx;
+  text-align: center;
+  vertical-align: top;
+}
+.route .site .img-wrap .logo{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+.route .site .img-wrap .logo-start, .route .site .img-wrap .logo-end{
+  height: 48rpx;
+}
+.route .site .name{
+  margin-right: 30rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+}
+.route .site .date{
+  color: #6d6e72;
+  font-size: 26rpx;
+}
+.delete {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: -15rpx;
+  top: -15rpx;
+  z-index: 9999;
+}
+.delete image {
+  width: 100%;
+  height: 100%;
+}
+.title{
+  text-align: left;
+  padding-left: 20rpx;
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
 }

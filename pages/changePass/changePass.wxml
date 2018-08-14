@@ -1,3 +1,19 @@
-<!--pages/changePass/changePass.wxml-->
-<text>pages/changePass/changePass.wxml</text>
-<text>修改密码</text>
+<view>
+<form bindsubmit="changePass">
+  <view class='panel'>
+    <view class='title'>原密码</view>
+    <view class='input'><input password maxlength="18" bindinput="oldPass" input name="password" value='{{password}}' placeholder='原密码' /></view>
+  </view>
+  <view class='panel'>
+    <view class='title'>新密码</view>
+    <view class='input'><input password maxlength="18" bindinput='newPass' name="newPassword" value='{{newPassword}}'  placeholder='新密码' /></view>
+  </view>
+  <view class='panel'>
+    <view class='title'>新密码</view>
+    <view class='input'><input password maxlength="18" bindinput="aginPass" name="aginPassword" value='{{aginPassword}}'  placeholder='再次输入新密码' /></view>
+  </view>
+  <view class="addNav">
+    <button class="weui-btn check-btn" type="primary" formType="submit">提交</button>
+  </view>
+</form>
+</view>

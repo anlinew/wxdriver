@@ -1,17 +1,28 @@
 <!--pages/userInfo/userInfo.wxml-->
-<view class="weui-cells weui-cells_after-title">
-    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+<view class="weui-cells weui-cells_after-title box">
+    <view class="weui-cell weui-cell_access" bindtap="changepic">
         <view class="weui-cell__bd">头像</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">
-            <view class='head-logo'><image src="../image/avatar@2x.png" class="img"></image></view>
+            <view class='head-logo'><image src="{{'http://182.61.48.201:8080/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
         </view>
-    </navigator>
-    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    </view>
+    <view class="weui-cell weui-cell_access item1">
         <view class="weui-cell__bd">用户名</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">长安博宇</view>
-    </navigator>
-    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd">电话号码</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">13471092891</view>
-    </navigator>
+        <view class="weui-cell__ft">{{driverInfo.username}}</view>
+    </view>
+    <view class="weui-cell weui-cell_access item1">
+        <view class="weui-cell__bd">姓名</view>
+        <view class="weui-cell__ft">{{driverInfo.realName}}</view>
+    </view>
+    <view class="weui-cell weui-cell_access item1">
+        <view class="weui-cell__bd">车牌号</view>
+        <view class="weui-cell__ft">{{driverInfo.truckLicense}}</view>
+    </view>
+    <view bindtap="changephone" class="weui-cell weui-cell_access item">
+        <view class="weui-cell__bd">手机号</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">{{driverInfo.phone}}</view>
+    </view>
+    <view class="addNav">
+        <button bindtap="outlogin" class="weui-btn check-btn" type="primary">退出登录</button>
+      </view>
 </view>

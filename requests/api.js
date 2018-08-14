@@ -18,5 +18,19 @@ module.exports = {
   loanList: '/api/driver/waybillaccount/list', // 获取报销列表
   oilList: '/api/driver/waybillaccount/gasdetail', // 燃油的接口(settlementDetailId)
   subsidy: '/api/driver/waybillaccount/subsidy', // 标准的接口
-  applyList: '/api/driver/loan' // 查询借款信息
+  applyList: '/api/driver/loan', // 查询借款信息
+  addApply: '/api/driver/loan', // 新增借款信息
+  cancelApply: '/api/driver/loan/cancel', // 取消借款
+  weList: '/api/wechatUser', // 获取微信公众号列表
+  bind: '/api/wechatUser/bindWechatUser', // 司机绑定、解绑微信
+  upList: '/api/wechatUser/flushWechatUser', // 更新微信列表
+  driverInfo: '/api/driver/app/getdriver', // 获取司机当前信息
+  leaveList: '/api/driver/leavenote/list', // 查询请假的列表
+  addLeave: '/api/driver/leavenote/add', // 新增请假
+  cancelLeave: '/api/driver/leavenote/del', // 取消请假
+  getMessage: '/api/driver/app/pushmessage', // 获取推送消息的历史记录
+  changePass: '/api/driver/app/modpassword', // 修改密码
+  cities: '/api/pub/district', // 获取省市区
+  updatadriver: '/api/driver/updatadriver', // 修改司机信息
+  outlogin: '/api/driver/app/logout', // 退出登录
 }

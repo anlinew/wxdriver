@@ -1,37 +1,50 @@
 {
-    "pages": [
-      "pages/index/index",
-      "pages/reimbursements/reimbursements",
-      "pages/myLoan/myLoan",
-      "pages/login/login", 
-      
-      
-      "pages/detail/detail",
-      "pages/history/history",
-      
-      "pages/addEvent/addEvent",
-      "pages/reportEvent/reportEvent",
-      "pages/addReport/addReport",
-      "pages/reportDocument/reportDocument",
-      "pages/uploadReport/uploadReport",
-      "pages/uploadEvent/uploadEvent",
-      "pages/editInfo/editInfo",
-      "pages/userInfo/userInfo",
-      "pages/historySearch/historySearch",
-      "pages/messages/messages",
-      
-      
-      "pages/oldHistory/oldHistory",
-      "pages/myTask/myTask",
-      
-      "pages/myLeave/myLeave",
-      "pages/aplplyLoan/aplplyLoan",
-      "pages/changePass/changePass"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#3E85FF",
-        "navigationBarTitleText": "轿好运司机端",
-        "navigationBarTextStyle": "white"
-    }
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/history/history",
+    "pages/userInfo/userInfo",
+    
+    "pages/historySearch/historySearch",
+    
+    
+    "pages/cities/cities",
+    "pages/reportDocument/reportDocument",
+    "pages/aplplyLoan/aplplyLoan",
+    "pages/myLeave/myLeave",
+    "pages/reimbursements/reimbursements",
+    "pages/messages/messages",
+    "pages/changePhone/changePhone",
+   
+   
+    "pages/changePass/changePass",
+    "pages/addLeave/addLeave",
+    
+    "pages/bindWe/bindWe",
+    
+    "pages/uploadEvent/uploadEvent",
+   
+    
+    "pages/addApply/addApply",
+    
+    "pages/uploadReport/uploadReport",
+    
+    "pages/loanTab/loanTab",
+    "pages/detail/detail",
+    
+    
+    "pages/addEvent/addEvent",
+    "pages/reportEvent/reportEvent",
+    "pages/addReport/addReport"
+   
+    
+    
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "EEF3FA",
+    "navigationBarBackgroundColor": "#3E85FF",
+    "navigationBarTitleText": "轿好运司机端",
+    "navigationBarTextStyle": "white"
+  }
 }

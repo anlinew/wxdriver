@@ -7,7 +7,6 @@
     <view class='reportList'>
         <view class='history' wx:for="{{reportList}}" wx:key="{{index}}">
          <view class='top-time'></view>  
-            <navigator  class="history-task-btn" url="../detail/detail" hover-class="navigator-hover">
     <view class='h-t'>
                 <text class='num'>编号：{{item.billNum}}</text>
                 <text class='fr'>{{item.createTime}}</text>
@@ -15,7 +14,7 @@
             <view class='h-c'>
                 <view class='num'>
                 <view>类型：{{item.status}}</view>
-                <image src="../image/have_picture.png" class="logo"></image>
+                <image  wx:if="{{item.imgids}}" data-imgids="{{item.imgids}}" bindtap="handleOpen" src="../image/have_picture.png" class="logo"></image>
                 </view>
                 <view class='num'>数量：{{item.money}} {{item.unit}}</view>
                 <view class='num'>备注：{{item.description}}</view>
@@ -27,7 +26,6 @@
                     <image wx:if="{{item.cancel}}" src="../image/yet_canael.png" class="logo"></image>
                 </view>
             </view>
-    </navigator>
             <view class='h-b' wx:if="{{!item.cancel}}">
               <button data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</button>
             </view>
@@ -47,3 +45,8 @@
     </navigator>
     </view> 
 </view>
+
+<i-modal show-cancel="{{false}}" show-ok="{{false}}" title="{{none}}" visible="{{visible}}" bind:ok="handleClose" bind:cancel="handleClose">
+    <view bindtap="closeMadol" class="delete"><image src="../image/delete.png"></image></view>
+    <view class="item_img" wx:for="{{imgList}}" wx:key="{{index}}"><image data-current="{{item}}" bindtap="imgTap" src="{{item}}"></image></view>
+</i-modal>

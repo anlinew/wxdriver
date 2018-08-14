@@ -1,0 +1,49 @@
+.panel {
+  background: #fff;
+  padding: 30rpx;
+  font-size: 24rpx;
+  margin-bottom: 30rpx;
+}
+.title {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 700;
+}
+.input {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 60rpx;
+  width: 70%;
+}
+input {
+  width: 100%;
+}
+.addNav{
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 150rpx;
+}
+.check-btn{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background: #3982ff !important;
+  border-radius: 45rpx;
+  width: 630rpx;
+}
+.logo-clear{
+  position: absolute;
+  top: 50%;
+  margin-top: -18rpx;
+  right: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  z-index: 999;
+}
+.logo-clear .img{
+  width: 100%;
+  height: 100%;
+}

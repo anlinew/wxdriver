@@ -1,0 +1,35 @@
+<!-- <wxs module="m_index" src="../index.wxs"></wxs> -->
+<view class="container">
+    <view class='header'>
+        <view class='inputCont'>
+          <form bindsubmit="acceptTask">
+          <view class="applyType">
+            <view class="type-text">借款类型</view>
+            <view class="flexLeft type-btn">
+              <view wx:key="{{index}}" data-index="{{index}}" bindtap="typeClick" wx:for="{{typeList}}" wx:for-item="item" class="type-item {{currentT===index?'blueGround':''}}">{{item}}</view>
+            </view>
+          </view>
+
+          <view class="appNum">
+            <view>借款金额(元)：</view>
+            <input maxlength='6' type="digit" name="money" value="{{money}}" bindinput="inputM" placeholder="请填写金额" />
+          </view>
+          <view class='remarkCont'>
+            <view class='remarkText'>借款原因：</view>
+            <textarea auto-height maxlength='100' class='remarkInput' bindinput="inputD" value="{{description}}" name="description" placeholder='请填写借款的具体原因'></textarea>
+          </view> 
+
+          <view class="quckReason">
+            <view>快捷筛选</view>
+            <view class="flexStart reson-btn">
+              <view wx:key="{{index}}" data-index="{{index}}" bindtap="reasonClick" wx:for="{{reasonList}}" wx:for-item="item" class="reason-item">{{item}}</view>
+            </view>
+          </view>
+        <view class="addNav">
+          <button class="weui-btn check-btn" type="primary" formType="submit">提交申请</button>
+        </view>
+        </form>
+        </view>
+
+    </view>
+</view>

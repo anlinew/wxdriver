@@ -15,15 +15,19 @@ Page({
     tatolObj: {},
     timeNow: null,
     dateNow: null,
-    loanList: []
+    loanList: [],
+    moneyObj: {},
+    visible: false,
+    sitelist: [],
+    pageNo: 1,
+    pageSize: 10
   },
   onLoad: function (options) {
     const timeNow = this.etTimeNow(new Date());
     const dateNow = this.etDateNow(new Date());
     this.setData({
       timeNow: timeNow,
-      dateNow: dateNow,
-      wayNum: options.wayNum
+      dateNow: dateNow
     })
     this._getTatol();
     this._getLoanList();
@@ -63,12 +67,32 @@ Page({
   },
   // 获取报销的列表
   async _getLoanList() {
-    const payload = {pageNo:1, pageSize:10};
+    const payload = {pageNo:this.data.pageNo, pageSize:this.data.pageSize};
     const res = await request.getRequest(api.loanList,{data: payload});
     const loanList = res.data;
     loanList.forEach(n=> {
       n.billApplyMoney = (n.billApplyMoney*0.01).toFixed(2);
       n.payLoanExamineMoney = (n.payLoanExamineMoney*0.01).toFixed(2);
+      n.billExamineMoney = (n.billExamineMoney*0.01).toFixed(2);
+      n.subsidy = (n.subsidy*0.01).toFixed(2);
+      n.gasSum = (n.gasSum*0.01).toFixed(2);
+      switch(n.waybillStatus){
+        case 0:
+        n.waybillStatus = '审批中'
+        break;
+        case 1:
+        n.waybillStatus = '审核完成'
+        break;
+        case 2:
+        n.waybillStatus = '待结算'
+        break;
+        case 3:
+        n.waybillStatus = '已结算'
+        break;
+        case 4:
+        n.waybillStatus = '已关账'
+        break;
+      }
       n.taskDetails.forEach(item=>{
         if (item.arriveTime){item.arriveTime = this.etDateNow(item.arriveTime );}
         if (item.scheduleTime){item.scheduleTime = this.etDateNow(item.scheduleTime );}
@@ -77,6 +101,60 @@ Page({
     this.setData({
       loanList: loanList
     })
+  },
+    // 显示模态框
+    handleOpen(e) {
+      this.setData({
+        visible: true,
+        sitelist: e.currentTarget.dataset.sitelist
+      });
+    },
+    // 点击叉叉关闭模态框
+    closeMadol() {
+      this.setData({
+        visible: false
+      })
+    },
+  routeTab(e) {
+    wx.navigateTo({
+      url: '../loanTab/loanTab?wayNum='+
+      e.currentTarget.dataset.waynum+
+      '&billApplyMoney='+e.currentTarget.dataset.billapplymoney+
+      '&billApplyGas='+e.currentTarget.dataset.billapplygas+
+      '&billApplyMileage='+e.currentTarget.dataset.billapplymileage+
+      '&billExamineMoney='+e.currentTarget.dataset.billexaminemoney+
+      '&billExamineGas='+e.currentTarget.dataset.billexaminegas+
+      '&billExamineMileage='+e.currentTarget.dataset.billexaminemileage+
+      '&id='+e.currentTarget.dataset.id
+    })
+  },
+  // 下拉刷新
+  async onPullDownRefresh(e) {
+    this.data.pageNo = 1;
+    this.data.pageSize = 10;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    await this._getLoanList();
+    setTimeout(()=> {
+      wx.stopPullDownRefresh();
+      wx.hideLoading();
+    },500)
+  },
+  // 上拉加载更多
+  async onReachBottom() {
+    wx.showLoading({
+      title: '加载更多中...',
+    })
+    this.data.pageSize = this.data.pageSize + 10;
+    await this._getLoanList();
+    setTimeout(()=> {
+      wx.hideLoading();
+      wx.showToast({
+        title: '加载完毕',
+        icon: 'none'
+      })
+    },500)
   },
   // 下面为滑动的动画
   touchStart(e) {

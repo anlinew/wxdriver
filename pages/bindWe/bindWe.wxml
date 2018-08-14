@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="search-box">
+    <view class="search-tittle">请输入手机号码查询</view>
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="请输入手机号码" value="{{phone}}" bindinput="inputTyping"/>
+      <view class="weui-icon-clear" wx:if="{{licenise.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+      <i-button class="search-btn" bind:click="_getWelist" type="primary" size="small">搜索</i-button>
+    </view>
+  </view>
+  <view class="head">
+    <view class="tittle">
+      <view>微信列表</view>
+      <view>(请选择需要关联的微信号)</view>
+    </view>
+    <view class="okBtn">
+      <i-button bind:click="bindWe" type="primary" shape="circle" size="small">绑定</i-button>
+      <i-button bind:click="unBindwe" type="default" shape="circle" size="small">解绑</i-button>
+    </view>
+  </view>
+  <view class="content">
+    <i-radio-group current="{{current}}" bindchange="handleFruitChange" wx:if="{{weList.length}}">
+      <view class="view-for"  wx:for="{{weList}}"  wx:key="{{item.id}}">
+          <view class="test"> 
+            <view class="image"><image src="{{item.headimgurl}}"></image></view>
+            <view class="weName">{{item.nickname}}</view>
+            <view class="weSix">{{item.sex===1?'男':'女'}}</view>
+            <view class="weLoca">{{item.country+' '+item.province+' '+item.city}}</view>
+          </view>
+          <i-radio position="{{position}}" value="{{item.openid}}" >
+          </i-radio>
+      </view>
+    </i-radio-group>
+    <view wx:else class="noInfo">
+      没有找到微信账号信息
+    </view>
+  </view>
+</view>

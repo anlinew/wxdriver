@@ -1,10 +1,8 @@
 /* pages/messages/messages.wxss */
-.container{
 
-}
 .top-title{
     height: 70rpx;
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 70rpx;
     text-align: center;
 }
@@ -15,4 +13,32 @@
     border-left: 1px solid #dcdcdc;
     border-right: 1px solid #dcdcdc;
     border-radius: 12rpx;
+}
+.tittle-left {
+  font-size: 26rpx;
+  font-weight: 700;
+}
+.tittle-right {
+  font-size: 26rpx;
+}
+.tittle-bottom{
+  font-size: 26rpx;
+  color: #666;
+}
+.noReport .img-wrap {
+  padding-top: 140rpx;
+  text-align: center;
+}
+
+.noReport .img-wrap .logo {
+  width: 316rpx;
+  height: 316rpx;
+}
+
+.noReport .tip {
+  text-align: center;
+  margin-top: 28rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  color: #4a4a4c;
 }

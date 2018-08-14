@@ -1,3 +1,41 @@
-<!--pages/myLeave/myLeave.wxml-->
-<text>pages/myLeave/myLeave.wxml</text>
-<text>我的请假</text>
+<view class='container'>
+    <view class='hasReport' wx:if="{{borrowList.length}}">
+      <view class='reportList' wx:for="{{borrowList}}" wx:for-item="item" wx:key="{{index}}">
+        <view class='history'>
+          <view class='oil_ht'>
+            <view class='stand_cont'><text class="oil_left">申请日期</text></view>
+            <view class="stand_time">{{item.createTime}}</view>
+          </view>
+          <view class='oil_ht'>
+            <view class='loan_count'>
+              <view class="img_view"><image src="{{item.cancel?'../image/leave_cancel.png':'../image/leave_normal.png'}}"></image></view>
+              <view class="cont_view">
+                <view class="strongF">共计{{item.duration}}天({{!item.cancel?item.examineStatus:'已取消'}})</view>
+                <view style="font-weight: 700">{{item.startTime}}至{{item.endTime}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='oil_ht'>
+            <view class='stand_cont'>借款原因：{{item.description}}</view>
+          </view>
+          <view class='h-c' wx:if="{{item.examineUserName}}">
+            <view class='oil_cont'><text class="oil_left">审批人员：{{item.examineUserName}}</text></view>
+            <view class='oil_cont'><text class="oil_left">审批时间：{{item.examineTime}}</text></view>
+            <view class='oil_cont'><text class="oil_left">审批备注：{{item.examineRemark}}</text></view>
+          </view>
+          <view class='h-b' wx:if="{{!item.source && !item.cancel && item.examineStatus==='待审批'}}">
+            <button data-id="{{item.id}}" bindtap='cancelAdd' disabled="{{item.applicationCompleted}}" class="btn">取消申请</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='noReport' wx:else>
+      <view class='img-wrap'>
+        <image src="../image/no_leave.png" class="logo"></image>
+      </view>
+      <view class='tip'>您还没有请假记录</view>
+    </view>
+    <navigator url='../addLeave/addLeave' hover-class="none">
+      <text class='iconfont icon-tianjia' bindtap='handleAdd'></text>
+    </navigator>
+  </view>

@@ -1,0 +1,16 @@
+<view>
+<form bindsubmit="changePass">
+  <view class='panel' style="position: relative;">
+    <view class='title'>手机号</view>
+    <view class='input'>
+      <input maxlength="18" bindinput="phone" input name="phone" value='{{phone}}' placeholder='请输入手机号' />
+    </view>
+    <view class='logo-clear' bindtap="clear" wx:if="{{clear}}">
+        <image bindtap="clearInput" src="../image/clear.png" class="img"></image>
+      </view>
+  </view>
+  <view class="addNav">
+    <button class="weui-btn check-btn" type="primary" formType="submit">提交</button>
+  </view>
+</form>
+</view>

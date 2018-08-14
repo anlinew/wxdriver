@@ -1,4 +1,5 @@
 {
     "navigationBarBackgroundColor": "#2D99EE",
-    "navigationBarTitleText": "历史任务"
+    "navigationBarTitleText": "历史任务",
+    "enablePullDownRefresh": true
 }

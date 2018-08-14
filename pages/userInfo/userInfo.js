@@ -1,66 +1,133 @@
-// pages/userInfo/userInfo.js
+
+import api from '../../requests/api.js'
+import regeneratorRuntime from '../../utils/regenerator-runtime/runtime.js';
+const app = getApp()
+const request = app.WxRequest;// pages/userInfo/userInfo.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    driverInfo: {},
+    profilePic: null,
+    phone: null
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    this._getDriver();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  // 获取司机的信息
+  async _getDriver() {
+    const res = await request.getRequest(api.driverInfo);
+    console.log(res);
+    this.setData({
+      driverInfo: res.data,
+      profilePic: res.data.profilePic,
+      phone: res.data.phone
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 换头像
+  changepic() {
+    wx.showActionSheet({
+      itemList: ['拍照', '从相册中选择'],
+      itemColor: "#666",
+      success: (res) => {
+        console.log(res)
+        if (res.tapIndex == 0) {
+          this.chooseWxImage('album')
+        } else if (res.tapIndex == 1) {
+          this.chooseWxImage('camera')
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 选择照片
+  chooseWxImage(type) {
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: [type],
+      success: (res) => {
+        wx.showToast({
+          icon: "loading",
+          title: "正在上传",
+          duration: 1000
+        });
+        const path = res.tempFilePaths[0];
+        console.log(path)
+        wx.uploadFile({
+          url: 'http://182.61.48.201:8080/api/pub/upload?app=true',
+          filePath: path,
+          name: 'file',
+          header: {
+            "Content-Type": "multipart/form-data",
+          },
+          success: (res) => {
+            if (res.statusCode != 200 || !(JSON.parse(res.data).result)) {
+              wx.showModal({
+                title: '提示',
+                content: '上传失败',
+                showCancel: false
+              })
+              return;
+            }
+            const profilePic = JSON.parse(res.data).data.id
+            this.driverTx(profilePic);
+          },
+          fail: function (e) {
+            wx.showModal({
+              title: '提示',
+              content: '上传失败',
+              showCancel: false
+            })
+          },
+          complete: function () {
+            wx.hideToast();  //隐藏Toast
+          }
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  // 修改司机头像
+  async driverTx(profilePic) {
+    const res = await request.postRequest(api.updatadriver+'?profilePic='+profilePic)
+    if (res.result) {
+      await this._getDriver();
+      wx.showToast({
+        title: '修改头像成功',
+        icon: 'success'
+      })
+    } else {
+      wx.showToast({
+        title: '修改头像失败',
+        icon: 'none'
+      })
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 修改手机号
+  changephone () {
+    wx.navigateTo({
+      url: '../changePhone/changePhone?phone='+this.data.phone
+    })
   },
+  // 退出登录
+  outlogin() {
+    wx.showModal({
+      title: '退出登录',
+      confirmColor: '#666',
+      content: '确认退出登录？',
+      success: async (e) => {
+        if (e.confirm) {
+          const res = await request.postRequest(api.outlogin)
+          if (res.result){
+            wx.redirectTo({
+              url: '../login/login'
+            })
+          } else {
+            wx.showToast({
+              icon: 'none',
+              title: '退出登录失败'
+            })
+          }
+        } else if (e.cancel) {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+        }
+      }
+    })
   }
 })

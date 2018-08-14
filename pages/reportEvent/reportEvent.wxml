@@ -7,27 +7,29 @@
     <view class='reportList'>
       <view class='history' wx:for="{{reportList}}" wx:key="{{index}}">
          <view class='top-time'></view>  
-            <navigator  class="history-task-btn" url="../detail/detail" hover-class="navigator-hover">
           <view class='h-t'>
             <text class='num'>编号：{{item.eventNum}}</text>
             <text class='fr'>{{item.createTime}}</text>
           </view>
-          <view class='h-c'>
+          <view class='h-c-event'>
             <view class='num'>
             <view>类型：{{item.statusName}}</view>
-            <image src="../image/have_picture.png" class="logo"></image>
+            <image wx:if="{{item.imgIds}}" data-imgids="{{item.imgIds}}" bindtap="handleOpen" src="../image/have_picture.png" class="logo"></image>
             </view>
             <view class='num'>备注：{{item.description}}</view>
+            <view class='eventImg'>
+                <image wx:if="{{item.cancel}}" src="../image/yet_canael.png" class="logo"></image>
+            </view>
           </view>
-    </navigator>
-            <view class='h-b'>
-                <view bindtap='auditD' class='btn phone'>联系催人</view>
-              <view bindtap='auditD' class='btn'>取消上报</view>
+            <view class='h-b'  wx:if="{{!item.cancel}}">
+              <view bindtap='call_people' class='btn phone'>联系催人</view>
+              <view bindtap='applyB' class='btn' wx:if="{{item.statusName === '维修'}}">申请借款</view>
+              <view  data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</view>
             </view>
         </view>
     </view>
     <navigator url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="navigator-hover">
-      <text class='iconfont icon-camera-b' bindtap='handleAdd'></text>
+      <text class='iconfont icon-tianjia' bindtap='handleAdd'></text>
     </navigator>
     </view> 
      <view class='noReport' wx:else>
@@ -40,3 +42,8 @@
     </navigator>
     </view> 
 </view>
+
+<i-modal show-cancel="{{false}}" show-ok="{{false}}" title="{{none}}" visible="{{visible}}" bind:ok="handleClose" bind:cancel="handleClose">
+    <view bindtap="closeMadol" class="delete"><image src="../image/delete.png"></image></view>
+    <view class="item_img" wx:for="{{imgList}}" wx:key="{{index}}"><image data-current="{{item}}" bindtap="imgTap" src="{{item}}"></image></view>
+</i-modal>

@@ -1,4 +1,8 @@
 {
     "navigationBarBackgroundColor": "#2D99EE",
-    "navigationBarTitleText": "事件上报"
+    "navigationBarTitleText": "事件上报",
+    "usingComponents": {
+      "i-modal": "../../utils/iviewapp/modal/index"
+    },
+    "enablePullDownRefresh": true
 }

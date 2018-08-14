@@ -6,7 +6,11 @@
 .block{
     margin-bottom: 20rpx;
     padding: 20rpx 30rpx;
+    padding-right: 0!important;
     background-color: #fff;
+}
+.placeholder {
+  color: #808080;
 }
 .item{
     font-size: 28rpx;
@@ -72,16 +76,19 @@
     color: #666;
     background-color: #f0f2f5;
 }
-
+.weui-select{
+  padding-left: 0!important;
+}
 .weui-cell__bd{
     position: relative;
 }
 .weui-cell__bd .logo-clear{
     position: absolute;
     top: 12rpx;
-    right: 0;
+    right: 30rpx;
     width: 36rpx;
     height: 36rpx;
+    z-index: 999;
 }
 .weui-cell__bd .logo-clear .img{
     width: 100%;
@@ -91,4 +98,28 @@
     height: 60rpx;
     min-height: 60rpx;
     line-height: 60rpx;
+}
+.citySelect {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+}
+.addNav{
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 50rpx;
+}
+.check-btn{
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background: #3982ff !important;
+  border-radius: 45rpx;
+  width: 630rpx;
 }

@@ -11,7 +11,7 @@ Page({
   data: {
     statusName: null,
     id: null,
-    wayId: null,
+    id: null,
     wayInfo: {},
     imgList: [],
     idList: [],
@@ -60,7 +60,7 @@ Page({
       const wayInfo = res.data || {};
       page.setData({
         wayInfo: wayInfo,
-        wayId: wayInfo.waybillId,
+        id: wayInfo.id,
       });
     } else {
       wx.showModal({
@@ -111,7 +111,7 @@ Page({
     payload.curStatus = this.data.id;
     payload.statusName = this.data.statusName;
     // 调度单id
-    payload.waybillId = this.data.wayId;
+    payload.waybillId = this.data.id;
     const res = await request.postRequest(api.addEvent,{
       data: payload,
       header: {
@@ -145,39 +145,16 @@ Page({
     })
   },
   // 上传照片
-  uploadFy() {
-    var that = this;
-    wx.showActionSheet({
-      itemList: ["从相册中选择", "拍照"],
-      itemColor: "#999",
-      success: function (res) {
-        if (!res.cancel) {
-          if (res.tapIndex == 0) {
-            that.chooseWxImage("album", []);
-          } else if (res.tapIndex == 1) {
-            that.chooseWxImage("camera", []);
-          }
-        }
-      }
-    })
-  },
-  // 选择图片的方法
-  chooseWxImage: function (type, imgs) {
+  uploadFy: function () {
+    const imgs = [];
     var that = this;
     wx.chooseImage({
       count: 9,
       sizeType: ["original", "compressed"],
-      sourceType: [type],
+      sourceType: ["camera"],
       success: function (res) {
-        console.log(res);
         var addImg = res.tempFilePaths;
-        var addLen = addImg.length;
-        for (var j = 0; j < addLen; j++) {
-          var str = {};
-          str.pic = addImg[j];
-          imgs.push(str);
-        }
-        that.upLoadImg(imgs);
+        that.upLoadImg(addImg[0]);
       },
     })
   },
@@ -187,51 +164,47 @@ Page({
   //多张图片上传
   upload: function (path) {
     var that = this;
-    for (var i = 0; i < path.length; i++) {
-      wx.showToast({
-        icon: "loading",
-        title: "正在上传",
-        duration: 1000
-      }),
-      console.log(path[i].pic)
-      wx.uploadFile({
-        url: 'http://182.61.48.201:8080/api/pub/upload?app=true', //接口处理在下面有写
-        filePath: path[i].pic,
-        name: 'file',
-        header: { 
-          "Content-Type": "multipart/form-data",
-         },
-        success: (res) => {
-          console.log(JSON.parse(res.data).data);
-          if (res.statusCode != 200 || !(JSON.parse(res.data).result)) {
-            wx.showModal({
-              title: '提示',
-              content: '上传失败',
-              showCancel: false
-            })
-            return;
-          }
-          const imgList= this.data.imgList;
-          const idList= this.data.idList;
-          imgList.push('http://tmp/'+JSON.parse(res.data).data.fileName);
-          idList.push(JSON.parse(res.data).data.id);
-          that.setData({
-            imgList: imgList,
-            idList: idList
-          })
-        },
-        fail: function (e) {
+    wx.showToast({
+      icon: "loading",
+      title: "正在上传",
+      duration: 1000
+    }),
+    wx.uploadFile({
+      url: 'http://182.61.48.201:8080/api/pub/upload?app=true',
+      filePath: path,
+      name: 'file',
+      header: { 
+        "Content-Type": "multipart/form-data",
+       },
+      success: (res) => {
+        if (res.statusCode != 200 || !(JSON.parse(res.data).result)) {
           wx.showModal({
             title: '提示',
             content: '上传失败',
             showCancel: false
           })
-        },
-        complete: function () {
-          wx.hideToast();  //隐藏Toast
+          return;
         }
-      })
-    }
+        const imgList= this.data.imgList;
+        const idList= this.data.idList;
+        imgList.push(path);
+        idList.push(JSON.parse(res.data).data.id);
+        that.setData({
+          imgList: imgList,
+          idList: idList
+        })
+      },
+      fail: function (e) {
+        wx.showModal({
+          title: '提示',
+          content: '上传失败',
+          showCancel: false
+        })
+      },
+      complete: function () {
+        wx.hideToast();  //隐藏Toast
+      }
+    })
   },
   //删除图片
   clearImg: function (e) {

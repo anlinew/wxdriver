@@ -1,0 +1,207 @@
+<view class="page">
+  <view class="weui-tab">
+    <view class="weui-navbar">
+      <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+        <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+          <view class="weui-navbar__title">{{item}}</view>
+        </view>
+      </block>
+      <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+    </view>
+    <view class="weui-tab__panel">
+      <!--签批-->
+      <view class="weui-tab__content" wx:if="{{activeIndex == 0}}">
+        <view class='container'>
+          <view class='hasReport' wx:if="{{reportList.length}}">
+            <!--列表上方的统计-->
+            <view class="sum">
+              <view class="s_left">
+                <view class="s_col">
+                  <text class="s_text">费用申请：</text>
+                  <text class="s_num">{{billApplyMoney}}元</text>
+                </view>
+                <view class="s_col">
+                  <text class="s_text">燃油申请：</text>
+                  <text class="s_num">{{billApplyGas}}升</text>
+                </view>
+                <view class="s_col">
+                  <text class="s_text">里程申请：</text>
+                  <text class="s_num">{{billApplyMileage}}KM</text>
+                </view>
+              </view>
+              <view class="s_right">
+                <view class="s_col">
+                  <text class="s_text">费用审批：</text>
+                  <text class="s_num">{{billExamineMoney}}元</text>
+                </view>
+                <view class="s_col">
+                  <text class="s_text">燃油审批：</text>
+                  <text class="s_num">{{billExamineGas}}升</text>
+                </view>
+                <view class="s_col">
+                  <text class="s_text">里程审批：</text>
+                  <text class="s_num">{{billExamineMileage}}KM</text>
+                </view>
+              </view>
+              <view class="s_tip">提示：冬季燃油补贴和审车燃油补贴金额请在燃油明细界面查看</view>
+            </view>
+
+            <view class='reportList'>
+              <view class='history' wx:for="{{reportList}}" wx:key="{{index}}">
+                <view class='top-time'></view>
+                <view class='h-t'>
+                  <text class='num'>编号：{{item.billNum}}</text>
+                  <text class='fr'>{{item.createTime}}</text>
+                </view>
+                <view class='h-c'>
+                  <view class='num'>
+                    <view>类型：{{item.status}}</view>
+                    <image src="../image/have_picture.png" class="logo"></image>
+                  </view>
+                  <view class='num'>数量：{{item.money}} {{item.unit}}</view>
+                  <view class='num'>备注：{{item.description}}</view>
+                  <view class='auditImg'>
+                    <image wx:if="{{item.examineStatus===0&&!item.cancel}}" src="../image/wait_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===1&&!item.cancel}}" src="../image/in_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===2&&!item.cancel}}" src="../image/yet_approval.png" class="logo"></image>
+                    <image wx:if="{{item.examineStatus===3&&!item.cancel}}" src="../image/yet_rebut.png" class="logo"></image>
+                    <image wx:if="{{item.cancel}}" src="../image/yet_canael.png" class="logo"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='noReport' wx:else>
+            <view class='img-wrap'>
+              <image src="../image/no_bill_report.png" class="logo"></image>
+            </view>
+            <view class='tip'>该调度单还没有上报单据</view>
+          </view>
+        </view>
+      </view>
+      <!-- 燃油 -->
+      <view class="weui-tab__content" wx:if="{{activeIndex == 1}}">
+        <view class='container'>
+          <view class='hasReport'>
+            <!--列表上方的统计-->
+            <view class="oiltab">
+              <text class="oil_text">燃油金额：</text>
+              <text class="oil_num">{{oilObj.oilSumMoney}}元</text>
+            </view>
+            <view class='reportList'>
+              <view class='history'>
+                <view class='oil_ht'>
+                  <view class='oil_cont'><text class="oil_left">线路里程</text><text class="oil_right">{{oilObj.routeMileage}} KM</text></view>
+                  <view class='oil_cont'><text class="oil_left">绕路里程</text><text class="oil_right">{{oilObj.detourMileage}} KM</text></view>
+                  <view class='oil_cont'><text class="oil_left">装车里程</text><text class="oil_right">{{oilObj.freightMileage}} KM</text></view>
+                </view>
+                <view class='h-c'>
+                  <view class='oil_cont'><text class="oil_left">合计</text><text class="oil_right">{{oilObj.mileageSum}} KM</text></view>
+                  <view class='oil_cont'><text class="oil_left">金额</text><text class="oil_right">{{oilObj.mileageSum+'KM/100x'+oilObj.gasConsumeSetting+'(升/百公里)'+'x'+oilObj.gasPrice/100+'(元/升) = '+oilObj.mileageMoney}} 元</text></view>
+                </view>
+              </view>
+              <view class='history'>
+                  <view class='oil_ht'>
+                    <view class='oil_cont'><text class="oil_left">冬季燃油补贴</text><text class="oil_right">{{oilObj.winterOilSubsidy}} 元</text></view>
+                    <view class='oil_cont'><text class="oil_left">审车燃油补贴</text><text class="oil_right">{{oilObj.carTrialOilSubsidy}} 元</text></view>
+                  </view>
+                  <view class='h-c'>
+                    <view class='oil_cont'><text class="oil_left">合计</text><text class="oil_right">{{oilObj.fySum}} 元</text></view>
+                  </view>
+                </view>
+                <view class='history'>
+                    <view class='oil_ht'>
+                      <view class='oil_cont'><text class="oil_left">山路燃油补贴</text><text class="oil_right">{{oilObj.mountSoadSubsidy}} 升</text></view>
+                      <view class='oil_cont'><text class="oil_left">装车燃油补贴</text><text class="oil_right">{{oilObj.loadTruckFee}} 升</text></view>
+                      <view class='oil_cont'><text class="oil_left">特殊交付点燃油补贴</text><text class="oil_right">{{oilObj.specialSiteSubsidy}} 升</text></view>
+                    </view>
+                    <view class='h-c'>
+                      <view class='oil_cont'><text class="oil_left">合计</text><text class="oil_right">{{oilObj.btSum}} 升</text></view>
+                      <view class='oil_cont'><text class="oil_left">金额</text><text class="oil_right">{{oilObj.btSum+'(升)x'+(oilObj.gasPrice*0.01)+'(元/升) = '+oilObj.btMoney}} 元</text></view>
+                    </view>
+                  </view>
+                  <view class='history'>
+                    <view class='oil_ht'>
+                      <view class='oil_cont'><text class="oil_left">合计金额</text><text class="oil_right">{{oilObj.oilSumMoney}} 元</text></view>
+                    </view>
+                  </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 标准 -->
+      <view class="weui-tab__content" wx:if="{{activeIndex == 2}}">
+        <view class='container'>
+          <view class='hasReport' wx:if="{{standard.length}}">
+            <!--列表上方的统计-->
+            <view class="oiltab">
+              <text class="oil_text">合计补贴：</text>
+              <text class="oil_num">{{sum}}元</text>
+            </view>
+            <view class='reportList' wx:for="{{standard}}" wx:for-item="item">
+              <view class='history'>
+                <view class='oil_ht'>
+                  <view class='stand_cont'><text class="oil_left">编号：{{item.subsidyNum}}</text></view>
+                  <view class="stand_time">{{item.suibmitTime}}</view>
+                </view>
+                <view class='h-c'>
+                  <view class='oil_cont'><text class="oil_left">类型：{{item.typeName}}</text></view>
+                  <view class='oil_cont'><text class="oil_left">金额：{{item.count}} 元</text></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='noReport' wx:else>
+            <view class='img-wrap'>
+              <image src="../image/no_bill_report.png" class="logo"></image>
+            </view>
+            <view class='tip'>该调度单还没有标准信息</view>
+          </view>
+        </view>
+      </view>
+      <!-- 借款 -->
+      <view class="weui-tab__content" wx:if="{{activeIndex == 3}}">
+        <view class='container'>
+          <view class='hasReport' wx:if="{{borrowList.length}}">
+            <!--列表上方的统计-->
+            <view class="oiltab">
+            <text class="oil_text">申请合计：<text style="color:#fc2727">{{applyMoney}}元</text></text>
+              <text class="oil_text_num">打款合计：<text style="color:#fc2727">{{exaimMoney}}元</text></text>
+            </view>
+            <view class='reportList' wx:for="{{borrowList}}" wx:for-item="item" wx:key="{{index}}">
+              <view class='history'>
+                <view class='oil_ht'>
+                  <view class='stand_cont'><text class="oil_left">申请日期</text></view>
+                  <view class="stand_time">{{item.createTime}}</view>
+                </view>
+                <view class='oil_ht'>
+                  <view class='loan_count'>
+                    <view class="img_view"><image src="../image/loan_normal.png"></image></view>
+                    <view class="cont_view">
+                      <view class="strongF">申请{{item.money}}元/审批{{item.examineMoney}}元({{item.examineStatus}})</view>
+                      <view>{{item.typeName}}</view>
+                    </view>
+                  </view>
+                </view>
+                <view class='oil_ht'>
+                  <view class='stand_cont'>借款原因：{{item.description}}</view>
+                </view>
+                <view class='h-c' wx:if="{{item.examineUserName}}">
+                  <view class='oil_cont'><text class="oil_left">审批人员：{{item.examineUserName}}</text></view>
+                  <view class='oil_cont'><text class="oil_left">审批时间：{{item.examineTime}}</text></view>
+                  <view class='oil_cont'><text class="oil_left">审批备注：{{item.examineRemark}}</text></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='noReport' wx:else>
+            <view class='img-wrap'>
+              <image src="../image/no_bill_report.png" class="logo"></image>
+            </view>
+            <view class='tip'>该调度单还没有借款信息</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

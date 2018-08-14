@@ -1,0 +1,134 @@
+.head {
+  background: #fff;
+  font-size: 26rpx;
+  padding: 30rpx 30rpx;
+  border-bottom: 1px solid #eef3fa;
+}
+.tittle{
+  display: inline-block;
+  width: 50%;
+}
+.okBtn {
+  display: inline-block;
+  width: 50%;
+  height: 60rpx;
+}
+.okBtn button {
+  width: 120rpx;
+  height: 60rpx!important;
+  line-height: 60rpx!important;
+  margin: 0!important;
+  font-size: 26rpx!important;
+  float: right;
+  margin-left: 20rpx!important;
+}
+.view-for {
+  font-size: 26rpx;
+  background: #fff;
+  height: 110rpx;
+  padding: 0 30rpx;
+  border-bottom: 1px solid #eef3fa;
+}
+.test{
+  display: inline-block;
+  width: 80%;
+  height: 110rpx;
+}
+i-radio {
+  position: relative;
+  width: 20%;
+  font-size: 26rpx!important;
+  float: right;
+}
+.radio-index--i-radio-cell{
+  padding: 0!important;
+  font-size: 26rpx!important;
+  height: 111rpx;
+  line-height: 111rpx!important;
+  color: #666;
+  padding-left: 30rpx!important;
+}
+image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  border: 1px solid #eef3fa;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.image{
+  width: 20%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.weName {
+  width: 30%;
+  height: 100%;
+  line-height: 100rpx;
+  display: inline-block;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.weSix{
+  width: 15%;
+  height: 100%;
+  padding-left: 20rpx;
+  line-height: 100rpx;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.weLoca{
+  width: 35%;
+  height: 100%;
+  display: inline-block;
+  line-height: 100rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-box {
+  background: #fff;
+  padding: 30rpx 160rpx 30rpx 30rpx;
+  border-bottom: 1rpx solid #eef3fa;
+}
+.search-tittle {
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+}
+.weui-search-bar__box{
+  background: rgb(245, 242, 242);
+  border-radius: 15rpx;
+  position: relative;
+}
+.weui-search-bar__box button{
+  width: 120rpx;
+  height: 100%!important;
+  line-height: 70rpx!important;
+  margin: 0!important;
+  font-size: 26rpx!important;
+  position: absolute;
+  right: -130rpx;
+  bottom: 2rpx;
+}
+.noInfo{
+  background: #fff;
+  font-size: 26rpx;
+  padding: 30rpx;
+  text-align: center;
+  color: #666;
+}

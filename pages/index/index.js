@@ -4,6 +4,7 @@ import api from '../../requests/api.js'
 import utils from '../../utils/util.js'
 import moment from '../../utils/moment.js'
 import WxValidate from '../../plugins/wx-validate/WxValidate';
+import regeneratorRuntime from '../../utils/regenerator-runtime/runtime.js';
 
 const app = getApp()
 const request = app.WxRequest;
@@ -28,10 +29,12 @@ Page({
     detail: {},
     wayNum: null,
     showLeft: false,
-    windowHeight: null
+    windowHeight: null,
+    driverInfo: {}
   },
   onLoad(options) {
     this.getWaybil();
+    this._getDriver();
     const res = wx.getSystemInfoSync();
     this.setData({
       windowHeight: res.windowHeight + 'px'
@@ -174,9 +177,27 @@ Page({
         // 没有经销商
         page.toReport();
       } else {
-        page.setData({
-          popShow: true
-        })
+        // 有经销商
+        let preSite = page.data.sites[index - 1];
+        let preSiteIsDisabled = page.isDisabledBtn(preSite);
+        if (preSiteIsDisabled) {
+          page.setData({
+              popShow: true
+          })
+        } else {
+          // 上个站点还未报站完成
+          let msg = '';
+          if (index === 1) {
+              msg = '请先发车';
+          } else {
+              msg = '上个站点还未上报完成，无法上报';
+          }
+          wx.showToast({
+              title: msg,
+              icon: 'none'
+          })
+        }
+
       }
     }
 
@@ -394,6 +415,19 @@ Page({
       return false;
     }
   },
+  // 获取司机的信息
+  async _getDriver() {
+    const res = await request.getRequest(api.driverInfo);
+    this.setData({
+      driverInfo: res.data
+    })
+  },
+  // 跳转到个人信息的页面
+  toInfo() {
+    wx.navigateTo({
+      url: '../userInfo/userInfo'
+    })
+  },
   // 抽屉
   toggleLeft1(e) {
     console.log(e)
@@ -409,7 +443,7 @@ Page({
   },
   myTask() {
     wx.navigateTo({
-      url: '../myTask/myTask',
+      url: '../messages/messages',
     })
   },
   myLoan() {
@@ -430,6 +464,11 @@ Page({
   changePass() {
     wx.navigateTo({
       url: '../changePass/changePass',
+    })
+  },
+  bindweixin() {
+    wx.navigateTo({
+      url: '../bindWe/bindWe',
     })
   }
 })

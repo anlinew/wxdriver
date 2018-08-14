@@ -1,66 +1,45 @@
-// pages/detail/detail.js
+import api from '../../requests/api.js'
+import regeneratorRuntime from '../../utils/regenerator-runtime/runtime.js';
+import WxValidate from '../../plugins/wx-validate/WxValidate';
+const app = getApp()
+const request = app.WxRequest;
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    wayNum: null,
+    detail: {}
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    this.setData({
+      wayNum: options.wayNum
+    })
+    this._getDetail();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  async _getDetail() {
+    const res = (await request.getRequest(api.history, { data: {waybillNum: this.data.wayNum}})).data;
+    console.log(res);
+    res[0].taskDetails.forEach(item=> {
+      if (item.arriveTime) { item.arriveTime = this.etDateStr(item.arriveTime);}
+      if (item.scheduleTime) { item.scheduleTime = this.etDateStr(item.scheduleTime); }
+    })
+    this.setData({
+      detail: res[0]
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  // 跳转到事件列表
+  toEvent() {
+    wx.navigateTo({
+      url: '../reportEvent/reportEvent?wayNum='+this.data.wayNum
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 时间格式转换
+  etDateStr(day) {
+    const dd = new Date(day);
+    dd.setDate(dd.getDate());
+    const m = dd.getMonth() + 1 > 9 ? dd.getMonth() + 1 : '0' + (dd.getMonth() + 1);
+    const d = dd.getDate() > 9 ? dd.getDate() : '0' + dd.getDate();
+    const hh = dd.getHours() > 9 ? dd.getHours() : '0' + dd.getHours();
+    const mm = dd.getMinutes() > 9 ? dd.getMinutes() : '0' + dd.getMinutes();
+    return m + '-' + d + ' ' + hh + ':' + mm;
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
