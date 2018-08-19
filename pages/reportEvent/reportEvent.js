@@ -29,7 +29,7 @@ Page({
           // 获取上报单据列表成功
           const reportList = res.data || [];
           reportList.forEach(item=> {
-            item.createTime = this.etDateStr(item.createTime);
+            item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
           })
           page.setData({
               reportList: reportList
@@ -52,7 +52,7 @@ Page({
     handleOpen(e) {
       console.log(e);
       const imgids = e.currentTarget.dataset.imgids.split(',');
-      const urls = imgids.map((item)=> item = 'http://182.61.48.201:8080/api/pub/objurl/name?id='+item+'&compress=true')
+      const urls = imgids.map((item)=> item = 'https://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
       console.log(urls);
       this.setData({
         visible: true,

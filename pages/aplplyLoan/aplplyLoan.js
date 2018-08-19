@@ -20,7 +20,7 @@ Page({
     res.forEach(item=> {
       item.money = (item.money*0.01).toFixed(1);
       item.examineMoney = (item.examineMoney*0.01).toFixed(1);
-      item.createTime = this.etDateStr(item.createTime);
+      item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
       if (!item.examineRemark){item.examineRemark='无'}
       switch(item.examineStatus){
         case 0:

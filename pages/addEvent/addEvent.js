@@ -10,9 +10,14 @@ Page({
       twoList: [],
       threeList: [],
       repairSrc: '../image/repair_default.png',
-      otherSrc: '../image/other_default.png'
+      otherSrc: '../image/other_default.png',
+      wayNum: null
     },
     onLoad: function (options) {
+      this.setData({
+        wayNum: options.wayNum
+      })
+      console.log(this.data.wayNum);
     },
   // 点击更换图标
   // repairColor () {

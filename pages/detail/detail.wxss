@@ -1,6 +1,7 @@
 /* pages/detail/detail.wxss */
 .header {
   display: flex;
+  display: -webkit-flex;
   position: relative;
   font-family: '微软雅黑';
   width: 100%;

@@ -63,9 +63,9 @@
 
 
 /* common */
-.flex{display: flex; justify-content: center;}
-.flexLeft{display: flex; justify-content: space-between;}
-.flexRight{display: flex; justify-content: flex-end;}
+.flex{display: flex; display: -webkit-flex; justify-content: center;}
+.flexLeft{display: flex; display: -webkit-flex; justify-content: space-between;}
+.flexRight{display: flex; display: -webkit-flex; justify-content: flex-end;}
 .relative{position: relative;}
 .absolute{position: absolute;}
 

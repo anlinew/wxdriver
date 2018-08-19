@@ -30,8 +30,11 @@ Page({
       const reportList = res.data || [];
       await this.getDict();
       reportList.forEach(item => {
-        item.createTime = this.etDateStr(item.createTime);
+        item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
         item.status = this.data.statusList.find((n) => n.rank === item.status).label;
+        if (item.unit === '元') {
+          item.money = (item.money * 0.01).toFixed(2);
+        }
       })
       page.setData({
         reportList: reportList
@@ -74,7 +77,7 @@ Page({
   // 显示模态框
   handleOpen(e) {
     const imgids = e.currentTarget.dataset.imgids.split(',');
-    const urls = imgids.map((item)=> item = 'http://182.61.48.201:8080/api/pub/objurl/name?id='+item+'&compress=true')
+    const urls = imgids.map((item)=> item = 'https://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
     console.log(urls);
     this.setData({
       visible: true,

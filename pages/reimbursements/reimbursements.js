@@ -8,10 +8,10 @@ var startY,endY,moveY,differ;
 var moveTopValue = 0;
 Page({
   data: {
-    animation: '',
-    animation_head: '',
-    moveTop: 0,
-    startTop: 0,
+    // animation: '',
+    // animation_head: '',
+    // moveTop: 0,
+    // startTop: 0,
     tatolObj: {},
     timeNow: null,
     dateNow: null,
@@ -162,46 +162,53 @@ Page({
     
   },
   touchMove(e) {
-    moveY = e.touches[0].pageY;
-    // 滑动的距离s
-    differ = moveY - startY;
-    moveTopValue = this.data.startTop + differ
-    this.setData({
-      moveTop: this.data.startTop + differ + 'px'
-    })
-    // 向上移动的最大距离为280rpx
-    if (moveTopValue>=-125) {
-      this.animation_head.opacity((125+differ)/125).step();
-      this.setData({
-        animation_head: this.animation_head.export()
-      })
-      // 向下移动
-    }else if (moveTopValue<0){
-      this.animation_head.opacity(differ/125).step();
-      this.setData({
-        animation_head: this.animation_head.export()
-      })
-    }
+    // moveY = e.touches[0].pageY;
+    // // 滑动的距离s
+    // differ = moveY - startY;
+    // moveTopValue = this.data.startTop + differ
+    // this.setData({
+    //   moveTop: this.data.startTop + differ + 'px'
+    // })
+    // // 向上移动的最大距离为280rpx
+    // if (moveTopValue>=-125) {
+    //   this.animation_head.opacity(differ/125).step();
+    //   this.setData({
+    //     animation_head: this.animation_head.export()
+    //   })
+    //   // 向下移动
+    // }else if (moveTopValue<0&&moveTopValue>=-125){
+    //   this.animation_head.opacity((125+differ)/125).step();
+    //   this.setData({
+    //     animation_head: this.animation_head.export()
+    //   })
+    // }
   },
   touchEnd(e) {
-    if (differ<-20) {
-      this.animation_head.opacity(0).step();
-      moveTopValue = -125
-      this.setData({
-        animation_head: this.animation_head.export(),
-        moveTop: '-125px',
-        startTop: -125,
+    // if (differ<-20&&moveTopValue>-125) {
+    //   console.log(111)
+    //   this.animation_head.opacity(1).step();
+    //   moveTopValue = -125
+    //   this.setData({
+    //     animation_head: this.animation_head.export(),
+    //     moveTop: '-125px',
+    //     startTop: -125,
         
-      })
-    } else if (differ>20) {
-      this.animation_head.opacity(1).step();
-      moveTopValue = 0
-      this.setData({
-        animation_head: this.animation_head.export(),
-        moveTop: '0px',
-        startTop: 0,
-      })
-    }
+    //   })
+    // } else if (differ>20) {
+    //   console.log(222)
+    //   this.animation_head.opacity(0).step();
+    //   moveTopValue = 0
+    //   this.setData({
+    //     animation_head: this.animation_head.export(),
+    //     moveTop: '0px',
+    //     startTop: 0,
+    //   })
+    // } else{
+    //   this.setData({
+    //     // moveTop: '0px',
+    //     startTop: differ + this.data.startTop,
+    //   })
+    // }
   },
   // timeNow时间格式转换
   etTimeNow(day) {

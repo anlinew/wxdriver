@@ -1,6 +1,7 @@
 /* pages/historySearch/historySearch.wxss */
 .flex{
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
 }
 .block{

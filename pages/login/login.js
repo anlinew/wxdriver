@@ -8,16 +8,16 @@ const request = app.WxRequest;
 
 Page({
   data: {
-    account:'',
-    password :'',
-    isshow:true,
+    account: '',
+    password: '',
+    isshow: true,
   },
   initValidate() {
     // 验证字段的规则
     const rules = {
       account: {
         required: true,
-        rangelength: [1,16]
+        rangelength: [1, 16]
       },
       password: {
         required: true,
@@ -32,7 +32,7 @@ Page({
       },
       password: {
         required: '密码不能为空',
-        rangelength:'密码长度为6-12位'
+        rangelength: '密码长度为6-12位'
       }
     }
     // 创建实例对象
@@ -41,7 +41,7 @@ Page({
   onLoad: function (options) {
     this.initValidate()
   },
-  toLogin: function(e) {
+  toLogin: function (e) {
     console.log(e)
     const that = this;
     if (!that.WxValidate.checkForm(e)) {
@@ -55,44 +55,31 @@ Page({
     }
     const params = { account: e.detail.value.account, password: e.detail.value.password };
 
-    wx.login({
-      success: function(res) {
-        console.log(res);
-        if (res.code) {
-          request.postRequest(api.login, {
-            data: params,
-            header: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-          })
-            .then(res => {
-              console.log(res)
-              if (res.result) {
-                wx.showModal({
-                  confirmColor: '#666',
-                  content: '登录成功',
-                  showCancel: false,
-                })
-                app.globalData.userInfo = res.data;
-                wx.navigateTo({ url: '../index/index' })
-              } else {
-                wx.showModal({
-                  confirmColor: '#666',
-                  content: res.message,
-                  showCancel: false,
-                })
-              }
-            })
+    request.postRequest(api.login, {
+      data: params,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    })
+      .then(res => {
+        console.log(res)
+        if (res.result) {
+          app.globalData.userInfo = res.data;
+          wx.navigateTo({ url: '../index/index' })
         } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
+          wx.showModal({
+            confirmColor: '#666',
+            content: res.message,
+            showCancel: false,
+          })
         }
-      }
-    }) 
+      })
+
   },
-  isshowPwd(){
+  isshowPwd() {
     var isshow = !this.data.isshow;
     this.setData({
       isshow: isshow
-    });  
+    });
   }
 })

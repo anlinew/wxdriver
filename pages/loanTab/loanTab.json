@@ -1,5 +1,8 @@
 {
     "navigationBarBackgroundColor": "#2D99EE",
     "navigationBarTitleText": "报销单据",
+    "usingComponents": {
+      "i-modal": "../../utils/iviewapp/modal/index"
+    },
     "enablePullDownRefresh": true
 }

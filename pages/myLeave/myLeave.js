@@ -20,9 +20,9 @@ Page({
     res.forEach(item=> {
       item.money = (item.money*0.01).toFixed(1);
       item.examineMoney = (item.examineMoney*0.01).toFixed(1);
-      item.createTime = this.etDateStr(item.createTime);
-      item.startTime = this.etYearStr(item.startTime);
-      item.endTime = this.etYearStr(item.endTime);
+      item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
+      item.startTime = this.etYearStr(item.startTime.replace(/\-/g, '/'));
+      item.endTime = this.etYearStr(item.endTime.replace(/\-/g, '/'));
       if (!item.examineRemark){item.examineRemark='无'}
       switch(item.examineStatus){
         case 0:

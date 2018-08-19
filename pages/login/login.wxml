@@ -17,6 +17,7 @@
       </view>
     </view>
     <button class="weui-btn createdDispatch" type="primary" formType="submit">登录</button>
+    <view class="bb">Version:1.1.01</view>
   </form>
 </view>
 

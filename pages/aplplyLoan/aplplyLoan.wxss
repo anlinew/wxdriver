@@ -26,7 +26,7 @@
 .history .h-t {
   height: 60rpx;
   padding: 0 30rpx;
-  border-bottom: 1px solid ##eef3fa;
+  border-bottom: 1px solid #eef3fa;
   font-size: 28rpx;
   line-height: 60rpx;
 }
@@ -71,7 +71,7 @@
   padding: 0 30rpx;
   text-align: right;
   line-height: 80rpx;
-  border-top: 1px solid ##eef3fa;
+  border-top: 1px solid #eef3fa;
 }
 
 .history .h-b .btn {
@@ -246,6 +246,7 @@
 }
 .loan_count {
   display: flex;
+  display: -webkit-flex;
 }
 .cont_view {
   flex: 1;
@@ -265,3 +266,11 @@
   bottom: 5px;
   margin-left: -12.5px;
 }
+.jiahao {
+    width: 60rpx;
+    height: 60rpx;
+    opacity: 0.7;
+    position: fixed;
+    right: 50rpx;
+    bottom: 80rpx;
+  }

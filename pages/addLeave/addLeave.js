@@ -76,9 +76,9 @@ Page({
     // 司机id
     payload.driverId = this.data.id;
     // startTime
-    payload.startTime = this.dateFormat(this.data.dateStart);
+    payload.startTime = this.dateFormat(this.data.dateStart.replace(/\-/g, '/'));
     // endTime
-    payload.endTime = this.dateFormat(this.data.dateEnd);
+    payload.endTime = this.dateFormat(this.data.dateEnd.replace(/\-/g, '/'));
     const res = await request.postRequest(api.addLeave,{
       data: payload,
       header: {

@@ -19,7 +19,9 @@ Page({
     money: null,
     description: null,
     wayNum: null,
-    imgids: null
+    imgids: null,
+    unit: null,
+    id: null
   },
   initValidate() {
     // 验证字段的规则
@@ -48,8 +50,10 @@ Page({
       key: 'UP3BZ-N2SK2-722U4-CPFC7-E5VEO-2XFD3' //这里自己的key秘钥进行填充
     });
     this.setData({
-      statusType: options.id
+      statusType: options.id,
+      wayNum: options.wayNum
     })
+    console.log(this.data.wayNum)
     this._getWayInfo();
     this.initValidate();
   },
@@ -59,18 +63,17 @@ Page({
   // 新增上报时获取调度信息
   async _getWayInfo() {
     let page = this;
-    const res = await request.getRequest(api.currentWaybil)
+    const res = await request.getRequest(api.history, { data: { waybillNum: this.data.wayNum}})
     if (res.result) {
       // 获取新增上报时调度信息
-      const wayInfo = res.data || {};
+      const wayInfo = res.data[0] || {};
       wayInfo.statusType = parseInt(this.data.statusType);
       await this.getDict();
       wayInfo.statusType = this.data.statusList.find((n) => n.rank === wayInfo.statusType).label
       page.setData({
         wayInfo: wayInfo,
         id: wayInfo.id,
-        unit: this.data.statusList.find((n) => n.rank === parseInt(this.data.statusType)).value,
-        wayNum: wayInfo.waybillNum
+        unit: this.data.statusList.find((n) => n.rank === parseInt(this.data.statusType)).value
       });
     } else {
       wx.showModal({
@@ -118,7 +121,11 @@ Page({
     // 上报的图片
     payload.imgids = this.data.imgids;
     // 上报的数量
-    payload.money =this.data.money;
+    if (this.data.unit === '元') {
+      payload.money = this.data.money * 100;
+    } else {
+      payload.money = this.data.money;
+    }
     // 上报的类型、中文
     payload.status = this.data.statusType;
     payload.statusName = this.data.statusList.find((n) => n.rank === parseInt(this.data.statusType)).label;
@@ -190,7 +197,7 @@ Page({
       duration: 1000
     }),
     wx.uploadFile({
-      url: 'http://182.61.48.201:8080/api/pub/upload?app=true',
+      url: 'https://boyu.cmal.com.cn/api/pub/upload?app=true',
       filePath: path,
       name: 'file',
       header: { 

@@ -1,8 +1,16 @@
 /* pages/reimbursements/reimbursements.wxss */
+.container {
+  position: relative;
+}
 .top-info{
     height: 85px;
     margin-bottom: 20rpx;
     background-color: #fff;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    opacity: 0;
+    border-bottom: 1px solid #ccc;
 }
 .top-info .item {
     position: relative;
@@ -164,13 +172,14 @@
 }
 .head {
     width: 100%;
-    height: 210px;
+    height: 220px;
     background: linear-gradient(to bottom, #2D99EE, rgb(90, 114, 247));
     color: #fff;
   }
   .head_top {
     height: 90px;
     width: 100%;
+    padding-top: 10px;
   }
   .dateTime {
     width: 50%;
@@ -193,7 +202,6 @@
     position: absolute;
     width: 100%;
     /* top: 0; */
-    z-index: 999;
 }
 .dateTittle {
   font-size: 11px;
@@ -210,7 +218,7 @@
 .moneyText{
   font-size: 11px;
 }
-.head_botttom {
+.head_bottom {
   height: 120px;
   width: 100%;
 }

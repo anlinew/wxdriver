@@ -56,7 +56,7 @@
                 <view class='h-c'>
                   <view class='num'>
                     <view>类型：{{item.status}}</view>
-                    <image src="../image/have_picture.png" class="logo"></image>
+                    <image wx:if="{{item.imgids}}" data-imgids="{{item.imgids}}" bindtap="handleOpen" src="../image/have_picture.png" class="logo"></image>
                   </view>
                   <view class='num'>数量：{{item.money}} {{item.unit}}</view>
                   <view class='num'>备注：{{item.description}}</view>
@@ -205,3 +205,8 @@
     </view>
   </view>
 </view>
+
+<i-modal show-cancel="{{false}}" show-ok="{{false}}" title="{{none}}" visible="{{visible}}" bind:ok="handleClose" bind:cancel="handleClose">
+    <view bindtap="closeMadol" class="delete"><image src="../image/delete.png"></image></view>
+    <view class="item_img" wx:for="{{imgList}}" wx:key="{{index}}"><image data-current="{{item}}" bindtap="imgTap" src="{{item}}"></image></view>
+</i-modal>

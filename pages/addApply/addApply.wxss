@@ -4,9 +4,10 @@
 }
 .header {
   display: flex;
+  display: -webkit-flex;
   position: relative;
   width: 100%;
-  justify-content: center;
+  /* justify-content: center; */
   color: #fff;
   text-align:center;
 }

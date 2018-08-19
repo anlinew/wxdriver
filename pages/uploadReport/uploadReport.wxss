@@ -4,6 +4,7 @@
 }
 .header {
   display: flex;
+  display: -webkit-flex;
   position: relative;
   width: 100%;
   padding: 10px 0;
@@ -85,10 +86,12 @@
   width: 100%;
   position: absolute;
   top: 280rpx;
-  overflow: hidden;
+  left: 0;
+  /* overflow: hidden; */
 }
 .numCont {
   display: flex;
+  display: -webkit-flex;
   flex-direction: row;
   padding: 20rpx 20rpx;
   height: 55rpx;

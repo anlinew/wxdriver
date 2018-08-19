@@ -22,8 +22,8 @@
     </view>
   </view>
 
-  <view class="moveContent" animation="{{animation}}" style="top:{{moveTop}}">
-    <view class="head" animation="{{animation_head}}">
+  <view class="moveContent">
+    <view class="head">
       <view class="head_top">
         <view class="dateTime">
           <view class="dateTittle">统计截止日期</view>

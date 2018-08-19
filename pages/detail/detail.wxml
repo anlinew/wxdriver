@@ -33,7 +33,7 @@ module.exports = {
 <view class='container'>
     <view class='header'>
         <view class='site'>
-            <view class='name'>{{detail.taskDetails[0].siteName}}</view>
+            <view class='name'>{{detail.taskDetails[0].cityName}}</view>
             <view class='time'>{{detail.taskDetails[0].arriveTime?detail.taskDetails[0].arriveTime:detail.taskDetails[0].scheduleTime}}</view>
         </view>
         <view class='mileage'>
@@ -41,7 +41,7 @@ module.exports = {
             <image src="../image/right_arrow.png" class="line"></image>
         </view>
         <view class='site'>
-            <view class='name'>{{detail.taskDetails[detail.taskDetails.length-1].siteName}}</view>
+            <view class='name'>{{detail.taskDetails[detail.taskDetails.length-1].cityName}}</view>
             <view class='time'>{{detail.taskDetails[detail.taskDetails.length-1].arriveTime?detail.taskDetails[detail.taskDetails.length-1].arriveTime:detail.taskDetails[detail.taskDetails.length-1].scheduleTime}}</view>
         </view>
     </view>

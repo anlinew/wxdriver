@@ -19,8 +19,8 @@ Page({
     const res = (await request.getRequest(api.history, { data: {waybillNum: this.data.wayNum}})).data;
     console.log(res);
     res[0].taskDetails.forEach(item=> {
-      if (item.arriveTime) { item.arriveTime = this.etDateStr(item.arriveTime);}
-      if (item.scheduleTime) { item.scheduleTime = this.etDateStr(item.scheduleTime); }
+      if (item.arriveTime) { item.arriveTime = this.etDateStr(item.arriveTime.replace(/\-/g, '/'));}
+      if (item.scheduleTime) { item.scheduleTime = this.etDateStr(item.scheduleTime.replace(/\-/g, '/')); }
     })
     this.setData({
       detail: res[0]

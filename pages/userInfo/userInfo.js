@@ -30,9 +30,9 @@ Page({
       success: (res) => {
         console.log(res)
         if (res.tapIndex == 0) {
-          this.chooseWxImage('album')
-        } else if (res.tapIndex == 1) {
           this.chooseWxImage('camera')
+        } else if (res.tapIndex == 1) {
+          this.chooseWxImage('album')
         }
       }
     })
@@ -51,7 +51,7 @@ Page({
         const path = res.tempFilePaths[0];
         console.log(path)
         wx.uploadFile({
-          url: 'http://182.61.48.201:8080/api/pub/upload?app=true',
+          url: 'https://boyu.cmal.com.cn/api/pub/upload?app=true',
           filePath: path,
           name: 'file',
           header: {
@@ -88,6 +88,9 @@ Page({
     const res = await request.postRequest(api.updatadriver+'?profilePic='+profilePic)
     if (res.result) {
       await this._getDriver();
+      var pages = getCurrentPages();
+      var prevPage = pages[pages.length - 2];  //上一个页面
+      await prevPage._getDriver();
       wx.showToast({
         title: '修改头像成功',
         icon: 'success'

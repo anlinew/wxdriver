@@ -70,7 +70,7 @@ module.exports = {
             <view class='img-wrap'>
                 <image src="{{i === 0 ? '../image/start_city_info.png' : i === sites.length - 1 ? '../image/end_city_info.png' : '../image/road_info.png'}}" class="logo logo-start"></image>
             </view>
-            <text class='name'>{{item.cityName}}</text>
+            <text class='name'>{{item.siteName}}</text>
             <text class='time'>{{item.shortTime}}</text>
             <view wx:if='{{reportShow}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</view>
           </view>
@@ -118,10 +118,6 @@ module.exports = {
                     <view class='check-logo'><image src="{{item.delivered ? '../image/submitted.png' : item.isSelected ? '../image/checked.png' : '../image/un_check.png'}}" class="img"></image></view>
                     <text class='name'>{{item.dealer}}</text>
                 </view>
-                <!-- <view class='item'>
-                    <view class='check-logo'><image src="../image/un_check.png" class="img"></image></view>
-                    <text class='name'>武汉创源沙湖4S店</text>
-                </view> -->
             </view>
         </view>
         <view class='pop-f'>
@@ -134,7 +130,7 @@ module.exports = {
     <i-drawer style="height:100%" class="modalD" mode="left" visible="{{showLeft}}" bind:close="toggleLeft1">
         <view class="demo-container" style='height:{{windowHeight}}'>
             <view class='p_head'>
-              <view class='head_one' bindtap="toInfo"><image style="border-radius: 50%" src="{{'http://182.61.48.201:8080/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
+              <view class='head_one' bindtap="toInfo"><image style="border-radius: 50%" src="{{'https://boyu.cmal.com.cn/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
               <view class='head_two'>{{driverInfo.realName}} / {{driverInfo.truckLicense}}</view>
               <view class='head_three'>{{driverInfo.phone}}</view>
             </view>

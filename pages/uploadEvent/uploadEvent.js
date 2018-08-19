@@ -11,7 +11,6 @@ Page({
   data: {
     statusName: null,
     id: null,
-    id: null,
     wayInfo: {},
     imgList: [],
     idList: [],
@@ -19,7 +18,8 @@ Page({
     longitude: null,
     latitude: null,
     address: null,
-    imgids: null
+    imgids: null,
+    wayNum: null
   },
   initValidate() {
     // 验证字段的规则
@@ -43,8 +43,10 @@ Page({
     });
     this.setData({
       statusName: options.statusName,
-      id: options.id
+      id: options.id,
+      wayNum: options.wayNum
     })
+    console.log(this.data.wayNum,this.data.id)
     this._getWayInfo();
     this.initValidate();
   },
@@ -54,10 +56,11 @@ Page({
   // 新增上报时获取调度信息
   async _getWayInfo() {
     let page = this;
-    const res = await request.getRequest(api.currentWaybil)
+    const res = await request.getRequest(api.history, { data: { waybillNum: this.data.wayNum}})
+    console.log(res);
     if (res.result) {
       // 获取新增上报时调度信息
-      const wayInfo = res.data || {};
+      const wayInfo = res.data[0] || {};
       page.setData({
         wayInfo: wayInfo,
         id: wayInfo.id,
@@ -106,7 +109,7 @@ Page({
     // 上报的描述
     payload.description = this.data.description;
     // 上报的图片
-    payload.imgids = this.data.imgids;
+    payload.imgIds = this.data.imgids;
     // 上报的类型、中文
     payload.curStatus = this.data.id;
     payload.statusName = this.data.statusName;
@@ -170,7 +173,7 @@ Page({
       duration: 1000
     }),
     wx.uploadFile({
-      url: 'http://182.61.48.201:8080/api/pub/upload?app=true',
+      url: 'https://boyu.cmal.com.cn/api/pub/upload?app=true',
       filePath: path,
       name: 'file',
       header: { 

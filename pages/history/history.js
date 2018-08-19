@@ -28,9 +28,9 @@ Page({
           historys.forEach(item=> {
             item.taskDetails.forEach(site=> {
               site.topTime = site.scheduleTime;
-              if (site.arriveTime) {site.arriveTime = this.etDateStr(site.arriveTime);}
-              if (site.scheduleTime) {site.scheduleTime = this.etDateStr(site.scheduleTime);}
-              if (site.topTime) {site.topTime = this.etTopTime(site.topTime);}
+              if (site.arriveTime) {site.arriveTime = this.etDateStr(site.arriveTime.replace(/\-/g, '/'));}
+              if (site.scheduleTime) {site.scheduleTime = this.etDateStr(site.scheduleTime.replace(/\-/g, '/'));}
+              if (site.topTime) {site.topTime = this.etTopTime(site.topTime.replace(/\-/g, '/'));}
             })
           })
           page.setData({

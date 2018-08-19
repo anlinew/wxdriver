@@ -29,7 +29,7 @@
         </view>
     </view>
     <navigator url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="navigator-hover">
-      <text class='iconfont icon-tianjia' bindtap='handleAdd'></text>
+      <image class='jiahao' src='../image/jiahao.png'></image>
     </navigator>
     </view> 
      <view class='noReport' wx:else>

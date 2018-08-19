@@ -80,7 +80,7 @@ Page({
       const reportList = res.data || [];
       await this.getDict();
       reportList.forEach(item => {
-        item.createTime = this.etDateStr(item.createTime);
+        item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
         item.status = this.data.statusList.find((n) => n.rank === item.status).label;
         item.money = (item.money*0.01).toFixed(1)
       })
@@ -126,7 +126,7 @@ Page({
       res.forEach(item=> {
         sum+=item.count;
         item.count = (item.count*0.01).toFixed(1);
-        item.suibmitTime = this.etDateStr(item.suibmitTime);
+        item.suibmitTime = this.etDateStr(item.suibmitTime.replace(/\-/g, '/'));
       })
       this.setData({
         standard: res,
@@ -144,7 +144,7 @@ Page({
       exaimMoney+=item.examineMoney;
       item.money = (item.money*0.01).toFixed(1);
       item.examineMoney = (item.examineMoney*0.01).toFixed(1);
-      item.createTime = this.etDateStr(item.createTime);
+      item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
       if (!item.examineRemark){item.examineRemark='无'}
       switch(item.examineStatus){
         case 0:
@@ -238,6 +238,33 @@ Page({
         })
       },500)
     } 
+  },
+  // 显示模态框
+  handleOpen(e) {
+    const imgids = e.currentTarget.dataset.imgids.split(',');
+    const urls = imgids.map((item) => item = 'https://boyu.cmal.com.cn/api/pub/objurl/name?id=' + item + '&compress=true')
+    console.log(urls);
+    this.setData({
+      visible: true,
+      imgList: urls
+    });
+  },
+  // 点击叉叉关闭模态框
+  closeMadol() {
+    this.setData({
+      visible: false,
+      imgList: []
+    })
+  },
+  // 点击图片放大预览
+  imgTap(e) {
+    // 为压缩的图片列表
+    const imgList = this.data.imgList.map(item => item = item.replace('true', 'false'))
+    const current = e.currentTarget.dataset.current.replace('true', 'false')
+    wx.previewImage({
+      current: current,
+      urls: imgList
+    })
   },
   // 时间格式转换
   etDateStr(day) {

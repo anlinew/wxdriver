@@ -4,6 +4,7 @@
 }
 .header {
   display: flex;
+  display: -webkit-flex;
   position: relative;
   width: 100%;
   padding: 10px 0;
@@ -35,6 +36,7 @@
 }
 .title {
   display:flex;
+  display: -webkit-flex;
   color: #333;
 }
 .finish {
@@ -52,6 +54,7 @@
 }
 .mission_num {
   display: flex;
+  display: -webkit-flex;
   position: absolute;
   width:720rpx;
   margin:0 15rpx;
@@ -176,6 +179,7 @@
 /* 上报  */
 .report-box{
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
     padding: 60rpx 0;
 }
@@ -263,7 +267,7 @@
 
 .pop-box .list{}
 .pop-box .list .item{
-    height: 100rpx;
+    min-height: 100rpx;
     padding-left: 50rpx;
     font-size: 0;
 }
@@ -312,8 +316,8 @@
 }
 .person {
     display: inline-block;
-    width: 120rpx;
-    height: 120rpx;
+    width: 95rpx;
+    height: 110rpx;
     position: fixed;
     right: 0;
     bottom: 120rpx;
@@ -370,19 +374,20 @@
 .p_content {
   padding: 40rpx 40rpx 40rpx 50rpx;
   display: flex;
+  display: -webkit-flex;
   flex-direction: column;
   height: 500rpx;
-  font-size: 26rpx;
+  font-size: 28rpx;
 }
 .p_content view {
   flex: 1;
-  padding-top: 30rpx;
+  padding-top: 40rpx;
   box-sizing: border-box;
 }
 .p_content view image{
   width: 30rpx;
   height: 30rpx;
-  vertical-align: middle;
+  vertical-align: text-top;
   margin-right: 30rpx;
 }
 .bbh {

@@ -32,7 +32,7 @@
         </view>
     </view>
     <navigator url='../addReport/addReport?wayNum={{wayNum}}' hover-class="none">
-      <text class='iconfont icon-tianjia' bindtap='handleAdd'></text>
+      <image class='jiahao' src='../image/jiahao.png'></image>
     </navigator>
     </view> 
      <view class='noReport' wx:else>

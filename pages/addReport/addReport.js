@@ -9,9 +9,13 @@ Page({
     data: {
       oneList: [],
       twoList: [],
-      threeList: []
+      threeList: [],
+      wayNum: null
     },
     onLoad: function (options) {
+      this.setData({
+        wayNum: options.wayNum
+      })
       this.getDict();
     },
     // 获取单据类型字典

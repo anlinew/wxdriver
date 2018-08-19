@@ -1,14 +1,16 @@
 .container {
-  position: relative;
+  /* position: relative; */
   font-family: '微软雅黑';
 }
 .header {
+  display: -webkit-flex;
   display: flex;
-  position: relative;
+  /* position: relative; */
   width: 100%;
-  justify-content: center;
+  /* justify-content: center; */
   color: #fff;
   text-align:center;
+  height: 100%;
 }
 .inputCont {
   font-size: 24rpx;

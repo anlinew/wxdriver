@@ -11,6 +11,7 @@ page{
 }
 .weui-cell__bd {
   display: flex;
+  display: -webkit-flex;
   height: 160rpx;
   min-height:160rpx;
   line-height:160rpx;
@@ -41,4 +42,11 @@ page{
 }
 .pwd {
   width:100%;
+}
+.bb {
+  font-size: 24rpx;
+  color: #ccc;
+  position: fixed;
+  bottom: 30rpx;
+  left: 30rpx;
 }

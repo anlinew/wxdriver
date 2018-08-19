@@ -11,7 +11,7 @@
             </view>
             <view class='h-c'>
               <view class='num'>
-                <navigator class="navg" url="../uploadReport/uploadReport?id={{item.rank}}" wx:for="{{oneList}}" wx:key="{{index}}">
+                <navigator class="navg" url="../uploadReport/uploadReport?id={{item.rank}}&wayNum={{wayNum}}" wx:for="{{oneList}}" wx:key="{{index}}">
                   <view class='reportType'>{{item.label}}</view>
                 </navigator>
               </view>
@@ -25,7 +25,7 @@
             </view>
             <view class='h-c'>
               <view class='num'>
-                <navigator class="navg" url="../uploadReport/uploadReport?id={{item.rank}}" wx:for="{{twoList}}" wx:key="{{index}}">
+                <navigator class="navg" url="../uploadReport/uploadReport?id={{item.rank}}&wayNum={{wayNum}}" wx:for="{{twoList}}" wx:key="{{index}}">
                   <view class='reportType'>{{item.label}}</view>
                 </navigator>
               </view>
@@ -39,7 +39,7 @@
             </view>
             <view class='h-c'>
               <view class='num'>
-                  <navigator class="navg" url="../uploadReport/uploadReport?id={{item.rank}}" wx:for="{{threeList}}" wx:key="{{index}}">
+                  <navigator class="navg" url="../uploadReport/uploadReport?id={{item.rank}}&wayNum={{wayNum}}" wx:for="{{threeList}}" wx:key="{{index}}">
                     <view class='reportType'>{{item.label}}</view>
                   </navigator>
               </view>
