@@ -18,6 +18,10 @@ Page({
     imgList: []
   },
   async getReportList() {
+    wx.showLoading({
+      title: '数据加载中',
+      mask: true
+    })
     let page = this;
     const params = {
       pageNo: page.data.pageNo,
@@ -39,6 +43,9 @@ Page({
       page.setData({
         reportList: reportList
       });
+      setTimeout(function(){
+        wx.hideLoading()
+      },300)
     } else {
       wx.showModal({
         confirmColor: '#666',
@@ -77,7 +84,7 @@ Page({
   // 显示模态框
   handleOpen(e) {
     const imgids = e.currentTarget.dataset.imgids.split(',');
-    const urls = imgids.map((item)=> item = 'https://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
+    const urls = imgids.map((item)=> item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
     console.log(urls);
     this.setData({
       visible: true,
@@ -98,7 +105,10 @@ Page({
     const current = e.currentTarget.dataset.current.replace('true', 'false')
     wx.previewImage({
       current: current,
-      urls: imgList
+      urls: imgList,
+      success: function(res){
+        console.log(res)
+      }
     })
   },
   // 下拉刷新
@@ -114,7 +124,8 @@ Page({
       wx.hideLoading();
       wx.showToast({
         title: '加载完毕',
-        icon: 'none'
+        icon: 'none',
+        duration: 500
       })
     },500)
   },
@@ -129,7 +140,8 @@ Page({
       wx.hideLoading();
       wx.showToast({
         title: '加载完毕',
-        icon: 'none'
+        icon: 'none',
+        duration: 500
       })
     },500)
   },

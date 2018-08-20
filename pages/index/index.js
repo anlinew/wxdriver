@@ -211,9 +211,25 @@ Page({
     let index = page.data.reportIndex;
     if (index === 0) {
       // 出发站点
+      wx.getSetting({
+        success:(res)=> {
+          if (!res.authSetting['scope.userLocation']) {
+            wx.openSetting({
+              success: (res) => {
+                res.authSetting = {
+                  "scope.userInfo": true,
+                  "scope.userLocation": true
+                }
+              }
+            })
+          }
+        }
+      })
       wx.getLocation({
         type: 'gcj02',
+        altitude: true,
         success: function (res) {
+          console.log(res)
           // 获取经纬度
           let latitude = res.latitude
           let longitude = res.longitude
@@ -281,10 +297,13 @@ Page({
       let preSiteIsDisabled = page.isDisabledBtn(preSite);
       console.log('preSiteIsDisabled', preSiteIsDisabled);
       if (preSiteIsDisabled) {
+        console.log(1)
         // 上个站点已报站完成
         wx.getLocation({
           type: 'gcj02',
-          success: function (res) {
+          altitude: true,
+          success: (res)=> {
+            console.log(res)
             // 获取经纬度
             let latitude = res.latitude
             let longitude = res.longitude
@@ -414,6 +433,17 @@ Page({
     } else {
       return false;
     }
+  },
+  // 下拉刷新
+  async onPullDownRefresh(e) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    await this.getWaybil();
+    setTimeout(()=> {
+      wx.stopPullDownRefresh();
+      wx.hideLoading();
+    },500)
   },
   // 获取司机的信息
   async _getDriver() {

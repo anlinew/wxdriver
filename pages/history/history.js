@@ -13,6 +13,10 @@ Page({
         payload: {}
     },
     getHistorys(payload) {
+      wx.showLoading({
+        title: '数据加载中',
+        mask: true
+      })
       let page = this;
       const params = payload || {
         pageNo: page.data.pageNo,
@@ -36,6 +40,9 @@ Page({
           page.setData({
               historys: historys
           });
+          setTimeout(function(){
+            wx.hideLoading()
+          },700)
         } else {
           wx.showModal({
             confirmColor: '#666',

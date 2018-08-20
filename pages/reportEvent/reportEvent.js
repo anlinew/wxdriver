@@ -17,6 +17,10 @@ Page({
         visible: false
     },
     async getReportList() {
+      wx.showLoading({
+        title: '数据加载中',
+        mask: true
+      })
         let page = this;
         console.log()
         const params = {
@@ -34,6 +38,9 @@ Page({
           page.setData({
               reportList: reportList
           });
+          setTimeout(function(){
+            wx.hideLoading()
+          },700)
       } else {
         wx.showModal({
             confirmColor: '#666',

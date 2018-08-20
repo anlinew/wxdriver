@@ -29,6 +29,10 @@ Page({
     await this._getMessage();
   },
   async _getMessage() {
+    wx.showLoading({
+      title: '数据加载中',
+      mask: true
+    })
     const payload = {};
     payload.pageNo = this.data.pageNo;
     payload.pageSize = this.data.pageSize;
@@ -38,6 +42,9 @@ Page({
     this.setData({
       messageList: res.data
     })
+    setTimeout(function(){
+      wx.hideLoading()
+    },700)
     console.log(this.data.messageList)
   },
   // 下拉刷新

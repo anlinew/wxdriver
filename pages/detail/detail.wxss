@@ -44,6 +44,7 @@
     border-bottom: 1px solid #dcdcdc;
     font-size: 26rpx;
     line-height: 60rpx;
+    min-height: 50rpx;
 }
 .info-box .item:last-child{
     border-bottom: 1px solid #bfbfbf;

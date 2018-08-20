@@ -83,7 +83,7 @@
 }
 .webyill {
   padding: 40rpx 20rpx;
-  font-size: 12px;
+  font-size: 14px;
   color: rgb(74, 75, 79);
   border-bottom: 1rpx solid rgb(214, 214, 214);
 }
@@ -144,16 +144,17 @@
     line-height: 60rpx;
 }
 .route .site .time{
+    font-size: 28rpx;
     color: #6d6e72;
 }
 .route .site .btn{
     float: right;
     display: inline-block;
-    width: 110rpx;
-    height: 50rpx;
+    width: 140rpx;
+    height: 60rpx;
     border: 1px solid #3e85ff;
     font-size: 28rpx;
-    line-height: 50rpx;
+    line-height: 60rpx;
     color: #3e85ff;
     text-align: center;
     border-radius: 26rpx;
@@ -377,11 +378,11 @@
   display: -webkit-flex;
   flex-direction: column;
   height: 500rpx;
-  font-size: 28rpx;
+  font-size: 15px;
 }
 .p_content view {
   flex: 1;
-  padding-top: 40rpx;
+  padding-top: 15px;
   box-sizing: border-box;
 }
 .p_content view image{

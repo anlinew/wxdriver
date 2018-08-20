@@ -1,6 +1,7 @@
 {
   "navigationBarBackgroundColor": "#2D99EE",
   "navigationBarTitleText": "我的任务",
+  "enablePullDownRefresh": true,
   "component": true,  
   "usingComponents": {
     "i-drawer": "../../utils/iviewapp/drawer/index"
