@@ -1,5 +1,8 @@
 <view class='page'>
-  <image src="../image/login@2x.png" class="jiao"></image>
+  <view class="backGround">
+      <image class="changanLogo" src="../image/changan.png"></image>
+      <view class="title">长安博宇</view>
+  </view>
   <form bindsubmit="toLogin" bindreset="formReset" report-submit="true">
     <view class="input">
       <view class="weui-cell__bd">
