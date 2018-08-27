@@ -45,7 +45,7 @@ module.exports = {
         <view class='top-time'>{{item.taskDetails[item.taskDetails.length-1].topTime}}</view>
         <navigator  class="history-task-btn" url="../detail/detail?wayNum={{item.waybillNum}}" hover-class="none">
         <view class='h-t'>
-          <text class='num'>订单号： {{item.waybillNum}}</text>
+          <text class='num'>调度单号： {{item.waybillNum}}</text>
           <text class='gray'> ({{item.mileage}} KM)</text>
           <text class='red fr'>{{item.canceled?'已取消':m_history.getStatusName(item.status)}}</text>
         </view>

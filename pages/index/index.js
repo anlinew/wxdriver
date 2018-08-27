@@ -30,14 +30,30 @@ Page({
     wayNum: null,
     showLeft: false,
     windowHeight: null,
-    driverInfo: {}
+    driverInfo: {},
+    upUrl: null,
+    authSetting: false
   },
   onLoad(options) {
     this.getWaybil();
     this._getDriver();
     const res = wx.getSystemInfoSync();
     this.setData({
-      windowHeight: res.windowHeight + 'px'
+      windowHeight: res.windowHeight + 'px',
+      upUrl: app.upUrl
+    })
+    wx.getSetting({
+      success:(res)=> {
+        if (!res.authSetting['scope.userLocation']) {
+          this.setData({
+            authSetting: false
+          })
+        } else {
+          this.setData({
+            authSetting: true
+          })
+        }
+      }
     })
   },
   getWaybil() {
@@ -211,19 +227,9 @@ Page({
     let index = page.data.reportIndex;
     if (index === 0) {
       // 出发站点
-      wx.getSetting({
-        success:(res)=> {
-          if (!res.authSetting['scope.userLocation']) {
-            wx.openSetting({
-              success: (res) => {
-                res.authSetting = {
-                  "scope.userInfo": true,
-                  "scope.userLocation": true
-                }
-              }
-            })
-          }
-        }
+      wx.showLoading({
+        title: '上报站点中...',
+        mask: true
       })
       wx.getLocation({
         type: 'gcj02',
@@ -271,9 +277,13 @@ Page({
                   popShow: false
                 });
                 page.getWaybil();
-                // page.setData({
-                //     reportShow: true
-                // })
+                setTimeout(function(){
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: '上报站点成功',
+                    icon: 'none'
+                  });
+                },300)
               } else {
                 // 上报站点失败
                 wx.showModal({
@@ -299,6 +309,10 @@ Page({
       if (preSiteIsDisabled) {
         console.log(1)
         // 上个站点已报站完成
+        wx.showLoading({
+          title: '上报站点中...',
+          mask: true
+        })
         wx.getLocation({
           type: 'gcj02',
           altitude: true,
@@ -353,9 +367,13 @@ Page({
                     popShow: false
                   });
                   page.getWaybil();
-                  // page.setData({
-                  //     reportShow: true
-                  // })
+                  setTimeout(function(){
+                    wx.hideLoading()
+                    wx.showToast({
+                      title: '上报站点成功',
+                      icon: 'none'
+                    });
+                  },300)
                 } else {
                   // 上报站点失败
                   wx.showModal({
@@ -433,6 +451,12 @@ Page({
     } else {
       return false;
     }
+  },
+  // 授权的按钮
+  Handler(e) {
+    this.setData({
+      authSetting: e.detail.authSetting['scope.userLocation']
+    })
   },
   // 下拉刷新
   async onPullDownRefresh(e) {

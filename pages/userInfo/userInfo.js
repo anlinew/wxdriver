@@ -7,7 +7,8 @@ Page({
   data: {
     driverInfo: {},
     profilePic: null,
-    phone: null
+    phone: null,
+    upUrl: null
   },
   onLoad: function (options) {
     this._getDriver();
@@ -19,7 +20,8 @@ Page({
     this.setData({
       driverInfo: res.data,
       profilePic: res.data.profilePic,
-      phone: res.data.phone
+      phone: res.data.phone,
+      upUrl: app.upUrl
     })
   },
   // 换头像
@@ -51,7 +53,7 @@ Page({
         const path = res.tempFilePaths[0];
         console.log(path)
         wx.uploadFile({
-          url: 'https://boyu.cmal.com.cn/api/pub/upload?app=true',
+          url: app.upUrl+'/api/pub/upload?app=true',
           filePath: path,
           name: 'file',
           header: {
@@ -118,7 +120,7 @@ Page({
         if (e.confirm) {
           const res = await request.postRequest(api.outlogin)
           if (res.result){
-            wx.redirectTo({
+            wx.reLaunch({
               url: '../login/login'
             })
           } else {

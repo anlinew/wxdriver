@@ -242,7 +242,7 @@ Page({
   // 显示模态框
   handleOpen(e) {
     const imgids = e.currentTarget.dataset.imgids.split(',');
-    const urls = imgids.map((item) => item = 'https://boyu.cmal.com.cn/api/pub/objurl/name?id=' + item + '&compress=true')
+    const urls = imgids.map((item) => item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id=' + item + '&compress=true')
     console.log(urls);
     this.setData({
       visible: true,

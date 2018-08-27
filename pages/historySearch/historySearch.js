@@ -1,4 +1,5 @@
 // pages/historySearch/historySearch.js
+import moment from '../../utils/moment.js'
 Page({
 
   /**
@@ -12,7 +13,9 @@ Page({
     toCity: '',
     fromId: null,
     toId: null,
-    clear: false
+    clear: false,
+    days:[{day: '最近7天', data:7},{day: '最近15天', data: 15},{day: '最近30天', data:30}],
+    current: ''
   },
   startDateChange: function (e) {
     this.setData({
@@ -59,8 +62,8 @@ Page({
   // 点击确定搜索
   search() {
     const payload = {};
-    if (this.data.startDate !== '开始日期') {payload.planDepartureTimeAfter = this.data.startDate;}
-    if (this.data.endDate !== '结束日期') {payload.planDepartureTimeBefore = this.data.endDate;}
+    if (this.data.startDate !== '开始日期') {payload.planDepartureTimeAfter = this.data.startDate + ' 00:00:00';}
+    if (this.data.endDate !== '结束日期') {payload.planDepartureTimeBefore = this.data.endDate + ' 23:59:59';}
     if (this.data.fromCity) {payload.fromCity = this.data.fromId;}
     if (this.data.toCity) {payload.toCity = this.data.toId;}
     if (this.data.waybillNum) {payload.waybillNum = this.data.waybillNum;}
@@ -76,5 +79,13 @@ Page({
         delta: 1
       })
     }, 300);
+  },
+  chooseDay(e) {
+    const data = e.currentTarget.dataset.data
+    this.setData({
+      current: e.currentTarget.dataset.index,
+      startDate: moment().add(-data,'day').format('YYYY-MM-DD'),
+      endDate: moment().format('YYYY-MM-DD')
+    })
   }
 })

@@ -1,6 +1,7 @@
 import api from '../../requests/api.js'
 import regeneratorRuntime from '../../utils/regenerator-runtime/runtime.js';
 import WxValidate from '../../plugins/wx-validate/WxValidate';
+import moment from '../../utils/moment.js'
 const app = getApp()
 const request = app.WxRequest;
 // 格式转化为yy-MM-dd hh:mm:ss
@@ -46,6 +47,20 @@ Page({
       wx.hideLoading()
     },700)
     console.log(this.data.messageList)
+  },
+  // 消息的跳转
+  gohostory(e) {
+    const startTime = (moment().startOf('day').toDate()).getTime();
+    const wayTime = (new Date((e.currentTarget.dataset.waytime).replace(/\-/g, '/'))).getTime();
+    if (wayTime<startTime) {
+      wx.navigateTo({
+        url: '../history/history'
+      });
+    } else {
+      wx.navigateTo({
+        url: '../index/index'
+      });
+    }
   },
   // 下拉刷新
   async onPullDownRefresh(e) {

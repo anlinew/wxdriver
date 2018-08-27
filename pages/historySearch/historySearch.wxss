@@ -124,3 +124,7 @@
   border-radius: 45rpx;
   width: 630rpx;
 }
+.blue {
+  background: #3982ff;
+  color: #fff;
+}

@@ -8,11 +8,13 @@ Page({
   data: {
     pageNo: 1,
     pageSize: 10,
-    borrowList: []
+    borrowList: [],
+    wayNum: null
   },
   onLoad(option) {
     var that = this;
     this._getBorrow();
+    this._getWayInfo();
   },
   // 借款的tab
   async _getBorrow() {
@@ -46,6 +48,39 @@ Page({
     this.setData({
       borrowList: res
     })
+  },
+  // 获取当前的调度单
+  async _getWayInfo() {
+    let page = this;
+    const res = await request.getRequest(api.currentWaybil)
+    if (res.result) {
+      // 获取调度信息
+      const wayInfo = res.data || {};
+      page.setData({
+        wayInfo: wayInfo,
+        wayNum: wayInfo.waybillNum,
+      });
+    } else {
+      wx.showModal({
+        confirmColor: '#666',
+        content: res.message,
+        showCancel: false,
+      });
+    }
+  },
+  // 跳转到申请界面
+  goApply () {
+    if (this.data.wayNum) {
+      wx.navigateTo({
+        url: '../addApply/addApply?wayNum=' + this.data.wayNum,
+      })
+    } else {
+      wx.showToast({
+        title: '当前没有运输中调度单，无法申请借款',
+        icon: 'none',
+        duration: 1000
+      })
+    }
   },
   // 下拉刷新
   async onPullDownRefresh(e) {

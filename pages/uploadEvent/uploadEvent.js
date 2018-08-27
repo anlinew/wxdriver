@@ -173,7 +173,7 @@ Page({
       duration: 1000
     }),
     wx.uploadFile({
-      url: 'https://boyu.cmal.com.cn/api/pub/upload?app=true',
+      url: app.upUrl+'/api/pub/upload?app=true',
       filePath: path,
       name: 'file',
       header: { 

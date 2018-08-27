@@ -72,7 +72,8 @@ module.exports = {
             </view>
             <text class='name'>{{item.siteName}}</text>
             <text class='time'>{{item.shortTime}}</text>
-            <view wx:if='{{reportShow}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</view>
+            <button wx:if='{{reportShow&&authSetting}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</button>
+            <button bindopensetting="Handler" open-type="openSetting" wx:if='{{reportShow && !authSetting}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</button>
           </view>
         </view>
     </view>
@@ -130,9 +131,9 @@ module.exports = {
     <i-drawer style="height:100%" class="modalD" mode="left" visible="{{showLeft}}" bind:close="toggleLeft1">
         <view class="demo-container" style='height:{{windowHeight}}'>
             <view class='p_head'>
-              <view class='head_one' bindtap="toInfo"><image style="border-radius: 50%" src="{{'https://boyu.cmal.com.cn/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
-              <view class='head_two'>{{driverInfo.realName}} / {{driverInfo.truckLicense}}</view>
-              <view class='head_three'>{{driverInfo.phone}}</view>
+              <view class='head_one' bindtap="toInfo"><image style="border-radius: 50%" src="{{upUrl+'/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
+              <view class='head_two'>{{driverInfo.realName?driverInfo.realName:''}} / {{driverInfo.truckLicense?driverInfo.truckLicense:'无'}}</view>
+              <view class='head_three'>{{driverInfo.phone?driverInfo.phone:''}}</view>
             </view>
 
             <view class='p_content'>
@@ -145,7 +146,7 @@ module.exports = {
               <view bindtap='bindweixin'><image style="width: 32rpx;" src="../image/weixin.png"></image><text>绑定微信</text></view>
             </view>
 
-            <text class='bbh'>版本号:v1.1.01</text>
+            <text class='bbh'>Version:1.8.27b</text>
         </view>
     </i-drawer>
 

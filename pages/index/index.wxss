@@ -377,12 +377,12 @@
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
-  height: 500rpx;
-  font-size: 15px;
+  height: 640rpx;
+  font-size: 16px;
 }
 .p_content view {
   flex: 1;
-  padding-top: 15px;
+  margin-top: 22px;
   box-sizing: border-box;
 }
 .p_content view image{

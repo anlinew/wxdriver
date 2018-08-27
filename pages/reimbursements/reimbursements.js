@@ -94,8 +94,8 @@ Page({
         break;
       }
       n.taskDetails.forEach(item=>{
-        if (item.arriveTime){item.arriveTime = this.etDateNow(item.arriveTime );}
-        if (item.scheduleTime){item.scheduleTime = this.etDateNow(item.scheduleTime );}
+        if (item.arriveTime) { item.arriveTime = this.etDateNow(item.arriveTime.replace(/\-/g, '/'));}
+        if (item.scheduleTime) { item.scheduleTime = this.etDateNow(item.scheduleTime.replace(/\-/g, '/'));}
       })
     })
     this.setData({

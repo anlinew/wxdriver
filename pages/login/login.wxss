@@ -43,13 +43,6 @@ page{
 .pwd {
   width:100%;
 }
-.bb {
-  font-size: 24rpx;
-  color: #ccc;
-  position: fixed;
-  bottom: 30rpx;
-  left: 30rpx;
-}
 .backGround {
   height: 240px;
   width: 100%;

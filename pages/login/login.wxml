@@ -1,13 +1,12 @@
 <view class='page'>
   <view class="backGround">
       <image class="changanLogo" src="../image/changan.png"></image>
-      <view class="title">长安博宇</view>
   </view>
   <form bindsubmit="toLogin" bindreset="formReset" report-submit="true">
     <view class="input">
       <view class="weui-cell__bd">
         <view class='loginfont icon-mobile'></view>
-        <input class="weui-input" value='{{account}}' name="account" placeholder="请输入用户名" />
+        <input class="weui-input" value='{{account}}' name="account" placeholder="请输入用户名或手机号" />
       </view>
       </view>
     <view class="input" style='borer-bottm:1rpx solid #ededed'>
@@ -20,7 +19,6 @@
       </view>
     </view>
     <button class="weui-btn createdDispatch" type="primary" formType="submit">登录</button>
-    <view class="bb">Version:1.1.01</view>
   </form>
 </view>
 

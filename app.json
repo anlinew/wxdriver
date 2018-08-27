@@ -1,28 +1,19 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/myLeave/myLeave",
-    
-    "pages/reimbursements/reimbursements",
     "pages/login/login",
-    
-    
-    
+    "pages/reimbursements/reimbursements",
     "pages/history/history",
     "pages/userInfo/userInfo",
     
     "pages/historySearch/historySearch",
-    
-    
     "pages/cities/cities",
     "pages/reportDocument/reportDocument",
     "pages/aplplyLoan/aplplyLoan",
-    
-    
     "pages/messages/messages",
     "pages/changePhone/changePhone",
-   
-   
     "pages/changePass/changePass",
     "pages/addLeave/addLeave",
     

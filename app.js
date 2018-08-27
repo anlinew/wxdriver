@@ -8,6 +8,7 @@ App({
   globalData: {
     userInfo: {}
   },
+  upUrl: 'https://boyu.cmal.com.cn',
   WxRequest() {
     this.WxRequest = new WxRequest({
       baseURL: 'https://boyu.cmal.com.cn',

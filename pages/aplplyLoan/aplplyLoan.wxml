@@ -35,7 +35,7 @@
       </view>
       <view class='tip'>该调度单还没有借款信息</view>
     </view>
-    <navigator url='../addApply/addApply?wayNum={{wayNum}}' hover-class="none">
-      <image class='jiahao' src='../image/jiahao.png'></image>
-    </navigator>
+    <!-- <navigator url='../addApply/addApply?wayNum={{wayNum}}' hover-class="none"> -->
+      <image bindtap="goApply" class='jiahao' src='../image/jiahao.png'></image>
+    <!-- </navigator> -->
   </view>
