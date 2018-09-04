@@ -28,7 +28,7 @@
             </view>
         </view>
     </view>
-    <navigator url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="navigator-hover">
+    <navigator url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="none">
       <image class='jiahao' src='../image/jiahao.png'></image>
     </navigator>
     </view> 
@@ -37,7 +37,7 @@
         <image src="../image/no_event_report.png" class="logo"></image>
     </view>
     <view class='tip'>该调度单还没有上报事件</view>
-    <navigator class="addNav" url='../addEvent/addEvent?wayNum={{wayNum}}'>
+    <navigator class="addNav" url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="none">
       <button class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
     </navigator>
     </view> 

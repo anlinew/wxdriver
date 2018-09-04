@@ -131,7 +131,7 @@ module.exports = {
     <i-drawer style="height:100%" class="modalD" mode="left" visible="{{showLeft}}" bind:close="toggleLeft1">
         <view class="demo-container" style='height:{{windowHeight}}'>
             <view class='p_head'>
-              <view class='head_one' bindtap="toInfo"><image style="border-radius: 50%" src="{{upUrl+'/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
+              <view class='head_one' bindtap="toInfo"><image style="border-radius: 50%" src="{{driverInfo.profilePic?upUrl+'/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true':'../image/touxiangChangan.png'}}" class="img"></image></view>
               <view class='head_two'>{{driverInfo.realName?driverInfo.realName:''}} / {{driverInfo.truckLicense?driverInfo.truckLicense:'无'}}</view>
               <view class='head_three'>{{driverInfo.phone?driverInfo.phone:''}}</view>
             </view>
@@ -143,10 +143,10 @@ module.exports = {
               <view bindtap='myLeave'><image src="../image/my_leave.png"></image><text>我的请假</text></view>
               <view bindtap='aplplyLoan'><image src="../image/apply_loan.png"></image><text>申请借款</text></view>
               <view bindtap='changePass'><image src="../image/password.png"></image><text>修改密码</text></view>
-              <view bindtap='bindweixin'><image style="width: 32rpx;" src="../image/weixin.png"></image><text>绑定微信</text></view>
+              <!-- <view bindtap='bindweixin'><image style="width: 32rpx;" src="../image/weixin.png"></image><text>绑定微信</text></view> -->
             </view>
 
-            <text class='bbh'>Version:1.8.27b</text>
+            <text class='bbh'>V:1.9.02b</text>
         </view>
     </i-drawer>
 

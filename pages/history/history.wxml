@@ -61,7 +61,7 @@ module.exports = {
           <navigator class='navbtn' url="../reportDocument/reportDocument?wayNum={{item.waybillNum}}" hover-class="none">
             <button bindtap='reportD' disabled="{{item.applicationCompleted || item.canceled}}" class="btn {{item.applicationCompleted?'gray':''}} {{item.canceled?'gray':''}}">单据上报</button>
           </navigator>
-            <button data-id="{{item.id}}" data-status="{{item.status}}" disabled="{{item.applicationCompleted || item.canceled}}" bindtap='auditD' class="btn {{item.applicationCompleted?'gray':''}}  {{item.canceled?'gray':''}}">提交审批</button>
+            <button data-id="{{item.id}}" data-status="{{item.status}}" disabled="{{item.applicationCompleted || item.canceled}}" data-ordernum="{{item.cargoAmount}}" data-waytype="{{item.dispatchType}}" bindtap='auditD' class="btn {{item.applicationCompleted?'gray':''}}  {{item.canceled?'gray':''}}">提交审批</button>
           </view>
         </view>
       </view>

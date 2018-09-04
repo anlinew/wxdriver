@@ -31,7 +31,8 @@ Page({
     borrowList: [],
     applyMoney: null,
     exaimMoney: null,
-    oilSumMoney: null
+    oilSumMoney: null,
+    wayStatus: null
   },
   onLoad(option) {
     var that = this;
@@ -51,16 +52,15 @@ Page({
       billExamineMoney: option.billExamineMoney,
       billExamineGas: option.billExamineGas,
       billExamineMileage: option.billExamineMileage,
-      id: option.id
+      id: option.id,
+      wayStatus: option.wayStatus
     })
-    console.log(option)
     that._getReportList();
     this._getOil();
     this._getStandard();
     this._getBorrow();
   },
   tabClick: function (e) {
-    console.log(e);
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
@@ -82,7 +82,9 @@ Page({
       reportList.forEach(item => {
         item.createTime = this.etDateStr(item.createTime.replace(/\-/g, '/'));
         item.status = this.data.statusList.find((n) => n.rank === item.status).label;
-        item.money = (item.money*0.01).toFixed(1)
+        if (item.unit === '元') {
+          item.money = (item.money * 0.01).toFixed(2);
+        }
       })
       page.setData({
         reportList: reportList
@@ -98,7 +100,6 @@ Page({
   // 燃油的tab
   async _getOil() {
     const res = (await request.getRequest(api.oilList,{data:{settlementDetailId: this.data.id}})).data;
-    console.log(res);
     // 里程类的合计和金额
     res.mileageSum = res.routeMileage+res.detourMileage+res.freightMileage;
     res.mileageMoney = (res.mileageSum*0.01*res.gasConsumeSetting*(res.gasPrice/100)).toFixed(1);
@@ -121,7 +122,6 @@ Page({
   async _getStandard() {
     const res = (await request.getRequest(api.subsidy,{data:{settlementDetailId: this.data.id}})).data;
     var sum = 0;
-    console.log(res);
     if (res) {
       res.forEach(item=> {
         sum+=item.count;
@@ -243,7 +243,6 @@ Page({
   handleOpen(e) {
     const imgids = e.currentTarget.dataset.imgids.split(',');
     const urls = imgids.map((item) => item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id=' + item + '&compress=true')
-    console.log(urls);
     this.setData({
       visible: true,
       imgList: urls

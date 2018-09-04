@@ -3,7 +3,7 @@
     <view class="weui-cell weui-cell_access" bindtap="changepic">
         <view class="weui-cell__bd">头像</view>
         <view class="weui-cell__ft weui-cell__ft_in-access">
-            <view class='head-logo'><image src="{{upUrl+'/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true'}}" class="img"></image></view>
+            <view class='head-logo'><image src="{{driverInfo.profilePic?upUrl+'/api/pub/objurl/name?id='+driverInfo.profilePic+'&compress=true':'../image/touxiangChangan.png'}}" class="img"></image></view>
         </view>
     </view>
     <view class="weui-cell weui-cell_access item1">

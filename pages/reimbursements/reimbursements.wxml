@@ -76,14 +76,14 @@
           <view class='line-box flexLeft'>
             <view class='site s_left' bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
             data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"
-            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}">
+            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}" data-waystatus="{{item.waybillStatus}}">
               <view class='name'>{{item.taskDetails[0].siteName}}</view>
               <view class='time'>{{item.taskDetails[0].arriveTime?item.taskDetails[0].arriveTime:item.taskDetails[0].scheduleTime}}</view>
             </view>
             <!--中间的线-->
             <view class='site-line' bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
             data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"
-            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}">
+            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}" data-waystatus="{{item.waybillStatus}}">
               <view class="line"></view>
             </view>
 
@@ -96,7 +96,7 @@
 
             <view class='site' wx:if="{{item.taskDetails.length === 3}}" bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
             data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"
-            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}">
+            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}" data-waystatus="{{item.waybillStatus}}">
               <view class='name'>{{item.taskDetails[1].siteName}}</view>
               <view class='time'>{{item.taskDetails[1].arriveTime?item.taskDetails[1].arriveTime:item.taskDetails[1].scheduleTime}}</view>
             </view>
@@ -104,13 +104,13 @@
             <!--中间的线-->
             <view class='site-line' bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
             data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"
-            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}">
+            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}" data-waystatus="{{item.waybillStatus}}">
               <view class="line"></view>
             </view>
 
             <view class='site' bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
             data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"
-            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}">
+            data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}" data-waystatus="{{item.waybillStatus}}">
               <view class='name'>{{item.taskDetails[item.taskDetails.length-1].siteName}}</view>
               <view class='time'>{{item.taskDetails[item.taskDetails.length-1].arriveTime?item.taskDetails[1].arriveTime:item.taskDetails[1].scheduleTime}}</view>
             </view>
@@ -137,7 +137,7 @@
             <text class='gray'>{{item.gasSum}}元</text>
           </view>
           <view class="h-last" style="text-align: right" wx:if="{{item.waybillStatus==='已结算' || item.waybillStatus==='已关账'}}">总金额：
-              <text class='gray'>{{item.totalAmount}}元</text>
+              <text class='gray'><text style="color:red">{{item.totalAmount}}元</text></text>
             </view>
         </view>
       </view>

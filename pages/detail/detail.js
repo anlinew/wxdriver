@@ -7,7 +7,9 @@ const request = app.WxRequest;
 Page({
   data: {
     wayNum: null,
-    detail: {}
+    detail: {},
+    orderList: [],
+    vinList: []
   },
   onLoad: function (options) {
     this.setData({
@@ -22,8 +24,16 @@ Page({
       if (item.arriveTime) { item.arriveTime = this.etDateStr(item.arriveTime.replace(/\-/g, '/'));}
       if (item.scheduleTime) { item.scheduleTime = this.etDateStr(item.scheduleTime.replace(/\-/g, '/')); }
     })
+    const orderList = [];
+    const vinList = [];
+    res[0].cargoDetails.forEach(item=> {
+      orderList.push(...item.orderNums);
+      vinList.push(...item.vins);
+    })
     this.setData({
-      detail: res[0]
+      detail: res[0],
+      orderList: orderList,
+      vinList: vinList
     })
   },
   // 跳转到事件列表

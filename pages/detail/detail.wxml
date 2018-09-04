@@ -60,14 +60,14 @@ module.exports = {
         </view>
         <view class='item'>
             <view class='item-name'>运单号码：</view>
-            <view class='item-con' wx:for="{{detail.cargoDetails[0].orderNums}}">{{item}}</view>
+            <view class='item-con' wx:for="{{orderList}}">{{item}}</view>
         </view>
         <view class='item'>
             <view class='item-name'>车架号码：</view>
-            <view wx:for="{{detail.cargoDetails[0].vins}}" class='item-con'>{{item}}</view>
+            <view wx:for="{{vinList}}" class='item-con'>{{item}}</view>
         </view>
     </view>
-    <view class="addNav">
+    <view class="addNav" wx-if="{{detail.status === 5}}">
         <button bindtap="toEvent" class="weui-btn check-btn" type="primary" formType="submit">查看事件</button>
       </view>
 </view>

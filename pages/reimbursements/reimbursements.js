@@ -76,6 +76,7 @@ Page({
       n.billExamineMoney = (n.billExamineMoney*0.01).toFixed(2);
       n.subsidy = (n.subsidy*0.01).toFixed(2);
       n.gasSum = (n.gasSum*0.01).toFixed(2);
+      n.totalAmount = (n.totalAmount * 0.01).toFixed(2);
       switch(n.waybillStatus){
         case 0:
         n.waybillStatus = '审批中'
@@ -125,7 +126,8 @@ Page({
       '&billExamineMoney='+e.currentTarget.dataset.billexaminemoney+
       '&billExamineGas='+e.currentTarget.dataset.billexaminegas+
       '&billExamineMileage='+e.currentTarget.dataset.billexaminemileage+
-      '&id='+e.currentTarget.dataset.id
+      '&id='+e.currentTarget.dataset.id+
+      '&wayStatus=' + e.currentTarget.dataset.waystatus
     })
   },
   // 下拉刷新

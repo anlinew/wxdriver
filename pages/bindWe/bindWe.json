@@ -1,5 +1,5 @@
 {
-  "navigationBarBackgroundColor": "#2D99EE",
+  "navigationBarBackgroundColor": "#308bef",
   "navigationBarTitleText": "绑定微信",
   "usingComponents": {
     "i-button": "../../utils/iviewapp/button/index",

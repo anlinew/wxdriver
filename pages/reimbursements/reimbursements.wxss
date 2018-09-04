@@ -173,7 +173,7 @@
 .head {
     width: 100%;
     height: 220px;
-    background: linear-gradient(to bottom, #2D99EE, rgb(90, 114, 247));
+    background: linear-gradient(to bottom, #308bef, rgb(90, 114, 247));
     color: #fff;
   }
   .head_top {

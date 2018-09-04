@@ -1,5 +1,5 @@
 {
-    "navigationBarBackgroundColor": "#2D99EE",
+    "navigationBarBackgroundColor": "#308bef",
     "navigationBarTitleText": "我的报销",
     "usingComponents": {
       "i-modal": "../../utils/iviewapp/modal/index"

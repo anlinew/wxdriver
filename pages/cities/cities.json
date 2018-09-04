@@ -1,5 +1,5 @@
 {
-    "navigationBarBackgroundColor": "#2D99EE",
+    "navigationBarBackgroundColor": "#308bef",
     "navigationBarTitleText": "选择省市",
     "usingComponents": {
       "i-index": "../../utils/iviewapp/index/index",

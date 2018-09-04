@@ -15,7 +15,10 @@
         <view class='pwd'>
         <input password='{{isshow}}' placeholder="新密码，至少6位英文数字结合" class="weui-input" value='{{password}}' name="password" placeholder="请输入密码" />
         </view>
-        <view bindtap='isshowPwd'  class='iconfont icon-yanjing'></view>
+        <view bindtap='isshowPwd'  class='iconfont' style='width:25px'>
+          <image style='width:20px;height:15px' wx:if="{{!isshow}}" src='../image/show2x.png'></image>
+          <image style='width:20px;height:15px' wx:if="{{isshow}}" src='../image/nshow2x.png'></image>
+        </view>
       </view>
     </view>
     <button class="weui-btn createdDispatch" type="primary" formType="submit">登录</button>

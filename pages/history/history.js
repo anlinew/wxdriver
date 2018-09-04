@@ -62,39 +62,50 @@ Page({
     auditD (e) {
       const id= e.currentTarget.dataset.id;
       const status = e.currentTarget.dataset.status;
-      if (status === 5) {
-        wx.showModal({
-          title: '提交审批',
-          confirmColor: '#666',
-          content: '是否提交审批',
-          success: async (e) => {
-            if (e.confirm) {
-              const res = await request.postRequest(api.subAudit,{
-                data:{id: id}
-              })
-              if (res.result){
-                wx.showToast({
-                  icon: 'none',
-                  title: '提交审批成功'
-                })
-                this.getHistorys();
-              } else {
-                wx.showToast({
-                  icon: 'none',
-                  title: '提交审批失败'
-                })
+      const orderNum = e.currentTarget.dataset.ordernum;
+      const wayType = e.currentTarget.dataset.waytype;
+      console.log(orderNum, wayType);
+        if (status === 5) {
+          if (orderNum && !wayType || wayType) {
+            wx.showModal({
+              title: '提交审批',
+              confirmColor: '#666',
+              content: '是否提交审批',
+              success: async (e) => {
+                if (e.confirm) {
+                  const res = await request.postRequest(api.subAudit, {
+                    data: { id: id }
+                  })
+                  console.log(res)
+                  if (res.result) {
+                    wx.showToast({
+                      icon: 'none',
+                      title: '提交审批成功'
+                    })
+                    this.getHistorys();
+                  } else {
+                    wx.showToast({
+                      icon: 'none',
+                      title: '提交审批失败'
+                    })
+                  }
+                } else if (e.cancel) {
+
+                }
               }
-            } else if (e.cancel) {
-  
-            }
+            })
+          } else if (!orderNum&&!wayType) {
+            wx.showToast({
+              icon: 'none',
+              title: '提交审核失败,请联系调度人员完善调度单的订单信息后再提交'
+            })
           }
-        })
-      } else {
-        wx.showToast({
-          icon: 'none',
-          title: '未确认送达不能提交审批'
-        })
-      }
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '未确认送达不能提交审批'
+          })
+        }
     },
     // 下拉刷新
     async onPullDownRefresh(e) {

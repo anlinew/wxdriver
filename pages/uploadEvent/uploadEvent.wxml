@@ -9,7 +9,7 @@
             <image src="../image/right_arrow.png" class="line"></image>
         </view>
         <view class='site'>
-            <view class='name'>{{wayInfo.taskDetails[1].cityName}}</view>
+            <view class='name'>{{wayInfo.taskDetails[wayInfo.taskDetails.length-1].cityName}}</view>
         </view>
         <view class='mission_num'>
             <view>
