@@ -9,9 +9,11 @@ App({
     userInfo: {}
   },
   upUrl: 'https://boyu.cmal.com.cn',
+  // upUrl: 'http://182.61.48.201:8080',
   WxRequest() {
     this.WxRequest = new WxRequest({
       baseURL: 'https://boyu.cmal.com.cn',
+      // baseURL: 'http://182.61.48.201:8080',
     })
     this.interceptors()
     return this.WxRequest;

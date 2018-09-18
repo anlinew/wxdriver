@@ -57,13 +57,20 @@ Page({
     })
     this._upData();
   },
+  onShow() {
+    this.updataLogin()
+  },
   getWaybil() {
     wx.showLoading({
       title: '加载数据中...',
     })
+    setTimeout(()=> {
+      wx.hideLoading()
+    },5000)
     let page = this;
     request.getRequest(api.currentWaybil).then(res => {
       if (res.result) {
+        wx.hideLoading()
         if (res.data) {
           // 有当前任务
           let tasks = res.data.taskDetails;
@@ -79,7 +86,6 @@ Page({
           sites.forEach((site, i) => {
             site.shortTime = site.scheduleTime.slice(5, 16);
           });
-          wx.hideLoading()
           page.setData({
             detaiShow: res.data.status === 5 ? false : true,
             // detaiShow: true,
@@ -291,6 +297,7 @@ Page({
                 },300)
               } else {
                 // 上报站点失败
+                wx.hideLoading()
                 wx.showModal({
                   confirmColor: '#666',
                   content: res.message,
@@ -381,6 +388,7 @@ Page({
                   },300)
                 } else {
                   // 上报站点失败
+                  wx.hideLoading()
                   wx.showModal({
                     confirmColor: '#666',
                     content: res.message,
@@ -390,6 +398,7 @@ Page({
               })
           },
           fail: function (res) {
+            wx.hideLoading()
             wx.showModal({
               confirmColor: '#666',
               content: '获取定位失败',
@@ -481,6 +490,10 @@ Page({
       driverInfo: res.data
     })
   },
+  // 更新登录的时间
+  async updataLogin() {
+    await request.postRequest(api.updataLogin)
+  },
   // 跳转到个人信息的页面
   toInfo() {
     wx.navigateTo({
@@ -545,12 +558,13 @@ Page({
               success: function (res) {
                 if (res.confirm) {
                   // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-                  updateManager.applyUpdate()
-                  setTimeout(()=> {
-                    wx.showToast({
-                      title: '更新成功！',
-                    })
-                  }, 800)
+                  wx.showToast({
+                    title: '更新完成!',
+                    icon: 'success'
+                  })
+                  setTimeout(() => {
+                    updateManager.applyUpdate()
+                  }, 1000)
                 }
               }
             })

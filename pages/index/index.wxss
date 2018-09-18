@@ -186,6 +186,8 @@ button {
     display: -webkit-flex;
     justify-content: center;
     padding: 60rpx 0;
+    position: relative;
+    padding-bottom: 140rpx;
 }
 .report-box .item{
     width: 110rpx;
@@ -251,7 +253,7 @@ button {
 }
 .pop-box{
     position: absolute;
-    width: 490rpx;
+    width: 520rpx;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -400,4 +402,13 @@ button {
   left: 30rpx;
   font-size: 24rpx;
   color: #999;
+}
+.reportTip {
+  position: absolute;
+  left: 0;
+  bottom: 50rpx;
+  font-size: 28rpx;
+  color: #f40800;
+  text-align: center;
+  width: 100%;
 }

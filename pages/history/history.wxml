@@ -19,7 +19,10 @@ var getStatusName = function(status) {
             name = '已送达';
             break;
         case 5:
-            name = '已确认送达';
+            name = '已完成';
+            break;
+        case 6:
+            name = '已作废';
             break;
     }
     return name;

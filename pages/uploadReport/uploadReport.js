@@ -85,6 +85,13 @@ Page({
   },
   // 点击提交上报单据
   async acceptTask(e) {
+    wx.showLoading({
+      title: '正在上报...',
+      mask: true,
+    })
+    setTimeout(()=> {
+      wx.hideLoading()
+    },5000)
     // 校验字段
     if (!this.WxValidate.checkForm(e)) {
       console.log(this.WxValidate.errorList)
@@ -140,6 +147,7 @@ Page({
       }
     })
     if (res.result) {
+      wx.hideLoading()
       wx.showToast({
         icon: 'success',
         title: '新增上报成功',
@@ -147,13 +155,16 @@ Page({
       let pages = getCurrentPages();//当前页面
       let prevPage = pages[pages.length-3];//上一页面
       prevPage.getReportList();
-      wx.navigateBack({
-        delta: 2,
-        success: (res) => {
-          console.log(res)
-        }
-      })
+      setTimeout(()=> {
+        wx.navigateBack({
+          delta: 2,
+          success: (res) => {
+            console.log(res)
+          }
+        })
+      }, 500)
     } else {
+      wx.hideLoading()
       wx.showToast({
         title: res.message,
         icon: 'none'

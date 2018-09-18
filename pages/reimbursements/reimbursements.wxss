@@ -252,6 +252,7 @@
   border-radius: 50%;
   text-align: center;
   line-height: 72px;
+  font-size: 18px;
 }
 .h-last {
   padding: 20rpx 0;

@@ -11,6 +11,7 @@ Page({
   data: {
     statusName: null,
     id: null,
+    statusId: null,
     wayInfo: {},
     imgList: [],
     idList: [],
@@ -43,7 +44,7 @@ Page({
     });
     this.setData({
       statusName: options.statusName,
-      id: options.id,
+      statusId: options.id,
       wayNum: options.wayNum
     })
     console.log(this.data.wayNum,this.data.id)
@@ -76,6 +77,13 @@ Page({
   // 点击提交上报单据
   async acceptTask(e) {
     // 校验字段
+    wx.showLoading({
+      title: '正在上报...',
+      mask: true,
+    })
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 5000)
     if (!this.WxValidate.checkForm(e)) {
       console.log(this.WxValidate.errorList)
       const error = this.WxValidate.errorList[0]
@@ -111,7 +119,7 @@ Page({
     // 上报的图片
     payload.imgIds = this.data.imgids;
     // 上报的类型、中文
-    payload.curStatus = this.data.id;
+    payload.curStatus = this.data.statusId;
     payload.statusName = this.data.statusName;
     // 调度单id
     payload.waybillId = this.data.id;
@@ -122,6 +130,7 @@ Page({
       }
     })
     if (res.result) {
+      wx.hideLoading()
       wx.showToast({
         icon: 'success',
         title: '新增上报成功',
@@ -129,13 +138,16 @@ Page({
       let pages = getCurrentPages();//当前页面
       let prevPage = pages[pages.length-3];//上一页面
       prevPage.getReportList();
-      wx.navigateBack({
-        delta: 2,
-        success: (res) => {
-          console.log(res)
-        }
-      })
+      setTimeout(()=> {
+        wx.navigateBack({
+          delta: 2,
+          success: (res) => {
+            console.log(res)
+          }
+        })
+      }, 500)
     } else {
+      wx.hideLoading()
       wx.showToast({
         title: res.message,
         icon: 'none'

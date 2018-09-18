@@ -33,4 +33,5 @@ module.exports = {
   cities: '/api/pub/district', // 获取省市区
   updatadriver: '/api/driver/updatadriver', // 修改司机信息
   outlogin: '/api/driver/app/logout', // 退出登录
+  updataLogin: '/api/driver/app/logintime', // 更新登录时间(记录司机登录日志)
 }

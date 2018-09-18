@@ -79,14 +79,7 @@ module.exports = {
     </view>
     <button class="weui-btn get-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">接受任务</button> 
     <view class='report-box' hidden='{{!reportShow}}'>
-        <view class='item'>
-            <navigator style='borderRadius:50%' url="../reportDocument/reportDocument?wayNum={{wayNum}}" hover-class="none">
-              <view class='logo'>
-                <image src="../image/bill_report.png" class="img"></image>
-              </view>
-            </navigator>
-            <view class='txt'>单据上报</view>
-        </view>
+        
         <view class='item'>
             <navigator style='borderRadius:50%' url="../reportEvent/reportEvent?wayNum={{wayNum}}" hover-class="none">
             <view class='logo'>
@@ -95,6 +88,16 @@ module.exports = {
             <view class='txt'>事件上报</view>
             </navigator>
         </view>
+
+        <view class='item'>
+            <navigator style='borderRadius:50%' url="../reportDocument/reportDocument?wayNum={{wayNum}}" hover-class="none">
+              <view class='logo'>
+                <image src="../image/addReport.png" class="img"></image>
+              </view>
+            </navigator>
+            <view class='txt'>单据上报</view>
+        </view>
+        <view class="reportTip">温馨提示：费用报销请点击绿色单据上报按钮</view>
     </view>
 </view>
 <!-- 任务为空时 -->
@@ -146,7 +149,7 @@ module.exports = {
               <!-- <view bindtap='bindweixin'><image style="width: 32rpx;" src="../image/weixin.png"></image><text>绑定微信</text></view> -->
             </view>
 
-            <text class='bbh'>V:1.9.02b</text>
+            <text class='bbh'>V:1.9.18a</text>
         </view>
     </i-drawer>
 
