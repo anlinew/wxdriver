@@ -17,6 +17,9 @@ Page({
         title: '数据加载中',
         mask: true
       })
+      setTimeout(function(){
+        wx.hideLoading()
+      },5000)
       let page = this;
       const params = payload || {
         pageNo: page.data.pageNo,
@@ -30,6 +33,28 @@ Page({
           console.log('historys', res);
           const historys = res.data || [];
           historys.forEach(item=> {
+            if (item.status === 0) {
+              item.status = '待下发';
+              item.background = '#808080';
+            } else if (item.status === 1) {
+              item.status = '待接受';
+              item.background = '#f77528';
+            } else if (item.status === 2) {
+              item.status = '待发车';
+              item.background = '#f8b551';
+            } else if (item.status === 3) {
+              item.status = '运输中';
+              item.background = '#4a9cf2';
+            } else if (item.status === 4) {
+              item.status = '已送达';
+              item.background = '#5dc873';
+            } else if (item.status === 5) {
+              item.status = '已完成';
+              item.background = '#19be6b';
+            } else if (item.status === 6) {
+              item.status = '已作废';
+              item.background = '#919293';
+            }
             item.taskDetails.forEach(site=> {
               site.topTime = site.scheduleTime;
               if (site.arriveTime) {site.arriveTime = this.etDateStr(site.arriveTime.replace(/\-/g, '/'));}
@@ -64,8 +89,8 @@ Page({
       const status = e.currentTarget.dataset.status;
       const orderNum = e.currentTarget.dataset.ordernum;
       const wayType = e.currentTarget.dataset.waytype;
-      console.log(orderNum, wayType);
-        if (status === 5) {
+      console.log(e);
+        if (status === '已完成') {
           if (orderNum && !wayType || wayType) {
             wx.showModal({
               title: '提交审批',

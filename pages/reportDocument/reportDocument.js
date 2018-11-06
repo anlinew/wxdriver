@@ -15,7 +15,8 @@ Page({
     statusList: [],
     wayNum: null,
     visible: false,
-    imgList: []
+    imgList: [],
+    jiahaoImg: '../image/jiahao.png'
   },
   async getReportList() {
     wx.showLoading({
@@ -84,7 +85,9 @@ Page({
   // 显示模态框
   handleOpen(e) {
     const imgids = e.currentTarget.dataset.imgids.split(',');
-    const urls = imgids.map((item)=> item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
+    const urls = imgids.map((item) => item = 'http://118.25.119.212/api/pub/objurl/name?id=' + item + '&compress=true')
+    // const urls = imgids.map((item)=> item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
+    // const urls = imgids.map((item) => item = 'http://182.61.48.201:8080/api/pub/objurl/name?id=' + item + '&compress=true')
     console.log(urls);
     this.setData({
       visible: true,
@@ -145,6 +148,20 @@ Page({
       })
     },500)
   },
+  // 更换加号图片
+  jTouchstart (e) {
+    console.log(e)
+    this.setData({
+      jiahaoImg: '../image/jiahao2.png'
+    })
+  },
+  jTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        jiahaoImg: '../image/jiahao.png'
+      })
+    }, 300)
+  },
   // 时间格式转换
   etDateStr(day) {
     const dd = new Date(day);
@@ -154,6 +171,10 @@ Page({
     const hh = dd.getHours() > 9 ? dd.getHours() : '0' + dd.getHours();
     const mm = dd.getMinutes() > 9 ? dd.getMinutes() : '0' + dd.getMinutes();
     return m + '-' + d + ' ' + hh + ':' + mm;
+  },
+  // 图片加载完后的方法
+  loadimg() {
+    console.log(1111)
   },
   // 获取单据类型字典
   async getDict() {

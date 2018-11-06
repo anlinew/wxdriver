@@ -113,7 +113,7 @@ icon {
   position: absolute;
   top: 50%;
   margin-top: -4px;
-  right: 2px;
+  right: 8px;
 }
 .weui-cell_link {
   color: #586C94;

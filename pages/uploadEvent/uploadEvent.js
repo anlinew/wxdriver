@@ -77,13 +77,7 @@ Page({
   // 点击提交上报单据
   async acceptTask(e) {
     // 校验字段
-    wx.showLoading({
-      title: '正在上报...',
-      mask: true,
-    })
-    setTimeout(() => {
-      wx.hideLoading()
-    }, 5000)
+    
     if (!this.WxValidate.checkForm(e)) {
       console.log(this.WxValidate.errorList)
       const error = this.WxValidate.errorList[0]
@@ -94,6 +88,13 @@ Page({
       })
       return false
     }
+    wx.showLoading({
+      title: '正在上报...',
+      mask: true,
+    })
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 5000)
     // 获取imgids
     const arr = [];
     this.data.idList.forEach(item=> {
@@ -130,22 +131,23 @@ Page({
       }
     })
     if (res.result) {
-      wx.hideLoading()
-      wx.showToast({
-        icon: 'success',
-        title: '新增上报成功',
-      })
+      // wx.hideLoading()
       let pages = getCurrentPages();//当前页面
       let prevPage = pages[pages.length-3];//上一页面
-      prevPage.getReportList();
+      
       setTimeout(()=> {
+        prevPage.getReportList();
         wx.navigateBack({
           delta: 2,
           success: (res) => {
             console.log(res)
           }
         })
-      }, 500)
+        wx.showToast({
+          icon: 'success',
+          title: '新增上报成功',
+        })
+      }, 1000)
     } else {
       wx.hideLoading()
       wx.showToast({
@@ -179,10 +181,9 @@ Page({
   //多张图片上传
   upload: function (path) {
     var that = this;
-    wx.showToast({
-      icon: "loading",
+    wx.showLoading({
       title: "正在上传",
-      duration: 1000
+      mask: true
     }),
     wx.uploadFile({
       url: app.upUrl+'/api/pub/upload?app=true',
@@ -208,8 +209,14 @@ Page({
           imgList: imgList,
           idList: idList
         })
+        wx.hideLoading();
+        wx.showToast({
+          title: '图片上传成功',
+          icon: 'success'
+        })
       },
       fail: function (e) {
+        wx.hideLoading();
         wx.showModal({
           title: '提示',
           content: '上传失败',
@@ -217,7 +224,6 @@ Page({
         })
       },
       complete: function () {
-        wx.hideToast();  //隐藏Toast
       }
     })
   },

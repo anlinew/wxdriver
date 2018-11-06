@@ -65,14 +65,16 @@
 
     <view class='list'>
       <view class='li' wx:for="{{loanList}}" wx:for-item="item" wx:key="{{index}}">
-        <view class='h-t relative'>
+        <view hover-class="currentClick" class='h-t relative weui-cell__ft_in-access'  bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
+        data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"
+        data-billexaminemileage="{{item.billExamineMileage}}" data-id="{{item.id}}" data-waystatus="{{item.waybillStatus}}">
           <view class='p'>
             <text class='num'>调度单号： {{item.waybillNum}} </text>
             <text class='gray'>({{item.mileage}}KM)</text>
-            <view class='orange fr'>{{item.waybillStatus}}</view>
+            <view class='orange fr' style="{{'background:'+item.background}}">{{item.waybillStatus}}</view>
           </view>
         </view>
-        <view class='h-c'>
+        <view class='h-c'  hover-class="currentClick">
           <view class='line-box flexLeft'>
             <view class='site s_left' bindtap="routeTab" data-waynum="{{item.waybillNum}}" data-billapplymoney="{{item.billApplyMoney}}" data-billapplygas="{{item.billApplyGas}}"
             data-billapplymileage="{{item.billApplyMileage}}" data-billexaminemoney="{{item.billExamineMoney}}" data-billexaminegas="{{item.billExamineGas}}"

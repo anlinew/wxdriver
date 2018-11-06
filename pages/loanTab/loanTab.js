@@ -242,7 +242,9 @@ Page({
   // 显示模态框
   handleOpen(e) {
     const imgids = e.currentTarget.dataset.imgids.split(',');
-    const urls = imgids.map((item) => item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id=' + item + '&compress=true')
+    const urls = imgids.map((item) => item = 'http://118.25.119.212/api/pub/objurl/name?id=' + item + '&compress=true')
+    // const urls = imgids.map((item) => item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id=' + item + '&compress=true')
+    // const urls = imgids.map((item) => item = 'http://182.61.48.201:8080/api/pub/objurl/name?id=' + item + '&compress=true')
     this.setData({
       visible: true,
       imgList: urls
@@ -260,9 +262,13 @@ Page({
     // 为压缩的图片列表
     const imgList = this.data.imgList.map(item => item = item.replace('true', 'false'))
     const current = e.currentTarget.dataset.current.replace('true', 'false')
+    console.log(current)
     wx.previewImage({
       current: current,
-      urls: imgList
+      urls: imgList,
+      success: (res)=> {
+        console.log(res, current)
+      }
     })
   },
   // 时间格式转换

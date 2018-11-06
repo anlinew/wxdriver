@@ -13,7 +13,9 @@
             </view>
             <view class='h-c'>
                 <view class='num'>
-                <view>类型：{{item.status}}</view>
+                <view style="position:relative">类型：{{item.status}}
+                  <view class="imgMask" data-imgids="{{item.imgids}}" bindtap="handleOpen"></view>
+                </view>
                 <image  wx:if="{{item.imgids}}" data-imgids="{{item.imgids}}" bindtap="handleOpen" src="../image/have_picture.png" class="logo"></image>
                 </view>
                 <view class='num'>数量：{{item.money}} {{item.unit}}</view>
@@ -27,12 +29,12 @@
                 </view>
             </view>
             <view class='h-b' wx:if="{{!item.cancel}}">
-              <button data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</button>
+              <button hover-class="reportClick" data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</button>
             </view>
         </view>
     </view>
     <navigator url='../addReport/addReport?wayNum={{wayNum}}' hover-class="none">
-      <image class='jiahao' src='../image/jiahao.png'></image>
+      <image class='jiahao' src='{{jiahaoImg}}' bind:touchstart="jTouchstart" bind:touchend="jTouchend"></image>
     </navigator>
     </view> 
      <view class='noReport' wx:else>
@@ -41,12 +43,12 @@
     </view>
     <view class='tip'>该调度单还没有上报单据</view>
     <navigator class="addNav" url='../addReport/addReport?wayNum={{wayNum}}' hover-class="none">
-      <button class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
+      <button hover-class="navigator-hover" class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
     </navigator>
     </view> 
 </view>
 
 <i-modal show-cancel="{{false}}" show-ok="{{false}}" title="{{none}}" visible="{{visible}}" bind:ok="handleClose" bind:cancel="handleClose">
     <view bindtap="closeMadol" class="delete"><image src="../image/delete.png"></image></view>
-    <view class="item_img" wx:for="{{imgList}}" wx:key="{{index}}"><image data-current="{{item}}" bindtap="imgTap" src="{{item}}"></image></view>
+    <view class="item_img" wx:for="{{imgList}}" wx:key="{{index}}"><image data-current="{{item}}" onload="loadimg" bindtap="imgTap" src="{{item}}"></image></view>
 </i-modal>

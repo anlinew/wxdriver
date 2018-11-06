@@ -73,3 +73,13 @@
   border-radius: 45rpx;
   width: 630rpx;
 }
+.white{
+  color:#fff;
+  height:24rpx;
+  line-height:24rpx;
+  padding:8rpx 12rpx;
+  border-radius:30rpx;
+  font-size:24rpx;
+  margin-top: 12rpx;
+  margin-right: 8px;
+}

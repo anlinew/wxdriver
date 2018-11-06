@@ -12,24 +12,36 @@
             <text class='fr'>{{item.createTime}}</text>
           </view>
           <view class='h-c-event'>
+            <view class='num'>线路：{{item.routeName}}</view>
             <view class='num'>
-            <view>类型：{{item.statusName}}</view>
+            <view style="position:relative">类型：{{item.statusName}}
+              <view class="imgMask" data-imgids="{{item.imgIds}}" bindtap="handleOpen"></view>
+            </view>
             <image wx:if="{{item.imgIds}}" data-imgids="{{item.imgIds}}" bindtap="handleOpen" src="../image/have_picture.png" class="logo"></image>
             </view>
-            <view class='num'>备注：{{item.description}}</view>
+            <view class='num'>备注：{{item.description?item.description:''}}</view>
             <view class='eventImg'>
                 <image wx:if="{{item.cancel}}" src="../image/yet_canael.png" class="logo"></image>
+                <image wx:if="{{!item.cancel && item.examineStatus === 0}}" src="../image/yet_approval.png" class="logo"></image>
+                <image wx:if="{{!item.cancel && item.examineStatus === 1}}" src="../image/yet_rebut.png" class="logo"></image>
             </view>
           </view>
-            <view class='h-b'  wx:if="{{!item.cancel}}">
-              <view bindtap='call_people' class='btn phone'>联系催人</view>
-              <view bindtap='applyB' class='btn' wx:if="{{item.statusName === '维修'}}">申请借款</view>
-              <view  data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</view>
+
+          <view class='h-c-event'  hidden="{{!item.examineUserName}}">
+            <view class='num'>审核人员：{{item.examineUserName?item.examineUserName:''}}</view>
+            <view class='num'>审核时间：{{item.examineTime?item.examineTime:''}}</view>
+            <view class='num'>审核备注：{{item.examineRemark?item.examineRemark:''}}</view>
+          </view>
+
+            <view class='h-b'  hidden="{{item.cancel || item.examineUserName}}">
+              <view hover-class="redClick" bindtap='call_people' style="color:red" class='btn phone'>联系催人</view>
+              <view hover-class="reportClick" bindtap='applyB' class='btn' wx:if="{{item.statusName === '维修'}}">申请借款</view>
+              <view hover-class="reportClick"  data-id="{{item.id}}" bindtap='cancelReport' class='btn'>取消上报</view>
             </view>
         </view>
     </view>
     <navigator url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="none">
-      <image class='jiahao' src='../image/jiahao.png'></image>
+      <image class='jiahao' src='{{jiahaoImg}}'  bind:touchstart="jTouchstart" bind:touchend="jTouchend"></image>
     </navigator>
     </view> 
      <view class='noReport' wx:else>
@@ -38,7 +50,7 @@
     </view>
     <view class='tip'>该调度单还没有上报事件</view>
     <navigator class="addNav" url='../addEvent/addEvent?wayNum={{wayNum}}' hover-class="none">
-      <button class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
+      <button hover-class="navigator-hover" class="weui-btn check-btn" type="primary" bindtap='acceptTask'>立即上报</button>
     </navigator>
     </view> 
 </view>

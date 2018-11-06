@@ -14,7 +14,8 @@ Page({
         reportList: [], // 上报单据的列表
         statusList: [],
         wayNum: null,
-        visible: false
+        visible: false,
+        jiahaoImg: '../image/jiahao.png'
     },
     async getReportList() {
       wx.showLoading({
@@ -59,7 +60,9 @@ Page({
     handleOpen(e) {
       console.log(e);
       const imgids = e.currentTarget.dataset.imgids.split(',');
-      const urls = imgids.map((item)=> item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
+      const urls = imgids.map((item) => item = 'http://118.25.119.212/api/pub/objurl/name?id=' + item + '&compress=true')
+      // const urls = imgids.map((item)=> item = 'http://boyu.cmal.com.cn/api/pub/objurl/name?id='+item+'&compress=true')
+      // const urls = imgids.map((item) => item = 'http://182.61.48.201:8080/api/pub/objurl/name?id=' + item + '&compress=true')
       console.log(urls);
       this.setData({
         visible: true,
@@ -145,6 +148,20 @@ Page({
         phoneNumber: '02788996666'
       })
     },
+    // 更换加号图片
+  jTouchstart (e) {
+    console.log(e)
+    this.setData({
+      jiahaoImg: '../image/jiahao2.png'
+    })
+  },
+  jTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        jiahaoImg: '../image/jiahao.png'
+      })
+    }, 300)
+  },
     // 时间格式转换
     etDateStr(day) {
       const dd = new Date(day);

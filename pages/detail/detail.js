@@ -20,6 +20,28 @@ Page({
   async _getDetail() {
     const res = (await request.getRequest(api.history, { data: {waybillNum: this.data.wayNum}})).data;
     console.log(res);
+    if (res[0].status === 0) {
+      res[0].status = '待下发';
+      res[0].background = '#808080';
+    } else if (res[0].status === 1) {
+      res[0].status = '待接受';
+      res[0].background = '#f77528';
+    } else if (res[0].status === 2) {
+      res[0].status = '待发车';
+      res[0].background = '#f8b551';
+    } else if (res[0].status === 3) {
+      res[0].status = '运输中';
+      res[0].background = '#4a9cf2';
+    } else if (res[0].status === 4) {
+      res[0].status = '已送达';
+      res[0].background = '#5dc873';
+    } else if (res[0].status === 5) {
+      res[0].status = '已完成';
+      res[0].background = '#19be6b';
+    } else if (res[0].status === 6) {
+      res[0].status = '已作废';
+      res[0].background = '#919293';
+    }
     res[0].taskDetails.forEach(item=> {
       if (item.arriveTime) { item.arriveTime = this.etDateStr(item.arriveTime.replace(/\-/g, '/'));}
       if (item.scheduleTime) { item.scheduleTime = this.etDateStr(item.scheduleTime.replace(/\-/g, '/')); }

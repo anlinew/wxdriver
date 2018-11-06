@@ -32,7 +32,10 @@ Page({
     windowHeight: null,
     driverInfo: {},
     upUrl: null,
-    authSetting: false
+    authSetting: false,
+    reportImg: '../image/addReport.png',
+    eventImg: '../image/bill_report.png',
+    personImg: '../image/person2.png'
   },
   onLoad(options) {
     this.getWaybil();
@@ -63,6 +66,7 @@ Page({
   getWaybil() {
     wx.showLoading({
       title: '加载数据中...',
+      mask: true
     })
     setTimeout(()=> {
       wx.hideLoading()
@@ -70,7 +74,6 @@ Page({
     let page = this;
     request.getRequest(api.currentWaybil).then(res => {
       if (res.result) {
-        wx.hideLoading()
         if (res.data) {
           // 有当前任务
           let tasks = res.data.taskDetails;
@@ -106,6 +109,9 @@ Page({
             detaiShow: false
           });
         }
+        setTimeout(()=> {
+          wx.hideLoading()
+        },300)
       } else {
         wx.showModal({
           confirmColor: '#666',
@@ -141,17 +147,24 @@ Page({
   },
   // 获取车型代码
   getCargos(cargos) {
-    let str = '';
-    let len = cargos.length;
-    if (len > 0) {
+    console.log(cargos)
+    let str = [];
+    if (cargos.length > 0) {
       cargos.forEach((item, i) => {
-        str += i === len - 1 ? `${item.modelCode}(${item.amount})` : `${item.modelCode}(${item.amount});`;
+        str === str.push(i === cargos.length-1 ? item.modelCode + '('+item.amount+')' : item.modelCode+'('+item.amount+'),');
       });
     }
     return str;
   },
   // 接受任务
   acceptTask(e) {
+    wx.showLoading({
+      title: '更新状态中...',
+      mask: true
+    })
+    setTimeout(()=> {
+      wx.hideLoading()
+    },7000)
     let page = this;
     let id = e.currentTarget.dataset.id;
     console.log('id', id);
@@ -159,9 +172,12 @@ Page({
       if (res.result) {
         // 接受任务成功
         console.log(res.data);
-        page.setData({
-          reportShow: true
-        })
+        setTimeout(()=> {
+          page.getWaybil();
+          page.setData({
+            reportShow: true
+          })
+        }, 1000)
       } else {
         // 接受任务失败
         page.setData({
@@ -287,12 +303,14 @@ Page({
                 page.setData({
                   popShow: false
                 });
-                page.getWaybil();
+                
                 setTimeout(function(){
-                  wx.hideLoading()
+                  page.getWaybil();
+                  // wx.hideLoading()
                   wx.showToast({
                     title: '上报站点成功',
-                    icon: 'none'
+                    icon: 'success',
+                    mask: true
                   });
                 },300)
               } else {
@@ -378,12 +396,14 @@ Page({
                   page.setData({
                     popShow: false
                   });
-                  page.getWaybil();
+                  
                   setTimeout(function(){
-                    wx.hideLoading()
+                    page.getWaybil();
+                    // wx.hideLoading()
                     wx.showToast({
                       title: '上报站点成功',
-                      icon: 'none'
+                      icon: 'success',
+                      mask: true
                     });
                   },300)
                 } else {
@@ -476,6 +496,7 @@ Page({
   async onPullDownRefresh(e) {
     wx.showLoading({
       title: '加载中...',
+      mask: true
     })
     await this.getWaybil();
     setTimeout(()=> {
@@ -543,6 +564,46 @@ Page({
       url: '../bindWe/bindWe',
     })
   },
+  // 点击单据上报或事件上报更改图片
+  eTouchstart (e) {
+    console.log(e)
+    this.setData({
+      eventImg: '../image/bill_report2.png'
+    })
+  },
+  eTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        eventImg: '../image/bill_report.png'
+      })
+    },300)
+  },
+  rTouchstart (e) {
+    console.log(e)
+    this.setData({
+      reportImg: '../image/addReport2.png'
+    })
+  },
+  rTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        reportImg: '../image/addReport.png'
+      })
+    }, 300)
+  },
+  pTouchstart (e) {
+    console.log(e)
+    this.setData({
+      personImg: '../image/person3.png'
+    })
+  },
+  pTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        personImg: '../image/person2.png'
+      })
+    }, 200)
+  },
   // 判断是否要更新小程序
   _upData() {
     if (wx.canIUse('getUpdateManager')) {
@@ -558,13 +619,7 @@ Page({
               success: function (res) {
                 if (res.confirm) {
                   // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
-                  wx.showToast({
-                    title: '更新完成!',
-                    icon: 'success'
-                  })
-                  setTimeout(() => {
                     updateManager.applyUpdate()
-                  }, 1000)
                 }
               }
             })

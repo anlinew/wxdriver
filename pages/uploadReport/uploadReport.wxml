@@ -48,7 +48,7 @@
         </view>
 
         <view class="addNav" hover-class='none'>
-          <button class="weui-btn check-btn" type="primary" formType="submit">提交</button>
+          <button hover-class="navigator-hover" class="weui-btn check-btn" type="primary" formType="submit">提交</button>
         </view>
         </form>
         </view>

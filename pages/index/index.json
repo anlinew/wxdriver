@@ -5,5 +5,5 @@
   "component": true,  
   "usingComponents": {
     "i-drawer": "../../utils/iviewapp/drawer/index"
-}
+  }
 }

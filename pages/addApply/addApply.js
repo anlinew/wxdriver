@@ -77,6 +77,13 @@ Page({
       })
       return false
     }
+    wx.showLoading({
+      title: '正在提交申请...',
+      mask: true,
+    })
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 5000)
     const payload = {};
     // 上报的描述
     payload.description = this.data.description;
@@ -94,19 +101,21 @@ Page({
       }
     })
     if (res.result) {
-      wx.showToast({
-        icon: 'success',
-        title: '提交申请借款成功',
-      })
       let pages = getCurrentPages();//当前页面
       let prevPage = pages[pages.length-2];//上一页面
-      prevPage._getBorrow();
-      wx.navigateBack({
-        delta: 1,
-        success: (res) => {
-          console.log(res)
-        }
-      })
+      setTimeout(()=> {
+        prevPage._getBorrow();
+        wx.navigateBack({
+          delta: 1,
+          success: (res) => {
+            console.log(res)
+          }
+        })
+        wx.showToast({
+          icon: 'success',
+          title: '提交申请成功',
+        })
+      },1000)
     } else {
       wx.showToast({
         title: res.message,

@@ -85,13 +85,14 @@ button {
   padding:0 30rpx;
 }
 .webyill {
-  padding: 40rpx 20rpx;
+  padding: 40rpx 20rpx 30rpx 20rpx;
   font-size: 14px;
   color: rgb(74, 75, 79);
   border-bottom: 1rpx solid rgb(214, 214, 214);
 }
 .webyill>view {
   padding: 10rpx;
+  overflow:hidden;
 }
 .webyill_num {
   float: right;
@@ -269,19 +270,14 @@ button {
     font-size: 30rpx;
     color: #666;
 }
-.pop-box .pop-b{}
-
-.pop-box .list{}
 .pop-box .list .item{
     min-height: 100rpx;
-    padding-left: 50rpx;
+    padding-left: 25rpx;
     font-size: 0;
 }
 .pop-box .list .item .check-logo{
     display: inline-block;
     width: 36rpx;
-    height: 100rpx;
-    line-height: 100rpx;
     margin-right: 20rpx;
     vertical-align: top;
 }
@@ -293,7 +289,6 @@ button {
 .pop-box .list .item .name{
     font-size: 28rpx;
     color: #333;
-    line-height: 100rpx;
 }
 .pop-box .pop-f{
     padding: 20rpx 0 40rpx 0;
@@ -378,7 +373,7 @@ button {
   margin-bottom: 15rpx;
 }
 .p_content {
-  padding: 40rpx 40rpx 40rpx 50rpx;
+  padding: 40rpx 0rpx;
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
@@ -389,6 +384,8 @@ button {
   flex: 1;
   margin-top: 22px;
   box-sizing: border-box;
+  height: 70rpx;
+  line-height: 70rpx;
 }
 .p_content view image{
   width: 30rpx;
@@ -411,4 +408,16 @@ button {
   color: #f40800;
   text-align: center;
   width: 100%;
+}
+.carModel {
+  display: flex;
+}
+.carLeft {
+  width: 75px;
+}
+.carRight {
+  flex: 1;
+  display:flex;
+  justify-content:flex-end;
+  flex-wrap:wrap;
 }

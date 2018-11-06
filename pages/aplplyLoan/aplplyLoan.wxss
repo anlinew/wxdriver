@@ -15,12 +15,10 @@
   background-color: #eef3fa;
 }
 
-.historys {}
-
 .history {
-  border-bottom: 1px solid #bfbfbf;
   margin-bottom: 20rpx;
   background-color: #fff;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 }
 
 .history .h-t {

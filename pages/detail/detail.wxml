@@ -1,34 +1,4 @@
 <!--pages/detail/detail.wxml-->
-<wxs module="m_history">
-var getStatusName = function(status) {
-    var name = '';
-    switch (status) {
-        case 0:
-            name = '待下发';
-            break;
-        case 1:
-            name = '待接受';
-            break;
-        case 2:
-            name = '待发车';
-            break;
-        case 3:
-            name = '运输中';
-            break;
-        case 4:
-            name = '已送达';
-            break;
-        case 5:
-            name = '已确认送达';
-            break;
-    }
-    return name;
-};
-
-module.exports = {
-    getStatusName: getStatusName
-};
-</wxs>
 
 <view class='container'>
     <view class='header'>
@@ -48,7 +18,7 @@ module.exports = {
     <view class='info-box'>
         <view class='item'>
             <view class='item-name'>调度单号：</view>
-            <view class='item-con'>{{detail.waybillNum}}<text class='finish fr'>{{m_history.getStatusName(detail.status)}}</text></view>
+            <view class='item-con'>{{detail.waybillNum}}<text class='white fr' style="{{detail.canceled?'background:#888':'background:'+detail.background}}">{{detail.canceled?'已取消':detail.status}}</text></view>
         </view>
         <view class='item'>
             <view class='item-name'>任务时间：</view>

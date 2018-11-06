@@ -24,7 +24,7 @@
             <view class='oil_cont'><text class="oil_left">审批备注：{{item.examineRemark}}</text></view>
           </view>
           <view class='h-b' wx:if="{{!item.source && !item.cancel && item.examineStatus==='待审批'}}">
-            <button data-id="{{item.id}}" bindtap='cancelAdd' disabled="{{item.applicationCompleted}}" class="btn">取消申请</button>
+            <button hover-class="reportClick" data-id="{{item.id}}" bindtap='cancelAdd' disabled="{{item.applicationCompleted}}" class="btn">取消申请</button>
           </view>
         </view>
       </view>
@@ -36,6 +36,6 @@
       <view class='tip'>您还没有请假记录</view>
     </view>
     <navigator url='../addLeave/addLeave' hover-class="none">
-      <image class='jiahao' src='../image/jiahao.png'></image>
+      <image class='jiahao' src='{{jiahaoImg}}' bind:touchstart="jTouchstart" bind:touchend="jTouchend"></image>
     </navigator>
   </view>

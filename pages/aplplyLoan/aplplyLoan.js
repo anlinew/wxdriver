@@ -9,7 +9,8 @@ Page({
     pageNo: 1,
     pageSize: 10,
     borrowList: [],
-    wayNum: null
+    wayNum: null,
+    jiahaoImg: '../image/jiahao.png'
   },
   onLoad(option) {
     var that = this;
@@ -131,6 +132,20 @@ Page({
         title: '取消申请借款失败',
       })
     }
+  },
+  // 更换加号图片
+  jTouchstart (e) {
+    console.log(e)
+    this.setData({
+      jiahaoImg: '../image/jiahao2.png'
+    })
+  },
+  jTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        jiahaoImg: '../image/jiahao.png'
+      })
+    }, 300)
   },
   // 时间格式转换
   etDateStr(day) {

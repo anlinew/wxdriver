@@ -80,18 +80,23 @@ Page({
       switch(n.waybillStatus){
         case 0:
         n.waybillStatus = '审批中'
+        n.background = '#FF9900'
         break;
         case 1:
-        n.waybillStatus = '审核完成'
+        n.waybillStatus = '已审批'
+        n.background = '#19be6b'
         break;
         case 2:
         n.waybillStatus = '待结算'
+        n.background = '#10aeff'
         break;
         case 3:
         n.waybillStatus = '已结算'
+        n.background = '#09BB07'
         break;
         case 4:
         n.waybillStatus = '已关账'
+        n.background = '#888888'
         break;
       }
       n.taskDetails.forEach(item=>{

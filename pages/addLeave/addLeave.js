@@ -68,6 +68,13 @@ Page({
       })
       return false
     }
+    wx.showLoading({
+      title: '正在提交申请...',
+      mask: true,
+    })
+    setTimeout(() => {
+      wx.hideLoading()
+    }, 5000)
     const payload = {};
     // 请假的原因
     payload.description = this.data.description;
@@ -87,36 +94,27 @@ Page({
     })
     console.log(res);
     if (res.result) {
-      wx.showToast({
-        icon: 'success',
-        title: '申请请假成功',
-        duration: 700,
-        success:(res)=>{
-          setTimeout(()=>{
-            prevPage._getLeave();
-            wx.navigateBack({
-              delta: 1,
-              success: (res) => {
-                console.log(res)
-              }
-            })
-          },700)
-        }
-      })
       let pages = getCurrentPages(); //当前页面
       let prevPage = pages[pages.length-2]; //上一页面
-      // prevPage._getLeave();
-      // wx.navigateBack({
-      //   delta: 1,
-      //   success: (res) => {
-      //     console.log(res)
-      //   }
-      // })
+      setTimeout(()=>{
+        prevPage._getLeave();
+        wx.navigateBack({
+          delta: 1,
+          success: (res) => {
+            console.log(res)
+          }
+        })
+        wx.showToast({
+          icon: 'success',
+          title: '提交申请成功',
+        })
+      },1000)
     } else {
-      wx.showToast({
-        title: res.message,
-        icon: 'none'
-      })
+      wx.showModal({
+        confirmColor: '#666',
+        content: res.message,
+        showCancel: false,
+      });
     }
   },
   inputD(e) {
@@ -163,7 +161,7 @@ Page({
     const y = dd.getFullYear();
     const m = dd.getMonth() + 1 > 9 ? dd.getMonth() + 1 : '0' + (dd.getMonth() + 1);
     const d = dd.getDate() > 9 ? dd.getDate() : '0' + dd.getDate();
-    return y + '-' + m + '-' + (d+1);
+    return y + '-' + m + '-' + (Number(d)+1);
   },
   // 格式转化为yy-MM-dd hh:mm:ss
   dateFormat(day) {

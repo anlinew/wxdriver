@@ -1,17 +1,15 @@
 /* pages/history/history.wxss */
 .fr {float: right;}
-.container{}
 .top-time{
     padding: 0 30rpx;
     font-size: 26rpx;
     line-height: 60rpx;
     color: #7e8084;
-    background-color: #eef3fa;
+    background-color: #e9eef5;
 }
-.historys{}
 .history{
-    border-bottom: 1px solid #bfbfbf;
     background-color: #fff;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 }
 .history .h-t{
     height: 60rpx;
@@ -21,10 +19,17 @@
     line-height: 60rpx;
 }
 .history .h-t .gray{
-    color: #7e8084;
+    color: #333;
 }
-.history .h-t .red{
-    color: #f84a65;
+.history .h-t .white{
+    color:#fff;
+    height:24rpx;
+    line-height:24rpx;
+    padding:8rpx 12rpx;
+    border-radius:30rpx;
+    font-size:24rpx;
+    margin-top: 12rpx;
+    margin-right: 8px;
 }
 .history .h-c{
     padding: 5rpx 30rpx;
@@ -47,10 +52,10 @@
     vertical-align: middle;
 }
 .history .h-b{
-    height: 80rpx;
+    height: 89rpx;
     padding: 0 30rpx;
     text-align: right;
-    line-height: 80rpx;
+    line-height: 85rpx;
 }
 .history .h-b .btn{
     display: inline-block;

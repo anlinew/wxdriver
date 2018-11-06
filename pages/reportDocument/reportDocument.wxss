@@ -12,9 +12,8 @@
     color: #7e8084;
     background-color: #eef3fa;
 }
-.historys{}
 .history{
-    border-bottom: 1px solid #bfbfbf;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     margin-bottom: 20rpx;
     background-color: #fff;
 }
@@ -22,7 +21,7 @@
     height: 60rpx;
     padding: 0 30rpx;
     border-bottom: 1px solid #dcdcdc;
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 60rpx;
 }
 .history .h-t .gray{
@@ -34,13 +33,12 @@
 .history .h-c{
     padding: 5rpx 30rpx;
     position: relative;
-    font-size: 28rpx;
+    font-size: 26rpx;
 }
 .history .h-c .num{
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 60rpx;
     display: block;
-    height: 60rpx;
 }
 .history .h-c .item .logo-wrap{
     display: inline-block;
@@ -114,8 +112,8 @@
     height: 105rpx;
   }
   .num .logo {
-    width: 30rpx;
-    height: 30rpx;
+    width: 32rpx;
+    height: 32rpx;
     display: inline-block;
     margin-top: 15rpx;
     margin-left: 20rpx;
@@ -175,4 +173,12 @@
     position: fixed;
     right: 50rpx;
     bottom: 80rpx;
+  }
+  .imgMask {
+    position: absolute;
+    right: -80rpx;
+    top: 0px;
+    width: 75rpx;
+    height: 70rpx!important;
+    z-index: 999;
   }

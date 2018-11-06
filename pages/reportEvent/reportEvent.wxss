@@ -12,9 +12,8 @@
     color: #7e8084;
     background-color: #eef3fa;
 }
-.historys{}
 .history{
-    border-bottom: 1px solid #bfbfbf;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
     margin-bottom: 20rpx;
     background-color: #fff;
 }
@@ -22,7 +21,7 @@
     height: 60rpx;
     padding: 0 30rpx;
     border-bottom: 1px solid #dcdcdc;
-    font-size: 28rpx;
+    font-size: 26rpx;
     line-height: 60rpx;
 }
 .history .h-t .gray{
@@ -32,16 +31,15 @@
     color: #f84a65;
 }
 .history .h-c-event{
-    padding: 5rpx 30rpx;
+    padding: 10rpx 30rpx;
     position: relative;
     font-size: 28rpx;
     border-bottom: 1px solid #dcdcdc;
 }
 .history .h-c-event .num{
-    font-size: 28rpx;
-    line-height: 70rpx;
+    font-size: 26rpx;
     display: block;
-    min-height: 70rpx;
+    line-height: 60rpx
 }
 .history .h-c-event .item .logo-wrap{
     display: inline-block;
@@ -57,9 +55,9 @@
 }
 .history .h-b{
     height: 80rpx;
-    padding: 0 30rpx;
+    padding: 5rpx 30rpx;
     text-align: right;
-    line-height: 80rpx;
+    line-height: 76rpx;
 }
 .history .h-b .btn{
     display: inline-block;
@@ -75,7 +73,6 @@
 }
 .phone {
     border: 1px solid red!important;
-    color: red!important;
 }
 .history .h-b .btn.gray{
     color: #b9b8b8;
@@ -118,8 +115,8 @@
     height: 105rpx;
   }
   .num .logo {
-    width: 30rpx;
-    height: 30rpx;
+    width: 32rpx;
+    height: 32rpx;
     display: inline-block;
     margin-top: 15rpx;
     margin-left: 20rpx;
@@ -179,4 +176,12 @@
     position: fixed;
     right: 50rpx;
     bottom: 80rpx;
+  }
+  .imgMask {
+    position: absolute;
+    right: -80rpx;
+    top: 0px;
+    width: 75rpx;
+    height: 70rpx!important;
+    z-index: 999;
   }

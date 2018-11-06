@@ -55,11 +55,13 @@
                 </view>
                 <view class='h-c'>
                   <view class='num'>
-                    <view>类型：{{item.status}}</view>
+                    <view style="position:relative">类型：{{item.status}}
+                      <view class="imgMask" data-imgids="{{item.imgids}}" bindtap="handleOpen"></view>
+                    </view>
                     <image wx:if="{{item.imgids}}" data-imgids="{{item.imgids}}" bindtap="handleOpen" src="../image/have_picture.png" class="logo"></image>
                   </view>
                   <view class='num'>数量：{{item.money}} {{item.unit}}</view>
-                  <view class='num'>备注：{{item.description}}</view>
+                  <view style="margin:10rpx 0;line-height: 60rpx">备注：{{item.description}}</view>
                   <view class='auditImg'>
                     <image wx:if="{{item.examineStatus===0&&!item.cancel}}" src="../image/wait_approval.png" class="logo"></image>
                     <image wx:if="{{item.examineStatus===1&&!item.cancel}}" src="../image/in_approval.png" class="logo"></image>
@@ -67,6 +69,13 @@
                     <image wx:if="{{item.examineStatus===3&&!item.cancel}}" src="../image/yet_rebut.png" class="logo"></image>
                     <image wx:if="{{item.cancel}}" src="../image/yet_canael.png" class="logo"></image>
                   </view>
+                </view>
+
+                <view class='h-c-event'  hidden="{{!item.examineUser}}">
+                    <view class='num'>审核数量：{{item.unit === '元' ? item.examineMoney / 100 :item.examineMoney }}{{' '+item.unit}}</view>
+                    <view class='num'>审核人员：{{item.examineUser?item.examineUser:''}}</view>
+                    <view class='num'>审核时间：{{item.examineTime?item.examineTime:''}}</view>
+                    <view class='num'>审核备注：{{item.remark?item.remark:''}}</view>
                 </view>
               </view>
             </view>
@@ -184,12 +193,12 @@
                   </view>
                 </view>
                 <view class='oil_ht'>
-                  <view class='stand_cont'>借款原因：{{item.description}}</view>
+                  <view class='stand_cont'>借款原因：{{item.description?item.description:''}}</view>
                 </view>
                 <view class='h-c' wx:if="{{item.examineUserName}}">
-                  <view class='oil_cont'><text class="oil_left">审批人员：{{item.examineUserName}}</text></view>
-                  <view class='oil_cont'><text class="oil_left">审批时间：{{item.examineTime}}</text></view>
-                  <view class='oil_cont'><text class="oil_left">审批备注：{{item.examineRemark}}</text></view>
+                  <view class='oil_cont'><text class="oil_left">审批人员：{{item.examineUserName?item.examineUserName:''}}</text></view>
+                  <view class='oil_cont'><text class="oil_left">审批时间：{{item.examineTime?item.examineTime:''}}</text></view>
+                  <view class='oil_cont'><text class="oil_left">审批备注：{{item.examineRemark?item.examineRemark:''}}</text></view>
                 </view>
               </view>
             </view>

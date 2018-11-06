@@ -10,10 +10,12 @@ App({
   },
   upUrl: 'https://boyu.cmal.com.cn',
   // upUrl: 'http://182.61.48.201:8080',
+  // upUrl: 'http://jycms-g7s.demo.chinawayltd.com',
   WxRequest() {
     this.WxRequest = new WxRequest({
       baseURL: 'https://boyu.cmal.com.cn',
       // baseURL: 'http://182.61.48.201:8080',
+      // baseURL: 'http://jycms-g7s.demo.chinawayltd.com',
     })
     this.interceptors()
     return this.WxRequest;
@@ -25,9 +27,10 @@ App({
     if (res.model.indexOf('iPhone')>=0) {
       this.WxRequest.interceptors.use({
         request(request) {
-          const token = wx.getStorageSync('token');
+          const token = wx.getStorageSync('Token');
           if (token) {
             request.header['x-auth-token'] = token;
+            // request.header['X-Auth-Token'] = token;
           }
           return request
         },
@@ -37,9 +40,10 @@ App({
         },
         response(response) {
           const token = response.header['x-auth-token']
+          // const token = response.header['X-Auth-Token']
           if (token) {
             response.data.token = token;
-            wx.setStorageSync('token', token);
+            wx.setStorageSync('Token', token);
           }
           if (response.statusCode === 200) {
             return Promise.resolve(response.data);
@@ -70,7 +74,7 @@ App({
     } else {
       this.WxRequest.interceptors.use({
         request(request) {
-          const token = wx.getStorageSync('token');
+          const token = wx.getStorageSync('Token');
           if (token) {
             request.header['X-Auth-Token'] = token;
           }
@@ -84,7 +88,7 @@ App({
           const token = response.header['X-Auth-Token']
           if (token) {
             response.data.token = token;
-            wx.setStorageSync('token', token);
+            wx.setStorageSync('Token', token);
           }
           if (response.statusCode === 200) {
             return Promise.resolve(response.data);

@@ -58,11 +58,18 @@ module.exports = {
 
     <view class="mission_detail">
         <view class='webyill'>
-          <view>调度单号
+          <view>
+              <text style="width:66px;display: inline-block">调度单号</text>
               <text class='webyill_num'>{{detail.waybillNum}}</text>
           </view>
-          <view>车型代码
-              <text class='webyill_num'>{{cargoCode}}</text>
+          <view class="carModel">
+              <view class="carLeft">
+                  <text style="width:75px;display: inline-block;float: left">车型代码</text>
+              </view>
+              <view class="carRight">
+                  <text wx:for="{{cargoCode}}" style="margin-right: 3px;line-height:25px;height: 25px" wx:key="{{index}}">{{item}}</text>
+              </view>
+              
           </view>
         </view>
         <view class='route'>
@@ -72,30 +79,30 @@ module.exports = {
             </view>
             <text class='name'>{{item.siteName}}</text>
             <text class='time'>{{item.shortTime}}</text>
-            <button wx:if='{{reportShow&&authSetting}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</button>
-            <button bindopensetting="Handler" open-type="openSetting" wx:if='{{reportShow && !authSetting}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</button>
+            <button disabled="{{m_index.isDisabledBtn(item)}}" hover-class="{{i===0?'fcClick':'reportClick'}}" plain="true" wx:if='{{reportShow&&authSetting}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</button>
+            <button disabled="{{m_index.isDisabledBtn(item)}}" hover-class="{{i===0?'fcClick':'reportClick'}}" plain="true" bindopensetting="Handler" open-type="openSetting" wx:if='{{reportShow && !authSetting}}' class="btn {{i === 0 ? 'red' : ''}} {{m_index.isDisabledBtn(item) ? 'gray' : ''}}" bindtap='reportSite' data-id="{{detail.id}}" data-index="{{i}}" data-item="{{item}}">{{i === 0 ? '发车' : '交车'}}</button>
           </view>
         </view>
     </view>
-    <button class="weui-btn get-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">接受任务</button> 
+    <button hover-class="navigator-hover" class="weui-btn get-btn" type="primary" hidden='{{reportShow}}' bindtap='acceptTask' data-id="{{detail.id}}">接受任务</button> 
     <view class='report-box' hidden='{{!reportShow}}'>
         
-        <view class='item'>
+        <view class='item' bind:touchstart="eTouchstart" bind:touchend="eTouchend">
             <navigator style='borderRadius:50%' url="../reportEvent/reportEvent?wayNum={{wayNum}}" hover-class="none">
             <view class='logo'>
-                <image src="../image/event_report.png" class="img"></image>
+                <image src="{{eventImg}}" class="img"></image>
             </view>
             <view class='txt'>事件上报</view>
             </navigator>
         </view>
 
-        <view class='item'>
+        <view class='item'  bind:touchstart="rTouchstart" bind:touchend="rTouchend">
             <navigator style='borderRadius:50%' url="../reportDocument/reportDocument?wayNum={{wayNum}}" hover-class="none">
               <view class='logo'>
-                <image src="../image/addReport.png" class="img"></image>
+                <image src="{{reportImg}}" class="img"></image>
               </view>
+              <view class='txt'>单据上报</view>
             </navigator>
-            <view class='txt'>单据上报</view>
         </view>
         <view class="reportTip">温馨提示：费用报销请点击绿色单据上报按钮</view>
     </view>
@@ -117,7 +124,7 @@ module.exports = {
             <view class='close' bindtap='closePop'><image src="../image/close.png" class="img"></image></view>
         </view>
         <view class='pop-b'>
-            <view class='list'>
+            <view class='list' style="padding:15rpx">
                 <view class='item' wx:for="{{dealers}}" wx:key="{{index}}" bindtap='changeDealers' data-index="{{index}}" data-delivered="{{item.delivered}}">
                     <view class='check-logo'><image src="{{item.delivered ? '../image/submitted.png' : item.isSelected ? '../image/checked.png' : '../image/un_check.png'}}" class="img"></image></view>
                     <text class='name'>{{item.dealer}}</text>
@@ -125,12 +132,12 @@ module.exports = {
             </view>
         </view>
         <view class='pop-f'>
-            <view class='btn' bindtap='toReport'>提交</view>
+            <view hover-class="tjClick" class='btn' bindtap='toReport'>提交</view>
         </view>
     </view>
 </view>
 
-<image class="person" src="../image/person2.png" alt="" bindtap="toggleLeft1"></image>
+<image class="person" src="{{personImg}}" alt="" bindtap="toggleLeft1" bind:touchstart="pTouchstart" bind:touchend="pTouchend"></image>
     <i-drawer style="height:100%" class="modalD" mode="left" visible="{{showLeft}}" bind:close="toggleLeft1">
         <view class="demo-container" style='height:{{windowHeight}}'>
             <view class='p_head'>
@@ -140,16 +147,16 @@ module.exports = {
             </view>
 
             <view class='p_content'>
-              <view bindtap='oldHistory'><image src="../image/my_task.png"></image><text>历史任务</text></view>
-              <view bindtap='myTask'><image src="../image/my_message.png"></image><text>我的消息</text></view>
-              <view bindtap='myLoan'><image src="../image/my_expense.png"></image><text>我的报销</text></view>
-              <view bindtap='myLeave'><image src="../image/my_leave.png"></image><text>我的请假</text></view>
-              <view bindtap='aplplyLoan'><image src="../image/apply_loan.png"></image><text>申请借款</text></view>
-              <view bindtap='changePass'><image src="../image/password.png"></image><text>修改密码</text></view>
+              <view hover-class="currentClick" bindtap='oldHistory' style="padding-left:50rpx"><image src="../image/my_task.png"></image><text>历史任务</text></view>
+              <view hover-class="currentClick" bindtap='myTask' style="padding-left:50rpx"><image src="../image/my_message.png"></image><text>我的消息</text></view>
+              <view hover-class="currentClick" bindtap='myLoan' style="padding-left:50rpx"><image src="../image/my_expense.png"></image><text>我的报销</text></view>
+              <view hover-class="currentClick" bindtap='myLeave' style="padding-left:50rpx"><image src="../image/my_leave.png"></image><text>我的请假</text></view>
+              <view hover-class="currentClick" bindtap='aplplyLoan' style="padding-left:50rpx"><image src="../image/apply_loan.png"></image><text>申请借款</text></view>
+              <view hover-class="currentClick" bindtap='changePass' style="padding-left:50rpx"><image src="../image/password.png"></image><text>修改密码</text></view>
               <!-- <view bindtap='bindweixin'><image style="width: 32rpx;" src="../image/weixin.png"></image><text>绑定微信</text></view> -->
             </view>
 
-            <text class='bbh'>V:1.9.18a</text>
+            <text class='bbh'>V:1.10.19a</text>
         </view>
     </i-drawer>
 

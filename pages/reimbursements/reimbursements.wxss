@@ -60,13 +60,13 @@
     background-color: #14b4b1;
 }
 .li{
-    border-bottom: 1px solid #bfbfbf;
     margin-bottom: 20rpx;
     background-color: #fff;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 }
 .li .h-t{
     height: 60rpx;
-    padding: 0 30rpx;
+    padding: 10rpx 30rpx;
     border-bottom: 1px solid #eef3fa;
     font-size: 26rpx;
     line-height: 60rpx;
@@ -76,17 +76,23 @@
     line-height: 60rpx;
 }
 .li .gray{
-    color: #7e8084;
+    color: #333;
 }
 .li .red{
     color: #f84a65;
 }
 .li .orange{
-    color: #f39800;
+    color: #fff;
+    margin-right: 5px;
+    height:26rpx;
+    line-height:26rpx;
+    padding: 6rpx 12rpx;
+    border-radius:30rpx;
+    font-size:24rpx;
+    margin-top: 15rpx;
 }
 .li .h-c{
-    padding: 10rpx 0;
-    margin: 0 30rpx;
+    padding: 10rpx 30rpx;
     border-bottom: 1px solid #eef3fa;
 }
 .li .h-c .p{
@@ -135,7 +141,7 @@
     height: 100%;
 }
 .li .h-c .site .time{
-    color: #999;
+    color: #666;
     width: 180rpx;
 }
 .li .h-c .site .name{

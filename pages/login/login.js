@@ -11,6 +11,9 @@ Page({
     account: '',
     password: '',
     isshow: true,
+    hasChecked: '下次自动登录',
+    checked: false,
+    checkedValue: 'checked'
   },
   initValidate() {
     // 验证字段的规则
@@ -53,8 +56,14 @@ Page({
       })
       return false
     }
-    const params = { account: e.detail.value.account, password: e.detail.value.password };
-
+    const params = { account: e.detail.value.account, password: e.detail.value.password, rememberMe: true };
+    wx.showLoading({
+      title: '正在登录...',
+      mask: true
+    })
+    setTimeout(()=> {
+      wx.hideLoading()
+    },6000)
     request.postRequest(api.login, {
       data: params,
       header: {
@@ -64,9 +73,13 @@ Page({
       .then(res => {
         console.log(res)
         if (res.result) {
-          app.globalData.userInfo = res.data;
-          wx.navigateTo({ url: '../index/index' })
+          setTimeout(()=> {
+            app.globalData.userInfo = res.data;
+            wx.navigateTo({ url: '../index/index' })
+            wx.hideLoading();
+          },1000)
         } else {
+          wx.hideLoading();
           wx.showModal({
             confirmColor: '#666',
             content: res.message,
@@ -81,5 +94,8 @@ Page({
     this.setData({
       isshow: isshow
     });
+  },
+  checkboxChange: function(e) {
+    console.log('checkbox发生change事件，携带value值为：', e)
   }
 })

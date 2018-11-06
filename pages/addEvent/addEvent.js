@@ -19,15 +19,31 @@ Page({
       })
       console.log(this.data.wayNum);
     },
-  // 点击更换图标
-  // repairColor () {
-  //   this.setData({
-  //     repairSrc: '../image/repair_click.png'
-  //   })
-  // },
-  // otherColor () {
-  //   this.setData({
-  //     otherSrc: '../image/other_click.png'
-  //   })
-  // }
+  // 点击维修和其他事件上报更改图片
+  rTouchstart (e) {
+    console.log(e)
+    this.setData({
+      repairSrc: '../image/repair_click.png'
+    })
+  },
+  rTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        repairSrc: '../image/repair_default.png'
+      })
+    },300)
+  },
+  oTouchstart (e) {
+    console.log(e)
+    this.setData({
+      otherSrc: '../image/other_click.png'
+    })
+  },
+  oTouchend () {
+    setTimeout(()=> {
+      this.setData({
+        otherSrc: '../image/other_default.png'
+      })
+    }, 300)
+  },
 })
