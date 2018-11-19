@@ -8,14 +8,20 @@ App({
   globalData: {
     userInfo: {}
   },
+  // 上传地址
   upUrl: 'https://boyu.cmal.com.cn',
   // upUrl: 'http://182.61.48.201:8080',
   // upUrl: 'http://jycms-g7s.demo.chinawayltd.com',
+
+  // 预览地址
   // preveUrl: 'http://182.61.48.201:8080',
   preveUrl: 'http://118.25.119.212',
+  
+  // 版本号
   vision: '20181119a',
   WxRequest() {
     this.WxRequest = new WxRequest({
+      // 请求地址
       baseURL: 'https://boyu.cmal.com.cn',
       // baseURL: 'http://182.61.48.201:8080',
       // baseURL: 'http://jycms-g7s.demo.chinawayltd.com',
