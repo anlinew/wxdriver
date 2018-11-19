@@ -43,7 +43,8 @@ Page({
     const res = wx.getSystemInfoSync();
     this.setData({
       windowHeight: res.windowHeight + 'px',
-      upUrl: app.upUrl
+      upUrl: app.upUrl,
+      vision: app.vision
     })
     wx.getSetting({
       success:(res)=> {
@@ -68,11 +69,10 @@ Page({
       title: '加载数据中...',
       mask: true
     })
-    setTimeout(()=> {
-      wx.hideLoading()
-    },5000)
     let page = this;
     request.getRequest(api.currentWaybil).then(res => {
+      console.log('success')
+      wx.hideLoading()
       if (res.result) {
         if (res.data) {
           // 有当前任务
@@ -113,12 +113,16 @@ Page({
           wx.hideLoading()
         },300)
       } else {
+        wx.hideLoading();
         wx.showModal({
           confirmColor: '#666',
           content: res.message,
           showCancel: false,
         });
       }
+    },()=> {
+      console.log('error')
+      wx.hideLoading()
     })
   },
   getStatusName(status) {
@@ -162,9 +166,9 @@ Page({
       title: '更新状态中...',
       mask: true
     })
-    setTimeout(()=> {
-      wx.hideLoading()
-    },7000)
+    // setTimeout(()=> {
+    //   wx.hideLoading()
+    // },10000)
     let page = this;
     let id = e.currentTarget.dataset.id;
     console.log('id', id);
@@ -183,6 +187,7 @@ Page({
         page.setData({
           reportShow: false
         });
+        wx.hideLoading();
         wx.showModal({
           confirmColor: '#666',
           content: res.message,

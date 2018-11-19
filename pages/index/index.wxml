@@ -156,7 +156,7 @@ module.exports = {
               <!-- <view bindtap='bindweixin'><image style="width: 32rpx;" src="../image/weixin.png"></image><text>绑定微信</text></view> -->
             </view>
 
-            <text class='bbh'>V:1.10.19a</text>
+            <text class='bbh'>{{vision}}</text>
         </view>
     </i-drawer>
 

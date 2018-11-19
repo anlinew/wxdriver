@@ -16,11 +16,11 @@
     </view>
     <view class="weui-cell weui-cell_access item1">
         <view class="weui-cell__bd">车牌号</view>
-        <view class="weui-cell__ft">{{driverInfo.truckLicense}}</view>
+        <view class="weui-cell__ft">{{driverInfo.truckLicense?driverInfo.truckLicense:'无'}}</view>
     </view>
     <view bindtap="changephone" class="weui-cell weui-cell_access item">
         <view class="weui-cell__bd">手机号</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">{{driverInfo.phone}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">{{driverInfo.phone?driverInfo.phone:'无'}}</view>
     </view>
     <view class="addNav">
         <button bindtap="outlogin" class="weui-btn check-btn" type="primary">退出登录</button>

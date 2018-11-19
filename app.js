@@ -8,13 +8,16 @@ App({
   globalData: {
     userInfo: {}
   },
-  upUrl: 'https://boyu.cmal.com.cn',
-  // upUrl: 'http://182.61.48.201:8080',
+  // upUrl: 'https://boyu.cmal.com.cn',
+  upUrl: 'http://182.61.48.201:8080',
   // upUrl: 'http://jycms-g7s.demo.chinawayltd.com',
+  preveUrl: 'http://182.61.48.201:8080',
+  // preveUrl: 'http://118.25.119.212',
+  vision: '20181113a',
   WxRequest() {
     this.WxRequest = new WxRequest({
-      baseURL: 'https://boyu.cmal.com.cn',
-      // baseURL: 'http://182.61.48.201:8080',
+      // baseURL: 'https://boyu.cmal.com.cn',
+      baseURL: 'http://182.61.48.201:8080',
       // baseURL: 'http://jycms-g7s.demo.chinawayltd.com',
     })
     this.interceptors()
@@ -29,8 +32,8 @@ App({
         request(request) {
           const token = wx.getStorageSync('Token');
           if (token) {
-            request.header['x-auth-token'] = token;
-            // request.header['X-Auth-Token'] = token;
+            // request.header['x-auth-token'] = token;
+            request.header['X-Auth-Token'] = token;
           }
           return request
         },
@@ -39,8 +42,8 @@ App({
           return Promise.reject(requestError)
         },
         response(response) {
-          const token = response.header['x-auth-token']
-          // const token = response.header['X-Auth-Token']
+          // const token = response.header['x-auth-token']
+          const token = response.header['X-Auth-Token']
           if (token) {
             response.data.token = token;
             wx.setStorageSync('Token', token);

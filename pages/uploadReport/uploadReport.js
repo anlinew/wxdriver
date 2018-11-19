@@ -27,7 +27,8 @@ Page({
     // 验证字段的规则
     const rules = {
       money: {
-        required: true
+        required: true,
+        number: true,
       },
       description: {
         required: true
@@ -36,7 +37,8 @@ Page({
     // 验证字段的提示信息，若不传则调用默认的信息
     const messages = {
       money: {
-        required: '上报数量不能为空'
+        required: '上报数量不能为空',
+        digits: '上报数量只能输入数字',
       },
       description: {
         required: '单据备注不能为空'
@@ -85,7 +87,7 @@ Page({
   },
   // 点击提交上报单据
   async acceptTask(e) {
-    
+    console.log(e)
     // 校验字段
     if (!this.WxValidate.checkForm(e)) {
       console.log(this.WxValidate.errorList)
@@ -97,6 +99,18 @@ Page({
       })
       return false
     }
+
+    if (this.data.unit !== '元') {
+      if (Math.round(e.detail.value.money) !== Number(e.detail.value.money)) {
+        wx.showModal({
+          confirmColor: '#666',
+          content: '里程或燃油类的申请数量请输入整数',
+          showCancel: false,
+        })
+        return false;
+      }
+    }
+
     wx.showLoading({
       title: '正在上报...',
       mask: true,

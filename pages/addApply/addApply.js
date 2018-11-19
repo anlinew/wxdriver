@@ -21,7 +21,8 @@ Page({
     // 验证字段的规则
     const rules = {
       money: {
-        required: true
+        required: true,
+        number: true,
       },
       description: {
         required: true
@@ -30,7 +31,8 @@ Page({
     // 验证字段的提示信息，若不传则调用默认的信息
     const messages = {
       money: {
-        required: '借款金额不能为空'
+        required: '借款金额不能为空',
+        digits: '借款金额只能输入数字',
       },
       description: {
         required: '借款原因不能为空'
